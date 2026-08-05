@@ -10,6 +10,8 @@ title-block-banner: false
 
 I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.
 
-Two projects are live so far: **Qiberis**, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane, and **qiskit-sqd-dashboard**, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members.
+Two projects are live so far: 
+**Qiberis**, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane.
+**Qiskit SQD Dashboard**, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members.
 
 [See the projects →](projects.qmd)
