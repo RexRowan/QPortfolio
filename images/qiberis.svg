@@ -1,0 +1,26 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+  <!-- shared circuit trunk -->
+  <line x1="60" y1="160" x2="280" y2="160" stroke="#2B6CB0" stroke-width="3"/>
+  <circle cx="120" cy="160" r="9" fill="none" stroke="#14171F" stroke-width="2.5"/>
+  <circle cx="200" cy="160" r="9" fill="none" stroke="#14171F" stroke-width="2.5"/>
+
+  <!-- fan-out to three backends -->
+  <path d="M280,160 L360,90" stroke="#2B6CB0" stroke-width="3" fill="none"/>
+  <path d="M280,160 L360,160" stroke="#0F9D8C" stroke-width="3" fill="none"/>
+  <path d="M280,160 L360,230" stroke="#7A6FF0" stroke-width="3" fill="none"/>
+
+  <line x1="360" y1="90" x2="560" y2="90" stroke="#2B6CB0" stroke-width="3"/>
+  <circle cx="440" cy="90" r="8" fill="none" stroke="#14171F" stroke-width="2"/>
+  <text x="565" y="94" font-family="JetBrains Mono, monospace" font-size="15" fill="#14171F">Aer</text>
+
+  <line x1="360" y1="160" x2="560" y2="160" stroke="#0F9D8C" stroke-width="3"/>
+  <rect x="432" y="152" width="16" height="16" fill="none" stroke="#14171F" stroke-width="2"/>
+  <text x="565" y="165" font-family="JetBrains Mono, monospace" font-size="15" fill="#14171F">Cirq</text>
+
+  <line x1="360" y1="230" x2="560" y2="230" stroke="#7A6FF0" stroke-width="3"/>
+  <polygon points="440,220 450,230 440,240 430,230" fill="none" stroke="#14171F" stroke-width="2"/>
+  <text x="565" y="234" font-family="JetBrains Mono, monospace" font-size="15" fill="#14171F">PennyLane</text>
+
+  <circle cx="60" cy="160" r="4" fill="#14171F"/>
+</svg>
