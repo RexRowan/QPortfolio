@@ -1,0 +1,139 @@
+---
+title: "qiskit-sqd-dashboard"
+description: "Live convergence diagnostics for qiskit-addon-sqd's configuration recovery loop"
+date: 2026-07-01
+image: ../images/sqd-dashboard.svg
+categories: [diagnostics, sqd, ecosystem-member]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · Tooling · Apache 2.0 · source install only, not yet on PyPI
+:::
+
+## The problem
+
+`qiskit-addon-sqd` is a pure compute library — it runs sample-based quantum diagonalization's self-consistent configuration recovery loop, but it has no visualization layer. The standard workflow is to run the whole loop, then plot whatever you logged, after the fact. Mid-run, you can't easily see whether the energy is actually converging or the recovered configurations are still drifting.
+
+## What the dashboard does
+
+`qiskit-sqd-dashboard` hooks directly into that loop using the `callback` parameter that `diagonalize_fermionic_hamiltonian` already exposes — no server, no separate process, no data hand-off. You instantiate `SQDDiagnostics`, call `.display()` in a notebook cell, and pass `diag.callback` straight through:
+
+```python
+from qiskit_sqd_dashboard import SQDDiagnostics
+from qiskit_addon_sqd.fermion import diagonalize_fermionic_hamiltonian
+
+diag = SQDDiagnostics()
+diag.display()
+
+result = diagonalize_fermionic_hamiltonian(
+    hcore, eri, bit_array,
+    samples_per_batch=samples_per_batch,
+    norb=norb, nelec=nelec,
+    callback=diag.callback,
+)
+```
+
+Each configuration-recovery iteration, it redraws a live Plotly figure tracking:
+
+- **Energy convergence** — best energy found so far, plus the min/max spread across batches
+- **Subspace dimension per batch** — `len(ci_strs_a) * len(ci_strs_b)` for each batch's result
+- **Orbital occupancy convergence** — the max change in average orbital occupancies since the last iteration, which is the same quantity configuration recovery uses internally to correct noisy samples, so watching it flatten is a direct convergence signal
+
+An earlier version used Plotly's `FigureWidget` (via `anywidget`), but that was dropped in favor of a `clear_output()` + redraw pattern after `FigureWidget` turned out to be broken in Colab.
+
+## Validation
+
+The panel below is a **synthetic reconstruction** of the shape of a real run, built from the numbers reported for the project's actual validation case: an N2 active space (8 orbitals, 10 electrons, STO-3G), with a LUCJ ansatz built from CCSD amplitudes via `ffsim`, and 2% per-bit hardware noise injected. That run showed genuine multi-iteration convergence — energy improving monotonically over 4-6 iterations, subspace dimension growing from roughly 380 to 700, and the occupancy delta rising slightly before decaying toward zero. It hasn't yet been validated at the scale of IBM's full N2/6-31g tutorial (59 qubits).
+
+```{ojs}
+//| echo: false
+Plot = require("@observablehq/plot@0.6.16")
+```
+
+```{ojs}
+//| echo: false
+viewof iterations = Inputs.range(
+  [1, 6], {value: 5, step: 1, label: "Configuration recovery iterations"}
+)
+```
+
+```{ojs}
+//| echo: false
+targetEnergy = -107.62
+startEnergy = -106.55
+
+data = {
+  const rows = [];
+  for (let i = 1; i <= iterations; i++) {
+    const progress = 1 - Math.exp(-(i - 1) / 1.8);
+    const energy = startEnergy + (targetEnergy - startEnergy) * progress;
+    const subspaceDim = Math.round(380 + (700 - 380) * (i - 1) / 5);
+    // occupancy delta: rises slightly at iteration 2, then decays toward zero
+    const occDelta = i === 1 ? 0.15
+      : 0.19 * Math.exp(-(i - 2) / 1.1) + 0.001;
+    rows.push({ iteration: i, energy, subspaceDim, occDelta });
+  }
+  return rows;
+}
+```
+
+::: {.ojs-panel}
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 620,
+  height: 260,
+  marginLeft: 60,
+  x: { label: "Configuration recovery iteration", tickFormat: "d" },
+  y: { label: "Best energy (Ha)" },
+  marks: [
+    Plot.ruleY([targetEnergy], { stroke: "#0F9D8C", strokeDasharray: "4,3" }),
+    Plot.line(data, { x: "iteration", y: "energy", stroke: "#2B6CB0", strokeWidth: 2 }),
+    Plot.dot(data, { x: "iteration", y: "energy", r: 3, fill: "#2B6CB0" })
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin: 0.25rem 0 1.25rem 0;">
+  <span style="color:#0F9D8C;">— target energy</span>
+</div>`
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 620,
+  height: 220,
+  marginLeft: 60,
+  x: { label: "Configuration recovery iteration", tickFormat: "d" },
+  y: { label: "Max occupancy Δ vs. prior iteration" },
+  marks: [
+    Plot.line(data, { x: "iteration", y: "occDelta", stroke: "#7A6FF0", strokeWidth: 2 }),
+    Plot.dot(data, { x: "iteration", y: "occDelta", r: 3, fill: "#7A6FF0" })
+  ]
+})
+```
+:::
+
+Drag the slider — energy tightens toward the target as iterations accumulate, while the occupancy delta ticks up once (as configuration recovery starts correcting noisy samples) before collapsing toward zero, which is the actual convergence signal the real widget is built to surface live.
+
+## Current limitations (v1)
+
+- Single-run view only — no side-by-side comparison across `samples_per_batch` settings yet
+- No persistence — diagnostics live only for the notebook session
+- Not yet published to PyPI (`pip install -e .` from source is the only install path today)
+- Not yet validated at the full 59-qubit N2/6-31g scale
+
+## Links
+
+[![Qiskit Ecosystem](https://qisk.it/e-7b1e622a)](https://qiskit.github.io/ecosystem/p/7b1e622a/){target="_blank"}
+
+- [Repository](https://github.com/RexRowan/Qiskit-SQD-Dashboard){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/7b1e622a/){target="_blank"} — classified `Tooling`, labeled `chemistry`, `research`, `utility-scale`
+- [Colab notebook: full N2 example](https://github.com/RexRowan/Qiskit-SQD-Dashboard/blob/main/sqd_dashboard_colab.ipynb){target="_blank"}
+- Built on [`qiskit-addon-sqd`](https://github.com/Qiskit/qiskit-addon-sqd){target="_blank"}

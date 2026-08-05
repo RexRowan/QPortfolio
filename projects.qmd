@@ -1,0 +1,18 @@
+---
+title: "Projects"
+page-layout: full
+title-block-banner: false
+listing:
+  contents: projects
+  type: grid
+  grid-columns: 2
+  sort: "date desc"
+  categories: false
+  fields: [image, title, description, date]
+  image-height: "160px"
+---
+
+::: {.circuit-rule}
+:::
+
+Each project links to its repo, its docs, and — where it makes sense — a live demo.

@@ -1,0 +1,98 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+$ink-dark:     #0E1420;   // deep navy-black background
+$paper-dark:   #E7EAF0;   // cool-white text
+$circuit-dk:   #6FB1E8;   // brighter circuit-trace blue for dark bg contrast
+$amplitude-dk: #35E0C5;   // brighter teal, reads well on navy
+$rule-dark:    #232B3B;
+
+$font-family-sans-serif: "Space Grotesk", sans-serif;
+$font-family-serif: "Source Serif 4", Georgia, serif;
+$font-family-monospace: "JetBrains Mono", monospace;
+
+$body-bg: $ink-dark;
+$body-color: $paper-dark;
+$link-color: $circuit-dk;
+$navbar-bg: $ink-dark;
+$navbar-fg: $paper-dark;
+$navbar-hl: $circuit-dk;
+$footer-bg: $ink-dark;
+$footer-fg: mix($paper-dark, $ink-dark, 55%);
+
+/*-- scss:rules --*/
+body {
+  font-family: $font-family-serif;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, .navbar-title, .navbar-brand {
+  font-family: $font-family-sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-weight: 700; }
+h2 { font-weight: 600; }
+
+.circuit-rule {
+  height: 10px;
+  width: 100%;
+  margin: 0.25rem 0 2rem 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%2010%27%20preserveAspectRatio%3D%27none%27%3E%3Cpath%20d%3D%27M0%2C1%20H40%20V9%20H100%27%20fill%3D%27none%27%20stroke%3D%27%236FB1E8%27%20stroke-width%3D%272%27%20vector-effect%3D%27non-scaling-stroke%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.7;
+}
+
+.quarto-listing-category, .listing-categories .category, .quarto-title-meta-heading,
+.quarto-title-meta-contents {
+  font-family: $font-family-monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: mix($paper-dark, $ink-dark, 55%);
+}
+
+.quarto-grid-item {
+  border: 1px solid $rule-dark;
+  border-radius: 2px;
+  background: mix($circuit-dk, $ink-dark, 4%);
+  transition: border-color 0.15s ease;
+}
+.quarto-grid-item:hover {
+  border-color: $circuit-dk;
+}
+.card-img-top { background-color: mix($circuit-dk, $ink-dark, 10%); }
+
+.status-readout {
+  font-family: $font-family-monospace;
+  font-size: 0.85rem;
+  background: mix($circuit-dk, $ink-dark, 8%);
+  color: mix($paper-dark, $ink-dark, 88%);
+  border-left: 3px solid $amplitude-dk;
+  padding: 0.6rem 0.9rem;
+  margin: 1.25rem 0;
+}
+
+.ojs-panel {
+  border: 1px solid $rule-dark;
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  background: mix($circuit-dk, $ink-dark, 6%);
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, pre {
+  font-family: $font-family-monospace;
+  background-color: mix($circuit-dk, $ink-dark, 6%) !important;
+}
+
+// SVG project cover images: bump their brightness/contrast slightly so the
+// light-background illustrations don't look washed out on a dark page
+img[src$=".svg"] {
+  filter: brightness(0.94) contrast(1.05);
+}

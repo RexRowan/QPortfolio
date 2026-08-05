@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Rex Rowan"
+  description: "Open-source quantum computing tools for the Qiskit ecosystem"
+  site-url: "https://rexrowan.github.io"
+  navbar:
+    left:
+      - href: projects.qmd
+        text: Projects
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/RexRowan
+        aria-label: GitHub
+  page-footer:
+    left: "© 2026 Rex Rowan"
+    right:
+      - icon: github
+        href: https://github.com/RexRowan
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles-dark.scss]
+    css: styles.scss
+    toc: false
+    page-layout: full
+    grid:
+      body-width: 1000px
+
+execute:
+  freeze: auto

@@ -1,0 +1,22 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+  <!-- target energy line -->
+  <line x1="70" y1="120" x2="570" y2="120" stroke="#0F9D8C" stroke-width="2" stroke-dasharray="6,5"/>
+  <!-- converging noisy trace -->
+  <polyline points="70,240 130,205 190,250 250,190 310,175 370,205 430,150 490,160 540,128 570,122"
+            fill="none" stroke="#2B6CB0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#2B6CB0">
+    <circle cx="70" cy="240" r="4"/>
+    <circle cx="130" cy="205" r="4"/>
+    <circle cx="190" cy="250" r="4"/>
+    <circle cx="250" cy="190" r="4"/>
+    <circle cx="310" cy="175" r="4"/>
+    <circle cx="370" cy="205" r="4"/>
+    <circle cx="430" cy="150" r="4"/>
+    <circle cx="490" cy="160" r="4"/>
+    <circle cx="540" cy="128" r="4"/>
+    <circle cx="570" cy="122" r="4"/>
+  </g>
+  <text x="70" y="280" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">batches →</text>
+  <text x="450" y="112" font-family="JetBrains Mono, monospace" font-size="13" fill="#0F9D8C">target energy</text>
+</svg>

@@ -1,0 +1,80 @@
+---
+title: "Qiberis"
+description: "A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane"
+date: 2026-06-01
+image: ../images/qiberis.svg
+categories: [circuits, ecosystem-member]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · Converter · Python interface · MIT license
+:::
+
+## The problem
+
+Qiskit, Cirq, and PennyLane each have their own circuit objects, gate names, execution APIs — and, less obviously, their own bit-ordering conventions for returned counts. Comparing results across simulators, or writing code that shouldn't care which one happens to be installed, means re-solving the same translation problem every time.
+
+## What Qiberis does
+
+Qiberis defines a circuit once, against a small backend-agnostic intermediate representation, and runs it unmodified on any of three simulators:
+
+```python
+from qiberis import Circuit
+from qiberis.backends.qiskit_backend import QiskitAerBackend
+from qiberis.backends.cirq_backend import CirqSimulatorBackend
+from qiberis.backends.pennylane_backend import PennyLaneLightningBackend
+
+circuit = Circuit(3)
+circuit.h(0).cx(0, 1).cx(1, 2).measure_all()
+
+for backend_cls in (QiskitAerBackend, CirqSimulatorBackend, PennyLaneLightningBackend):
+    backend = backend_cls()
+    result = backend.run(circuit, shots=1000)
+    print(result)
+```
+
+- **Qiskit Aer** — statevector simulation
+- **Cirq** — Google-ecosystem simulation, for cross-checking gate decompositions
+- **PennyLane (`lightning.qubit`)** — for hybrid and variational workflows
+
+Each backend is an optional dependency (`pip install -e ".[qiskit]"`, `.[cirq]`, `.[pennylane]`, or `.[all]`); the core package — `Circuit` and `Result` — has zero hard dependencies, and an adapter you haven't installed raises a clear `ImportError` rather than failing silently.
+
+## The part that actually breaks most "universal circuit" projects
+
+Qiskit's native count strings are little-endian — clbit 0 is the *rightmost* character. Cirq and PennyLane's `qml.counts` are naturally ordered with the first wire leftmost. Silently mixing these is the classic way a "backend-agnostic" layer quietly gives wrong answers.
+
+Qiberis's convention: in every `Result.counts` key, the leftmost character is always clbit/qubit 0. The Qiskit adapter reverses its native strings to match; Cirq and PennyLane need no adjustment. This is enforced by a dedicated regression test — an asymmetric circuit (X on qubit 0 only) run through all three backends, checked to agree on the same string — not just asserted in a docstring.
+
+## Architecture
+
+```
+qiberis/
+  circuit.py          # Circuit + Instruction: the backend-agnostic IR
+  result.py           # Result: normalized counts/probabilities
+  backends/
+    base.py           # Backend ABC — one method: run(circuit, shots) -> Result
+    qiskit_backend.py
+    cirq_backend.py
+    pennylane_backend.py
+tests/
+  test_cross_backend.py  # runs the same circuits on every installed backend
+                          # and checks they agree with each other
+```
+
+Supported gates: `h, x, y, z, s, t, rx, ry, rz, cx, cz, swap, ccx, barrier, measure`. Adding a new backend is: subclass `Backend`, implement `run()`, translate `Circuit.instructions` into the target library's native object, normalize the output into Qiberis's bit-ordering convention, then add it to `test_cross_backend.py`'s `BACKENDS` list — the existing GHZ, bit-ordering, and cross-agreement tests immediately validate it against the other two.
+
+## Roadmap
+
+- Real hardware backends (IBM Quantum, AWS Braket QPUs) behind the same interface
+- A transpiler/optimization pass operating directly on the IR
+- Parametric circuits — binding parameters without rebuilding the circuit
+- Statevector and expectation-value result modes, not just counts
+- More gates: `u`, `crx/cry/crz`, `iswap`, multi-controlled gates
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiberis){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/d33fccc1/){target="_blank"} — classified `Converter`, labeled `circuit building`, currently at limited-support/experimental maturity
