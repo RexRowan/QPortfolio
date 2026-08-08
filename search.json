@@ -130,7 +130,7 @@
     "href": "projects/qiskit-stateviz.html#roadmap",
     "title": "Qiskit StateViz",
     "section": "Roadmap",
-    "text": "Roadmap\n\nInteractive plot_state_city / plot_state_hinton equivalents\nipywidgets slider for live circuit-parameter sweeps\nQiskit Ecosystem submission"
+    "text": "Roadmap\n\nInteractive plot_state_city / plot_state_hinton equivalents\nipywidgets slider for live circuit-parameter sweeps"
   },
   {
     "objectID": "projects/qiskit-stateviz.html#links",
