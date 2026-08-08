@@ -4,7 +4,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Each project links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nqiskit-sqd-dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\nJun 1, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Each project links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nqiskit-sqd-dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\nJun 1, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/sqd-dashboard.html#the-problem",
@@ -40,13 +40,6 @@
     "title": "qiskit-sqd-dashboard",
     "section": "Links",
     "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Tooling, labeled chemistry, research, utility-scale\nColab notebook: full N2 example\nBuilt on qiskit-addon-sqd"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "I’m a Qiskit Advocate and an independent contributor to the Qiskit open-source ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — and I’ve carried that instinct for formal correctness into quantum tooling: circuit libraries and diagnostics built to be verifiably right, not just empirically working.\nRecent work includes: Qiberis, a backend-agnostic circuit library spanning Qiskit Aer, Cirq, and PennyLane. Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are documented on the projects page.\nI’ve also worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization.\nOutside of Qiskit, I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto, and I work on original research in graph theory — structures related to modular arithmetic and their component topology.\nElsewhere:\n\nGitHub"
   },
   {
     "objectID": "projects/qiberis.html#the-problem",
@@ -91,10 +84,66 @@
     "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Converter, labeled circuit building, currently at limited-support/experimental maturity"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m a Qiskit Advocate and an independent contributor to the Qiskit open-source ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — and I’ve carried that instinct for formal correctness into quantum tooling: circuit libraries and diagnostics built to be verifiably right, not just empirically working.\nRecent work includes: Qiberis, a backend-agnostic circuit library spanning Qiskit Aer, Cirq, and PennyLane. Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are documented on the projects page.\nI’ve also worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization.\nOutside of Qiskit, I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto, and I work on original research in graph theory — structures related to modular arithmetic and their component topology.\nElsewhere:\n\nGitHub"
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#the-problem",
+    "href": "projects/qiskit-stateviz.html#the-problem",
+    "title": "Qiskit StateViz",
+    "section": "The problem",
+    "text": "The problem\nQiskit’s built-in plot_state_qsphere and plot_bloch_multivector return static matplotlib figures. Fine for a paper, but hard to actually explore — you can’t rotate a Q-sphere to see its phase structure or check exactly where a Bloch vector points from a flat PNG."
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#what-it-does",
+    "href": "projects/qiskit-stateviz.html#what-it-does",
+    "title": "Qiskit StateViz",
+    "section": "What it does",
+    "text": "What it does\nqiskit-stateviz gives you interactive equivalents that take the same Statevector / DensityMatrix objects you already have:\nfrom qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nfrom qiskit_stateviz import plot_qsphere_interactive, plot_bloch_multivector_interactive\n\nqc = QuantumCircuit(3)\nqc.h(0)\nqc.cx(0, 1)\nqc.cx(1, 2)  # GHZ state\n\nsv = Statevector(qc)\n\nfig = plot_qsphere_interactive(sv, title=\"GHZ state\")\nfig.show()\n\nfig2 = plot_bloch_multivector_interactive(sv)\nfig2.show()\nRotate, zoom, and hover for exact amplitude/phase/probability at each basis state.\n\n\n\n\n\n\nQ-sphere: GHZ state\n\n\n\n\n\n\n\nPer-qubit Bloch multivector"
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#why-this-exists",
+    "href": "projects/qiskit-stateviz.html#why-this-exists",
+    "title": "Qiskit StateViz",
+    "section": "Why this exists",
+    "text": "Why this exists\nThere’s real prior art, and it’s worth naming rather than pretending this fills an empty gap:\n\nKaleidoscope (Paul Nation, IBM Quantum) has interactive Plotly qsphere() and bloch_sphere() functions with rendering that still works well — but its Qiskit integration layer hard-requires qiskit-terra and qiskit-ibmq-provider, both merged or deprecated since Qiskit 1.0, so it fails on any current install.\nplotly-qsphere is a small, focused interactive Q-sphere on Plotly, but doesn’t cover Bloch spheres, density matrices, or mixed states.\nQuantum-Glasses is an actual Qiskit Ecosystem member, but it’s a Tkinter desktop GUI limited to single-qubit states — not a notebook-native tool.\n\nqiskit-stateviz is built fresh against current Qiskit (&gt;=2.0, tested against 2.5.x), takes Statevector/DensityMatrix directly with no legacy dependencies, and covers both Q-sphere and per-qubit Bloch views in one package."
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#an-honest-limitation",
+    "href": "projects/qiskit-stateviz.html#an-honest-limitation",
+    "title": "Qiskit StateViz",
+    "section": "An honest limitation",
+    "text": "An honest limitation\nLike Qiskit’s own plot_bloch_multivector, the per-qubit Bloch view only shows single-qubit marginals — reduced density matrices. A maximally entangled qubit’s Bloch vector has zero length even though the full joint state is pure, so this view cannot show entanglement. Use plot_qsphere_interactive for multi-qubit structure instead. Worth knowing before you read too much into a short Bloch vector."
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#testing",
+    "href": "projects/qiskit-stateviz.html#testing",
+    "title": "Qiskit StateViz",
+    "section": "Testing",
+    "text": "Testing\nAmplitude/phase and partial-trace math are cross-checked in the test suite against Qiskit’s own partial_trace and expectation_value reference implementations — not just asserted against expected output shapes."
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#roadmap",
+    "href": "projects/qiskit-stateviz.html#roadmap",
+    "title": "Qiskit StateViz",
+    "section": "Roadmap",
+    "text": "Roadmap\n\nInteractive plot_state_city / plot_state_hinton equivalents\nipywidgets slider for live circuit-parameter sweeps\nQiskit Ecosystem submission"
+  },
+  {
+    "objectID": "projects/qiskit-stateviz.html#links",
+    "href": "projects/qiskit-stateviz.html#links",
+    "title": "Qiskit StateViz",
+    "section": "Links",
+    "text": "Links\n\nRepository\npip install qiskit-stateviz"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Rex Rowan",
     "section": "",
-    "text": "I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.\nTwo projects are live so far: Qiberis, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane. Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members.\nSee the projects →"
+    "text": "I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.\nThree projects are live so far: Qiberis, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane. Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members. Qiskit StateViz, Interactive, Plotly-based statevector visualizations for Qiskit — a drop-in, rotate/zoom/hover companion to the static matplotlib views in qiskit.visualization.\nSee the projects →"
   }
 ]

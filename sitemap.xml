@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rexrowan.github.io/projects.html</loc>
-    <lastmod>2026-08-05T10:23:21.579Z</lastmod>
+    <lastmod>2026-08-08T19:06:14.566Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/projects/sqd-dashboard.html</loc>
-    <lastmod>2026-08-05T10:23:21.579Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/about.html</loc>
-    <lastmod>2026-08-05T10:23:21.570Z</lastmod>
+    <lastmod>2026-08-08T19:06:14.567Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/projects/qiberis.html</loc>
-    <lastmod>2026-08-05T10:23:21.579Z</lastmod>
+    <lastmod>2026-08-08T19:06:14.566Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/about.html</loc>
+    <lastmod>2026-08-08T19:06:14.554Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-stateviz.html</loc>
+    <lastmod>2026-08-08T19:06:14.567Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/index.html</loc>
-    <lastmod>2026-08-05T10:23:21.579Z</lastmod>
+    <lastmod>2026-08-08T19:06:14.566Z</lastmod>
   </url>
 </urlset>
