@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rexrowan.github.io/projects.html</loc>
-    <lastmod>2026-08-08T19:09:57.090Z</lastmod>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
   </url>
   <url>
-    <loc>https://rexrowan.github.io/projects/sqd-dashboard.html</loc>
-    <lastmod>2026-08-08T19:09:57.092Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiberis.html</loc>
-    <lastmod>2026-08-08T19:09:57.090Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/about.html</loc>
-    <lastmod>2026-08-08T19:09:57.079Z</lastmod>
+    <loc>https://rexrowan.github.io/projects/qkd-lab.html</loc>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/projects/qiskit-stateviz.html</loc>
-    <lastmod>2026-08-08T19:09:57.092Z</lastmod>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/about.html</loc>
+    <lastmod>2026-08-09T13:33:33.521Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiberis.html</loc>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/sqd-dashboard.html</loc>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/index.html</loc>
-    <lastmod>2026-08-08T19:09:57.090Z</lastmod>
+    <lastmod>2026-08-09T13:33:33.536Z</lastmod>
   </url>
 </urlset>

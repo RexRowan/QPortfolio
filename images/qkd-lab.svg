@@ -1,0 +1,29 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#0E1420"/>
+
+  <!-- Alice -> Bob line -->
+  <line x1="60" y1="150" x2="580" y2="150" stroke="#6FB1E8" stroke-width="3"/>
+  <text x="45" y="120" font-family="JetBrains Mono, monospace" font-size="16" fill="#E7EAF0" text-anchor="middle">Alice</text>
+  <text x="595" y="120" font-family="JetBrains Mono, monospace" font-size="16" fill="#E7EAF0" text-anchor="end">Bob</text>
+
+  <!-- photons: mix of basis symbols traveling along the line -->
+  <g stroke="#35E0C5" stroke-width="2.5">
+    <line x1="120" y1="135" x2="120" y2="165"/>            <!-- rectilinear | -->
+    <line x1="180" y1="150" x2="205" y2="150"/>             <!-- rectilinear - -->
+    <line x1="255" y1="135" x2="280" y2="165"/>             <!-- diagonal / -->
+  </g>
+
+  <!-- Eve intercept box: shifted down so "measure"/"re-prep" clear the wire -->
+  <rect x="330" y="135" width="80" height="80" fill="none" stroke="#9B8FFF" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="370" y="130" font-family="JetBrains Mono, monospace" font-size="15" fill="#9B8FFF" text-anchor="middle">Eve</text>
+  <text x="370" y="182" font-family="JetBrains Mono, monospace" font-size="13" fill="#9B8FFF" text-anchor="middle">measure</text>
+  <text x="370" y="200" font-family="JetBrains Mono, monospace" font-size="13" fill="#9B8FFF" text-anchor="middle">+ re-prep</text>
+
+  <g stroke="#9B8FFF" stroke-width="2.5">
+    <line x1="450" y1="135" x2="450" y2="165"/>
+    <line x1="500" y1="135" x2="525" y2="165"/>
+  </g>
+
+  <circle cx="60" cy="150" r="5" fill="#E7EAF0"/>
+  <circle cx="580" cy="150" r="5" fill="#E7EAF0"/>
+</svg>
