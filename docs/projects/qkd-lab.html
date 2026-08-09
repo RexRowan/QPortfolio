@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-06-01">
-<meta name="description" content="A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane">
+<meta name="dcterms.date" content="2026-08-08">
+<meta name="description" content="A BB84 QKD protocol simulator built directly on Qiskit primitives">
 
-<title>Qiberis – Rex Rowan</title>
+<title>Qiskit QKD Lab – Rex Rowan</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -329,16 +329,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Qiberis</h1>
+<h1 class="title">Qiskit QKD Lab</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">circuits</div>
+    <div class="quarto-category">cryptography</div>
     <div class="quarto-category">ecosystem-member</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane
+    A BB84 QKD protocol simulator built directly on Qiskit primitives
   </div>
 </div>
 
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 1, 2026</p>
+      <p class="date">August 8, 2026</p>
     </div>
   </div>
   
@@ -365,69 +365,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 <div class="status-readout">
-<p>STATUS · Qiskit Ecosystem Member · Converter · Python interface · MIT license</p>
+<p>STATUS · Qiskit Ecosystem Member · Application · MIT license · on PyPI (v0.2.0)</p>
 </div>
-<section id="the-problem" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
-<p>Qiskit, Cirq, and PennyLane each have their own circuit objects, gate names, execution APIs — and, less obviously, their own bit-ordering conventions for returned counts. Comparing results across simulators, or writing code that shouldn’t care which one happens to be installed, means re-solving the same translation problem every time.</p>
+<section id="what-it-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-does">What it does</h2>
+<p>A BB84 quantum key distribution simulator where the eavesdropper is real circuit structure, not a shortcut. Eve’s intercept-resend attack is implemented as genuine mid-circuit measurement, reset, and conditional re-preparation — the same circuits run unchanged on <code>AerSimulator</code> or on real IBM Quantum hardware.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install qiskit-qkd-lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Requires Qiskit 2.0 or later.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_qkd_lab.protocols <span class="im">import</span> bb84</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_qkd_lab.channel.eavesdrop <span class="im">import</span> InterceptResend</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_qkd_lab.diagnostics.qber <span class="im">import</span> estimate_qber, key_rate_report</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>examples/demo_bb84.py</code> is self-contained and prints a QBER report for clean, fully-intercepted, and partially-intercepted channels. Full API reference and a runnable end-to-end example live in <a href="https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md" target="_blank"><code>docs/api.md</code></a>.</p>
 </section>
-<section id="what-qiberis-does" class="level2">
-<h2 class="anchored" data-anchor-id="what-qiberis-does">What Qiberis does</h2>
-<p>Qiberis defines a circuit once, against a small backend-agnostic intermediate representation, and runs it unmodified on any of three simulators:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis <span class="im">import</span> Circuit</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.qiskit_backend <span class="im">import</span> QiskitAerBackend</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.cirq_backend <span class="im">import</span> CirqSimulatorBackend</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.pennylane_backend <span class="im">import</span> PennyLaneLightningBackend</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>circuit <span class="op">=</span> Circuit(<span class="dv">3</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>circuit.h(<span class="dv">0</span>).cx(<span class="dv">0</span>, <span class="dv">1</span>).cx(<span class="dv">1</span>, <span class="dv">2</span>).measure_all()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> backend_cls <span class="kw">in</span> (QiskitAerBackend, CirqSimulatorBackend, PennyLaneLightningBackend):</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    backend <span class="op">=</span> backend_cls()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> backend.run(circuit, shots<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="important-not-a-secure-key-yet" class="level2">
+<h2 class="anchored" data-anchor-id="important-not-a-secure-key-yet">Important: not a secure key yet</h2>
+<div class="status-readout">
+<p>Reconciliation and privacy amplification aren’t implemented. The “final key” this package produces today is a sifted, QBER-estimated bit string — <strong>not a cryptographically secure key.</strong> It’s a faithful simulator of BB84’s quantum layer and QBER-based eavesdropping detection, useful for teaching and prototyping. Treat it accordingly until those pieces land.</p>
+</div>
+</section>
+<section id="status" class="level2">
+<h2 class="anchored" data-anchor-id="status">Status</h2>
+<p>Implemented:</p>
 <ul>
-<li><strong>Qiskit Aer</strong> — statevector simulation</li>
-<li><strong>Cirq</strong> — Google-ecosystem simulation, for cross-checking gate decompositions</li>
-<li><strong>PennyLane (<code>lightning.qubit</code>)</strong> — for hybrid and variational workflows</li>
+<li>BB84 prepare/measure circuits (Z/X basis)</li>
+<li>Intercept-resend eavesdropper, circuit-level (mid-circuit measurement)</li>
+<li>Sifting</li>
+<li>QBER estimation via public sample comparison</li>
+<li>Basic key-rate / Eve-detection report</li>
+<li>Test suite + CI (Python 3.10–3.13)</li>
 </ul>
-<p>Each backend is an optional dependency (<code>pip install -e ".[qiskit]"</code>, <code>.[cirq]</code>, <code>.[pennylane]</code>, or <code>.[all]</code>); the core package — <code>Circuit</code> and <code>Result</code> — has zero hard dependencies, and an adapter you haven’t installed raises a clear <code>ImportError</code> rather than failing silently.</p>
-</section>
-<section id="the-part-that-actually-breaks-most-universal-circuit-projects" class="level2">
-<h2 class="anchored" data-anchor-id="the-part-that-actually-breaks-most-universal-circuit-projects">The part that actually breaks most “universal circuit” projects</h2>
-<p>Qiskit’s native count strings are little-endian — clbit 0 is the <em>rightmost</em> character. Cirq and PennyLane’s <code>qml.counts</code> are naturally ordered with the first wire leftmost. Silently mixing these is the classic way a “backend-agnostic” layer quietly gives wrong answers.</p>
-<p>Qiberis’s convention: in every <code>Result.counts</code> key, the leftmost character is always clbit/qubit 0. The Qiskit adapter reverses its native strings to match; Cirq and PennyLane need no adjustment. This is enforced by a dedicated regression test — an asymmetric circuit (X on qubit 0 only) run through all three backends, checked to agree on the same string — not just asserted in a docstring.</p>
-</section>
-<section id="architecture" class="level2">
-<h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
-<pre><code>qiberis/
-  circuit.py          # Circuit + Instruction: the backend-agnostic IR
-  result.py           # Result: normalized counts/probabilities
-  backends/
-    base.py           # Backend ABC — one method: run(circuit, shots) -&gt; Result
-    qiskit_backend.py
-    cirq_backend.py
-    pennylane_backend.py
-tests/
-  test_cross_backend.py  # runs the same circuits on every installed backend
-                          # and checks they agree with each other</code></pre>
-<p>Supported gates: <code>h, x, y, z, s, t, rx, ry, rz, cx, cz, swap, ccx, barrier, measure</code>. Adding a new backend is: subclass <code>Backend</code>, implement <code>run()</code>, translate <code>Circuit.instructions</code> into the target library’s native object, normalize the output into Qiberis’s bit-ordering convention, then add it to <code>test_cross_backend.py</code>’s <code>BACKENDS</code> list — the existing GHZ, bit-ordering, and cross-agreement tests immediately validate it against the other two.</p>
-</section>
-<section id="roadmap" class="level2">
-<h2 class="anchored" data-anchor-id="roadmap">Roadmap</h2>
+<p>Not yet implemented:</p>
 <ul>
-<li>Real hardware backends (IBM Quantum, AWS Braket QPUs) behind the same interface</li>
-<li>A transpiler/optimization pass operating directly on the IR</li>
-<li>Parametric circuits — binding parameters without rebuilding the circuit</li>
-<li>Statevector and expectation-value result modes, not just counts</li>
-<li>More gates: <code>u</code>, <code>crx/cry/crz</code>, <code>iswap</code>, multi-controlled gates</li>
+<li>E91 (entanglement-based) protocol</li>
+<li>Beam-splitting eavesdropper</li>
+<li>Cascade error reconciliation</li>
+<li>Privacy amplification (universal hashing)</li>
+<li>Realistic channel noise model (fiber loss, detector dark counts)</li>
+<li>Live diagnostics dashboard (QBER vs.&nbsp;sample size, key rate vs.&nbsp;distance) — reusing patterns from <code>qiskit-sqd-dashboard</code></li>
+</ul>
+</section>
+<section id="design-notes" class="level2">
+<h2 class="anchored" data-anchor-id="design-notes">Design notes</h2>
+<ul>
+<li>Eve’s classical register (<code>eve</code>) is entirely separate from Alice and Bob’s shared register (<code>c</code>) — Bob’s measurement pipeline never touches it. That separation is what makes “Eve is undetectable except through QBER” a faithful model rather than an accidental information leak in the simulation itself.</li>
+<li><code>InterceptResend(p_intercept=...)</code> sweeps partial interception, reproducing the textbook QBER-vs-intercept-rate curve rather than only the full-intercept extreme.</li>
+<li><code>n_qubits</code> in the demo represents independent single-photon sends batched into one circuit for simulation speed — no entangling gates between them — so it maps directly onto real hardware qubit-count budgets.</li>
 </ul>
 </section>
 <section id="links" class="level2">
 <h2 class="anchored" data-anchor-id="links">Links</h2>
 <ul>
-<li><a href="https://github.com/RexRowan/Qiberis" target="_blank">Repository</a></li>
-<li><a href="https://qiskit.github.io/ecosystem/p/d33fccc1/" target="_blank">Qiskit Ecosystem listing</a> — classified <code>Converter</code>, labeled <code>circuit building</code>, currently at limited-support/experimental maturity</li>
+<li><a href="https://github.com/RexRowan/Qiskit-QKD-Lab" target="_blank">Repository</a></li>
+<li><a href="https://qiskit.github.io/ecosystem/p/b286e633/" target="_blank">Qiskit Ecosystem listing</a> — classified <code>Application</code>, labeled <code>quantum information</code>, <code>circuit building</code></li>
+<li><a href="https://pypi.org/project/qiskit-qkd-lab/" target="_blank">PyPI</a></li>
+<li><a href="https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md" target="_blank">API reference</a></li>
 </ul>
 
 

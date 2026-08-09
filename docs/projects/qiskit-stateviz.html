@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-06-01">
-<meta name="description" content="A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane">
+<meta name="dcterms.date" content="2026-08-01">
+<meta name="description" content="Interactive, Plotly-based statevector visualization for Qiskit">
 
-<title>Qiberis – Rex Rowan</title>
+<title>Qiskit StateViz – Rex Rowan</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -329,16 +329,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Qiberis</h1>
+<h1 class="title">Qiskit StateViz</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">circuits</div>
-    <div class="quarto-category">ecosystem-member</div>
+    <div class="quarto-category">visualization</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane
+    Interactive, Plotly-based statevector visualization for Qiskit
   </div>
 </div>
 
@@ -349,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 1, 2026</p>
+      <p class="date">August 1, 2026</p>
     </div>
   </div>
   
@@ -365,69 +364,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 <div class="status-readout">
-<p>STATUS · Qiskit Ecosystem Member · Converter · Python interface · MIT license</p>
+<p>STATUS · MIT license · on PyPI · Qiskit Ecosystem submission planned, not yet listed</p>
 </div>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
-<p>Qiskit, Cirq, and PennyLane each have their own circuit objects, gate names, execution APIs — and, less obviously, their own bit-ordering conventions for returned counts. Comparing results across simulators, or writing code that shouldn’t care which one happens to be installed, means re-solving the same translation problem every time.</p>
+<p>Qiskit’s built-in <code>plot_state_qsphere</code> and <code>plot_bloch_multivector</code> return static <code>matplotlib</code> figures. Fine for a paper, but hard to actually explore — you can’t rotate a Q-sphere to see its phase structure or check exactly where a Bloch vector points from a flat PNG.</p>
 </section>
-<section id="what-qiberis-does" class="level2">
-<h2 class="anchored" data-anchor-id="what-qiberis-does">What Qiberis does</h2>
-<p>Qiberis defines a circuit once, against a small backend-agnostic intermediate representation, and runs it unmodified on any of three simulators:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis <span class="im">import</span> Circuit</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.qiskit_backend <span class="im">import</span> QiskitAerBackend</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.cirq_backend <span class="im">import</span> CirqSimulatorBackend</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiberis.backends.pennylane_backend <span class="im">import</span> PennyLaneLightningBackend</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>circuit <span class="op">=</span> Circuit(<span class="dv">3</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>circuit.h(<span class="dv">0</span>).cx(<span class="dv">0</span>, <span class="dv">1</span>).cx(<span class="dv">1</span>, <span class="dv">2</span>).measure_all()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> backend_cls <span class="kw">in</span> (QiskitAerBackend, CirqSimulatorBackend, PennyLaneLightningBackend):</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    backend <span class="op">=</span> backend_cls()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> backend.run(circuit, shots<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="what-it-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-does">What it does</h2>
+<p><code>qiskit-stateviz</code> gives you interactive equivalents that take the same <code>Statevector</code> / <code>DensityMatrix</code> objects you already have:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit <span class="im">import</span> QuantumCircuit</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.quantum_info <span class="im">import</span> Statevector</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_stateviz <span class="im">import</span> plot_qsphere_interactive, plot_bloch_multivector_interactive</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> QuantumCircuit(<span class="dv">3</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>qc.h(<span class="dv">0</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>qc.cx(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>qc.cx(<span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># GHZ state</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sv <span class="op">=</span> Statevector(qc)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plot_qsphere_interactive(sv, title<span class="op">=</span><span class="st">"GHZ state"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig2 <span class="op">=</span> plot_bloch_multivector_interactive(sv)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>fig2.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rotate, zoom, and hover for exact amplitude/phase/probability at each basis state.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qsphere-screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>Q-sphere: GHZ state</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bloch-screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>Per-qubit Bloch multivector</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-this-exists" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-exists">Why this exists</h2>
+<p>There’s real prior art, and it’s worth naming rather than pretending this fills an empty gap:</p>
 <ul>
-<li><strong>Qiskit Aer</strong> — statevector simulation</li>
-<li><strong>Cirq</strong> — Google-ecosystem simulation, for cross-checking gate decompositions</li>
-<li><strong>PennyLane (<code>lightning.qubit</code>)</strong> — for hybrid and variational workflows</li>
+<li><strong><a href="https://github.com/QuSTaR/kaleidoscope">Kaleidoscope</a></strong> (Paul Nation, IBM Quantum) has interactive Plotly <code>qsphere()</code> and <code>bloch_sphere()</code> functions with rendering that still works well — but its Qiskit integration layer hard-requires <code>qiskit-terra</code> and <code>qiskit-ibmq-provider</code>, both merged or deprecated since Qiskit 1.0, so it fails on any current install.</li>
+<li><strong><a href="https://github.com/crystaldot/plotly-qsphere">plotly-qsphere</a></strong> is a small, focused interactive Q-sphere on Plotly, but doesn’t cover Bloch spheres, density matrices, or mixed states.</li>
+<li><strong><a href="https://github.com/qiskit-community/quantum-glasses">Quantum-Glasses</a></strong> is an actual Qiskit Ecosystem member, but it’s a Tkinter desktop GUI limited to single-qubit states — not a notebook-native tool.</li>
 </ul>
-<p>Each backend is an optional dependency (<code>pip install -e ".[qiskit]"</code>, <code>.[cirq]</code>, <code>.[pennylane]</code>, or <code>.[all]</code>); the core package — <code>Circuit</code> and <code>Result</code> — has zero hard dependencies, and an adapter you haven’t installed raises a clear <code>ImportError</code> rather than failing silently.</p>
+<p><code>qiskit-stateviz</code> is built fresh against current Qiskit (<code>&gt;=2.0</code>, tested against 2.5.x), takes <code>Statevector</code>/<code>DensityMatrix</code> directly with no legacy dependencies, and covers both Q-sphere and per-qubit Bloch views in one package.</p>
 </section>
-<section id="the-part-that-actually-breaks-most-universal-circuit-projects" class="level2">
-<h2 class="anchored" data-anchor-id="the-part-that-actually-breaks-most-universal-circuit-projects">The part that actually breaks most “universal circuit” projects</h2>
-<p>Qiskit’s native count strings are little-endian — clbit 0 is the <em>rightmost</em> character. Cirq and PennyLane’s <code>qml.counts</code> are naturally ordered with the first wire leftmost. Silently mixing these is the classic way a “backend-agnostic” layer quietly gives wrong answers.</p>
-<p>Qiberis’s convention: in every <code>Result.counts</code> key, the leftmost character is always clbit/qubit 0. The Qiskit adapter reverses its native strings to match; Cirq and PennyLane need no adjustment. This is enforced by a dedicated regression test — an asymmetric circuit (X on qubit 0 only) run through all three backends, checked to agree on the same string — not just asserted in a docstring.</p>
+<section id="an-honest-limitation" class="level2">
+<h2 class="anchored" data-anchor-id="an-honest-limitation">An honest limitation</h2>
+<p>Like Qiskit’s own <code>plot_bloch_multivector</code>, the per-qubit Bloch view only shows single-qubit marginals — reduced density matrices. A maximally entangled qubit’s Bloch vector has zero length even though the full joint state is pure, so <strong>this view cannot show entanglement</strong>. Use <code>plot_qsphere_interactive</code> for multi-qubit structure instead. Worth knowing before you read too much into a short Bloch vector.</p>
 </section>
-<section id="architecture" class="level2">
-<h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
-<pre><code>qiberis/
-  circuit.py          # Circuit + Instruction: the backend-agnostic IR
-  result.py           # Result: normalized counts/probabilities
-  backends/
-    base.py           # Backend ABC — one method: run(circuit, shots) -&gt; Result
-    qiskit_backend.py
-    cirq_backend.py
-    pennylane_backend.py
-tests/
-  test_cross_backend.py  # runs the same circuits on every installed backend
-                          # and checks they agree with each other</code></pre>
-<p>Supported gates: <code>h, x, y, z, s, t, rx, ry, rz, cx, cz, swap, ccx, barrier, measure</code>. Adding a new backend is: subclass <code>Backend</code>, implement <code>run()</code>, translate <code>Circuit.instructions</code> into the target library’s native object, normalize the output into Qiberis’s bit-ordering convention, then add it to <code>test_cross_backend.py</code>’s <code>BACKENDS</code> list — the existing GHZ, bit-ordering, and cross-agreement tests immediately validate it against the other two.</p>
+<section id="testing" class="level2">
+<h2 class="anchored" data-anchor-id="testing">Testing</h2>
+<p>Amplitude/phase and partial-trace math are cross-checked in the test suite against Qiskit’s own <code>partial_trace</code> and <code>expectation_value</code> reference implementations — not just asserted against expected output shapes.</p>
 </section>
 <section id="roadmap" class="level2">
 <h2 class="anchored" data-anchor-id="roadmap">Roadmap</h2>
 <ul>
-<li>Real hardware backends (IBM Quantum, AWS Braket QPUs) behind the same interface</li>
-<li>A transpiler/optimization pass operating directly on the IR</li>
-<li>Parametric circuits — binding parameters without rebuilding the circuit</li>
-<li>Statevector and expectation-value result modes, not just counts</li>
-<li>More gates: <code>u</code>, <code>crx/cry/crz</code>, <code>iswap</code>, multi-controlled gates</li>
+<li>Interactive <code>plot_state_city</code> / <code>plot_state_hinton</code> equivalents</li>
+<li><code>ipywidgets</code> slider for live circuit-parameter sweeps</li>
 </ul>
 </section>
 <section id="links" class="level2">
 <h2 class="anchored" data-anchor-id="links">Links</h2>
 <ul>
-<li><a href="https://github.com/RexRowan/Qiberis" target="_blank">Repository</a></li>
-<li><a href="https://qiskit.github.io/ecosystem/p/d33fccc1/" target="_blank">Qiskit Ecosystem listing</a> — classified <code>Converter</code>, labeled <code>circuit building</code>, currently at limited-support/experimental maturity</li>
+<li><a href="https://github.com/RexRowan/Qiskit-StateViz" target="_blank">Repository</a></li>
+<li><code>pip install qiskit-stateviz</code></li>
 </ul>
 
 

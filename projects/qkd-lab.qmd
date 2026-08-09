@@ -1,0 +1,71 @@
+---
+title: "Qiskit QKD Lab"
+description: "A BB84 QKD protocol simulator built directly on Qiskit primitives"
+date: 2026-08-08
+image: ../images/qkd-lab.svg
+categories: [cryptography, ecosystem-member]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · Application · MIT license · on PyPI (v0.2.0)
+:::
+
+## What it does
+
+A BB84 quantum key distribution simulator where the eavesdropper is real circuit structure, not a shortcut. Eve's intercept-resend attack is implemented as genuine mid-circuit measurement, reset, and conditional re-preparation — the same circuits run unchanged on `AerSimulator` or on real IBM Quantum hardware.
+
+```bash
+pip install qiskit-qkd-lab
+```
+
+Requires Qiskit 2.0 or later.
+
+```python
+from qiskit_qkd_lab.protocols import bb84
+from qiskit_qkd_lab.channel.eavesdrop import InterceptResend
+from qiskit_qkd_lab.diagnostics.qber import estimate_qber, key_rate_report
+```
+
+`examples/demo_bb84.py` is self-contained and prints a QBER report for clean, fully-intercepted, and partially-intercepted channels. Full API reference and a runnable end-to-end example live in [`docs/api.md`](https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md){target="_blank"}.
+
+## Important: not a secure key yet
+
+::: {.status-readout}
+Reconciliation and privacy amplification aren't implemented. The "final key" this package produces today is a sifted, QBER-estimated bit string — **not a cryptographically secure key.** It's a faithful simulator of BB84's quantum layer and QBER-based eavesdropping detection, useful for teaching and prototyping. Treat it accordingly until those pieces land.
+:::
+
+## Status
+
+Implemented:
+
+- BB84 prepare/measure circuits (Z/X basis)
+- Intercept-resend eavesdropper, circuit-level (mid-circuit measurement)
+- Sifting
+- QBER estimation via public sample comparison
+- Basic key-rate / Eve-detection report
+- Test suite + CI (Python 3.10–3.13)
+
+Not yet implemented:
+
+- E91 (entanglement-based) protocol
+- Beam-splitting eavesdropper
+- Cascade error reconciliation
+- Privacy amplification (universal hashing)
+- Realistic channel noise model (fiber loss, detector dark counts)
+- Live diagnostics dashboard (QBER vs. sample size, key rate vs. distance) — reusing patterns from `qiskit-sqd-dashboard`
+
+## Design notes
+
+- Eve's classical register (`eve`) is entirely separate from Alice and Bob's shared register (`c`) — Bob's measurement pipeline never touches it. That separation is what makes "Eve is undetectable except through QBER" a faithful model rather than an accidental information leak in the simulation itself.
+- `InterceptResend(p_intercept=...)` sweeps partial interception, reproducing the textbook QBER-vs-intercept-rate curve rather than only the full-intercept extreme.
+- `n_qubits` in the demo represents independent single-photon sends batched into one circuit for simulation speed — no entangling gates between them — so it maps directly onto real hardware qubit-count budgets.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-QKD-Lab){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/b286e633/){target="_blank"} — classified `Application`, labeled `quantum information`, `circuit building`
+- [PyPI](https://pypi.org/project/qiskit-qkd-lab/){target="_blank"}
+- [API reference](https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md){target="_blank"}
