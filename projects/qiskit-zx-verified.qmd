@@ -1,5 +1,5 @@
 ---
-title: "qiskit-zx-verified"
+title: "Qiskit ZX Verified"
 description: "A Clifford phase-gate fusion pass with a Lean 4 formal verification bridge"
 date: 2026-08-13
 image: ../images/zx-verified.svg
