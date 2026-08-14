@@ -29,4 +29,5 @@ Submitted to the Qiskit Ecosystem and currently in review. I'll update this page
 
 ## Links
 
-- [GitHub profile](https://github.com/RexRowan){target="_blank"} — repository link to follow once the Ecosystem listing is confirmed
+- [Repository](https://github.com/RexRowan/Qiskit-ZX-Verified){target="_blank"}
+- - [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/91f8bc77/){target="_blank"} — classified `Tooling`, , labeled `quantum information`, `reaserch`
