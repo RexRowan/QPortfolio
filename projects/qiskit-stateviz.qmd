@@ -74,4 +74,5 @@ Amplitude/phase and partial-trace math are cross-checked in the test suite again
 ## Links
 
 - [Repository](https://github.com/RexRowan/Qiskit-StateViz){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/e9f6e045/){target="_blank"} — classified `Tooling`, labeled `quantum information`
 - `pip install qiskit-stateviz`
