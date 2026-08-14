@@ -23,10 +23,6 @@ This follows directly from the LEAN bridge work above. Once you have a pipeline 
 
 Circuit optimizers that rewrite gates are exactly the kind of code where a silent sign error or an off-by-one convention mismatch produces a circuit that looks right, runs, and returns a subtly wrong answer. ZX-calculus fusion rules are simple enough to state precisely and small enough to actually verify — which makes them a good first target for closing the loop between "this rewrite rule is intended to preserve the circuit's unitary" and "this rewrite rule is proven to preserve the circuit's unitary."
 
-## Status
-
-Submitted to the Qiskit Ecosystem and currently in review. I'll update this page and its listing link once the entry is live.
-
 ## Links
 
 - [Repository](https://github.com/RexRowan/Qiskit-ZX-Verified){target="_blank"}
