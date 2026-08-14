@@ -1,0 +1,51 @@
+---
+title: "Qiskit LEAN bridge"
+description: "Bridging Qiskit's StandardEquivalenceLibrary to formally verified proofs in LeanQuantum"
+date: 2026-08-10
+image: ../images/lean-bridge.svg
+categories: [formal-verification, lean4, ecosystem-member]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · Tooling · MIT license · source install · 26 commits
+:::
+
+## The problem
+
+Qiskit's transpiler leans on `StandardEquivalenceLibrary` — a table of gate identities it treats as ground truth every time it rewrites a circuit. Nobody has formally verified that table against an independent, machine-checked semantics. `Qiskit-LEAN-Bridge` connects it to [inQWIRE/LeanQuantum](https://github.com/inQWIRE/LeanQuantum), a Lean 4 formalization of quantum computing, so those identities can eventually be proven, not just trusted.
+
+## What it does
+
+The pipeline is deliberately staged, and deliberately honest about what stage it's at:
+
+1. **`extract_equivalences.py`** walks Qiskit's equivalence library and serializes every registered gate identity — verified against Qiskit 2.5.1, **130 equivalences across 50 gates**.
+2. **`leanquantum_mapping.py`** hand-curates the correspondence between Qiskit gate names and LeanQuantum matrix definitions, tagging each `direct`, `derived`, `needs_convention_check`, or `needs_def`.
+3. **`verify_conventions.py`** numerically re-derives every claim in that mapping table from scratch on every CI run — independent of the table itself, so a convention drift gets caught immediately instead of silently producing a false lemma downstream.
+4. **`generate_lean.py`** emits real `sorry`'d lemma statements for anything with a fully trustworthy mapping, including correct `global_phase` handling. Anything less than fully trustworthy is emitted as a comment, never a lemma — so nobody can accidentally build a proof on top of an unverified assumption.
+
+## Two findings worth knowing
+
+- **Qiskit's `U(θ,φ,λ)` and LeanQuantum's `rotate θ φ δ` are the exact same matrix, parameter for parameter, with no phase correction needed.** This is the load-bearing fact underneath most of the `direct` bucket, since most single-qubit gates ultimately decompose through `U`/`rotate`.
+- **`cx` does not match LeanQuantum's `cnot`.** It matches `notc` instead — a genuine qubit-ordering convention mismatch between the two systems, confirmed numerically and re-checked in CI. It's the single highest-leverage open item: resolving it unblocks 23 of the 130 equivalences at once.
+
+## Current coverage
+
+| Status | Count | Meaning |
+|---|---|---|
+| `direct` | 28 | Ready to attempt proof today |
+| `derived` | 16 | One helper lemma away |
+| `needs_convention_check` | 23 | Blocked on the qubit-ordering question above |
+| `needs_def` | 63 | Needs a new LeanQuantum primitive first |
+
+## What's deliberately not done yet
+
+No Lean proofs are actually closed — every emitted lemma is `sorry`. The point of this first pass is a trustworthy *map* of what's provable, not the proofs themselves. The `lean/` build has never been run against a real Mathlib cache in this environment; the lakefile and CI job are written but untested end-to-end, which is flagged rather than assumed to work.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-LEAN-Bridge){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/dd050939/){target="_blank"} — classified `Tooling`, labeled `quantum information`, `research`
+- Built against [inQWIRE/LeanQuantum](https://github.com/inQWIRE/LeanQuantum){target="_blank"}

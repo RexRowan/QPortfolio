@@ -8,10 +8,10 @@ website:
   site-url: "https://rexrowan.github.io"
   navbar:
     left:
+      - href: index.qmd
+        text: Home
       - href: projects.qmd
         text: Projects
-      - href: about.qmd
-        text: About
     right:
       - icon: github
         href: https://github.com/RexRowan

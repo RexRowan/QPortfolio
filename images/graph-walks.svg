@@ -1,0 +1,27 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <!-- a small graph: five vertices, walk edges in circuit blue,
+       one traversed path picked out in teal -->
+  <line x1="150" y1="90"  x2="320" y2="60"  stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+  <line x1="150" y1="90"  x2="140" y2="230" stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+  <line x1="320" y1="60"  x2="480" y2="110" stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+  <line x1="140" y1="230" x2="330" y2="250" stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+  <line x1="330" y1="250" x2="480" y2="110" stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+  <line x1="320" y1="60"  x2="330" y2="250" stroke="#2B6CB0" stroke-width="2.5" opacity="0.55"/>
+
+  <!-- traversed walk path, highlighted -->
+  <path d="M150,90 L320,60 L480,110 L330,250" fill="none" stroke="#0F9D8C" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 14"/>
+
+  <!-- vertices -->
+  <circle cx="150" cy="90"  r="10" fill="#F7F7F5" stroke="#14171F" stroke-width="2.5"/>
+  <circle cx="320" cy="60"  r="10" fill="#F7F7F5" stroke="#14171F" stroke-width="2.5"/>
+  <circle cx="480" cy="110" r="10" fill="#0F9D8C" stroke="#14171F" stroke-width="2.5"/>
+  <circle cx="140" cy="230" r="10" fill="#F7F7F5" stroke="#14171F" stroke-width="2.5"/>
+  <circle cx="330" cy="250" r="10" fill="#F7F7F5" stroke="#14171F" stroke-width="2.5"/>
+
+  <!-- walker marker at the marked vertex -->
+  <circle cx="150" cy="90" r="16" fill="none" stroke="#0F9D8C" stroke-width="2" stroke-dasharray="3 4"/>
+
+  <text x="500" y="220" font-family="JetBrains Mono, monospace" font-size="15" fill="#14171F">CTQW / DTQW</text>
+</svg>

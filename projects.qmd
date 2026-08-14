@@ -14,4 +14,4 @@ listing:
 ::: {.circuit-rule}
 :::
 
-Each project links to its repo, its docs, and — where it makes sense — a live demo.
+Seven projects, six confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/) and one in review. Each links to its repo, its docs, and — where it makes sense — a live demo.

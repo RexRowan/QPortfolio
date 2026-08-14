@@ -1,0 +1,56 @@
+---
+title: "Qiskit Graph Walks"
+description: "Quantum walk algorithms as graph-problem primitives, built on Qiskit"
+date: 2026-08-12
+image: ../images/graph-walks.svg
+categories: [algorithms, graph-theory, ecosystem-member]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · Application · Apache 2.0 · on PyPI (v0.1.0) · 28 passing tests
+:::
+
+## The problem
+
+Quantum walks are almost always introduced as a physics demo — ballistic spreading on a line or a lattice, contrasted with classical diffusion. That framing undersells them. Continuous- and discrete-time quantum walks are algorithmic primitives with concrete uses on arbitrary graphs: spatial search, and graph-invariant fingerprinting for isomorphism testing. There wasn't a Qiskit-native package that treated them that way — as composable circuits that plug into transpilation, backends, and noise models like anything else in the ecosystem, rather than one-off demo scripts.
+
+## What it does
+
+```python
+import networkx as nx
+from qiskit_graph_walks import ContinuousTimeQuantumWalk, SpatialSearch, are_possibly_isomorphic
+
+G = nx.petersen_graph()
+walk = ContinuousTimeQuantumWalk(G)
+circuit = walk.circuit(time=2.5, initial_vertex=0)   # a genuine Qiskit QuantumCircuit
+probs = walk.probabilities(time=2.5, initial_vertex=0)
+
+search = SpatialSearch(nx.complete_graph(16), marked_vertices=7)
+result = search.optimize()   # matches the Childs–Goldstone closed form on K_n
+circuit = search.circuit(result.gamma, result.time)
+```
+
+Four modules:
+
+- **`ctqw`** — continuous-time quantum walks (`H = -γA` or the graph Laplacian), circuit construction and exact simulation.
+- **`dtqw`** — discrete-time (Szegedy) quantum walks, which work on any graph, not just regular ones.
+- **`search`** — Childs & Goldstone (2004) spatial search, with automatic parameter optimization for arbitrary graphs, not just the textbook complete-graph case.
+- **`isomorphism`** — CTQW-based graph invariants for isomorphism testing.
+
+## The part worth reading carefully
+
+A fingerprint *mismatch* in the isomorphism module is a genuine proof of non-isomorphism. A fingerprint *match* is **not** a proof of isomorphism — it means the test didn't find a difference, which isn't the same claim. The package is explicit about this rather than letting the function name imply more than the math supports, and `docs/isomorphism.md` walks through a classic cospectral-but-non-isomorphic graph pair that the fingerprint *does* correctly separate, as a worked example of what the technique can and can't do.
+
+## Known limitations
+
+- The Szegedy walk step operator is built as an explicit dense unitary. Exact and easy to verify, but it doesn't scale past a few hundred vertices before the dense linear algebra becomes the bottleneck — synthesizing it into an elementary-gate decomposition for larger graphs is an open contribution.
+- `SpatialSearch.optimize()` uses local numerical optimization (Nelder–Mead) seeded from the complete-graph closed form. For graphs structurally very different from a complete graph, a single local-optimizer run isn't guaranteed to find the global optimum — worth trying multiple seeds.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Graph-Walks){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/20f2d93f/){target="_blank"} — classified `Application`, labeled `quantum information`, `research`, `circuit building`, `physics`, `Hamiltonian simulation`
+- `pip install qiskit-graph-walks`

@@ -88,7 +88,7 @@
     "href": "index.html",
     "title": "Rex Rowan",
     "section": "",
-    "text": "I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.\nThree projects are live so far: Qiberis, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane. Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members. Qiskit StateViz, Interactive, Plotly-based statevector visualizations for Qiskit — a drop-in, rotate/zoom/hover companion to the static matplotlib views in qiskit.visualization.\nSee the projects →"
+    "text": "I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.\nFou projects are live so far: - Qiberis, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane. - Qiskit SQD Dashboard, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members. - Qiskit StateViz, Interactive, Plotly-based statevector visualizations for Qiskit — a drop-in, rotate/zoom/hover companion to the static matplotlib views in qiskit.visualization. - Qiskit QKD Lab, A QKD protocol simulator built on Qiskit primitives, with circuit-level eavesdropping models.\nSee the projects →"
   },
   {
     "objectID": "projects.html",

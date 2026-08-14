@@ -1,6 +1,6 @@
 ---
 title: "Rex Rowan"
-subtitle: "Open-source tools for the Qiskit ecosystem"
+subtitle: "Open-source infrastructure for the Qiskit ecosystem"
 page-layout: full
 title-block-banner: false
 ---
@@ -8,12 +8,32 @@ title-block-banner: false
 ::: {.circuit-rule}
 :::
 
-I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.
+I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which shows up directly in how I approach circuit construction and verification: as things to prove correct, not just get working.
 
-Fou projects are live so far: 
-- **Qiberis**, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane.
-- **Qiskit SQD Dashboard**, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members.
-- **Qiskit StateViz**, Interactive, Plotly-based statevector visualizations for Qiskit — a drop-in, rotate/zoom/hover companion to the static matplotlib views in qiskit.visualization.
-- **Qiskit QKD Lab**, A QKD protocol simulator built on Qiskit primitives, with circuit-level eavesdropping models.
+## What I've built
 
-[See the projects →](projects.qmd)
+Seven projects, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, and formal verification:
+
+- **[Qiberis](projects/qiberis.qmd)** — a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane, with a bit-ordering convention enforced by regression test rather than asserted in a docstring.
+- **[Qiskit SQD Dashboard](projects/sqd-dashboard.qmd)** — live convergence diagnostics for sample-based quantum diagonalization, hooking directly into `qiskit-addon-sqd`'s callback loop.
+- **[Qiskit StateViz](projects/qiskit-stateviz.qmd)** — interactive, Plotly-based statevector visualization built fresh against current Qiskit, where the prior art has bit-rotted.
+- **[Qiskit QKD Lab](projects/qkd-lab.qmd)** — a BB84 protocol simulator where the eavesdropper is real circuit structure, not a shortcut.
+- **[Qiskit Graph Walks](projects/qiskit-graph-walks.qmd)** — quantum walk algorithms treated as graph-problem primitives: spatial search and isomorphism fingerprinting, not just physics demos.
+- **[Qiskit LEAN bridge](projects/qiskit-lean-bridge.qmd)** — bridges Qiskit's `StandardEquivalenceLibrary` to formally verified proofs in Lean 4, and caught a genuine qubit-ordering convention bug in the process.
+- **[qiskit-zx-verified](projects/qiskit-zx-verified.qmd)** *(Ecosystem review in progress)* — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.
+
+Six are confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/); the seventh is in review. [See all projects →](projects.qmd)
+
+## The thread connecting them
+
+Most of what's above reads as unrelated tooling until you look at the sequence. Qiberis and StateViz solve the ordinary interoperability and visualization gaps every Qiskit user eventually hits. QKD Lab and SQD Dashboard go further — they model real experimental structure (an actual eavesdropper, an actual convergence loop) instead of a simplified stand-in for it. Graph Walks pushes into genuinely underserved territory: quantum walks written as algorithmic primitives rather than teaching demos. And the LEAN bridge and ZX-verified pair do something almost nobody else in the ecosystem is doing — treating Qiskit's own gate identities and rewrite rules as claims that should be *proven*, not just tested against expected output.
+
+That progression — from "make Qiskit easier to use" toward "make Qiskit's own foundations checkable" — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward.
+
+## Recent and ongoing
+
+I've worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory, on structures related to modular arithmetic and their component topology, and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.
+
+**Elsewhere:**
+
+- [GitHub](https://github.com/RexRowan){target="_blank"}

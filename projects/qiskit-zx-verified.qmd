@@ -1,0 +1,32 @@
+---
+title: "qiskit-zx-verified"
+description: "A Clifford phase-gate fusion pass with a Lean 4 formal verification bridge"
+date: 2026-08-13
+image: ../images/zx-verified.svg
+categories: [formal-verification, compiler, lean4]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem submission in review · 34 passing tests
+:::
+
+## What it does
+
+A ZX-calculus-based transpiler pass for Qiskit that fuses adjacent Clifford phase gates — the same class of local rewrite PyZX and similar tools perform — but pairs the rewrite rule with a Lean 4 proof obligation, using the same verification approach as [`Qiskit-LEAN-Bridge`](qiskit-lean-bridge.qmd): the fusion identity is checked against an independent, machine-checkable semantics rather than trusted by construction.
+
+This follows directly from the LEAN bridge work above. Once you have a pipeline for numerically verifying gate-identity conventions and staging them into real Lean lemma statements, applying the same discipline to an actual transpiler pass — one that changes circuits, not just documents equivalences — is the natural next step.
+
+## Why pair a compiler pass with a proof obligation
+
+Circuit optimizers that rewrite gates are exactly the kind of code where a silent sign error or an off-by-one convention mismatch produces a circuit that looks right, runs, and returns a subtly wrong answer. ZX-calculus fusion rules are simple enough to state precisely and small enough to actually verify — which makes them a good first target for closing the loop between "this rewrite rule is intended to preserve the circuit's unitary" and "this rewrite rule is proven to preserve the circuit's unitary."
+
+## Status
+
+Submitted to the Qiskit Ecosystem and currently in review. I'll update this page and its listing link once the entry is live.
+
+## Links
+
+- [GitHub profile](https://github.com/RexRowan){target="_blank"} — repository link to follow once the Ecosystem listing is confirmed
