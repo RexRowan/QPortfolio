@@ -56,13 +56,6 @@
     "text": "Why pair a compiler pass with a proof obligation\nCircuit optimizers that rewrite gates are exactly the kind of code where a silent sign error or an off-by-one convention mismatch produces a circuit that looks right, runs, and returns a subtly wrong answer. ZX-calculus fusion rules are simple enough to state precisely and small enough to actually verify — which makes them a good first target for closing the loop between “this rewrite rule is intended to preserve the circuit’s unitary” and “this rewrite rule is proven to preserve the circuit’s unitary.”"
   },
   {
-    "objectID": "projects/qiskit-zx-verified.html#status",
-    "href": "projects/qiskit-zx-verified.html#status",
-    "title": "Qiskit ZX Verified",
-    "section": "Status",
-    "text": "Status\nSubmitted to the Qiskit Ecosystem and currently in review. I’ll update this page and its listing link once the entry is live."
-  },
-  {
     "objectID": "projects/qiskit-zx-verified.html#links",
     "href": "projects/qiskit-zx-verified.html#links",
     "title": "Qiskit ZX Verified",
