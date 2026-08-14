@@ -22,7 +22,7 @@ Seven projects, spanning the full stack a Qiskit user actually touches — inter
 - **[Qiskit LEAN bridge](projects/qiskit-lean-bridge.qmd)** — bridges Qiskit's `StandardEquivalenceLibrary` to formally verified proofs in Lean 4, and caught a genuine qubit-ordering convention bug in the process.
 - **[Qiskit ZX Verified](projects/qiskit-zx-verified.qmd)** — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.
 
-Six are confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/); the seventh is in review. [See all projects →](projects.qmd)
+Seven confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/). [See all projects →](projects.qmd)
 
 ## The thread connecting them
 
