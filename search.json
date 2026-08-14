@@ -44,28 +44,28 @@
   {
     "objectID": "projects/qiskit-zx-verified.html#what-it-does",
     "href": "projects/qiskit-zx-verified.html#what-it-does",
-    "title": "qiskit-zx-verified",
+    "title": "Qiskit ZX Verified",
     "section": "What it does",
     "text": "What it does\nA ZX-calculus-based transpiler pass for Qiskit that fuses adjacent Clifford phase gates — the same class of local rewrite PyZX and similar tools perform — but pairs the rewrite rule with a Lean 4 proof obligation, using the same verification approach as Qiskit-LEAN-Bridge: the fusion identity is checked against an independent, machine-checkable semantics rather than trusted by construction.\nThis follows directly from the LEAN bridge work above. Once you have a pipeline for numerically verifying gate-identity conventions and staging them into real Lean lemma statements, applying the same discipline to an actual transpiler pass — one that changes circuits, not just documents equivalences — is the natural next step."
   },
   {
     "objectID": "projects/qiskit-zx-verified.html#why-pair-a-compiler-pass-with-a-proof-obligation",
     "href": "projects/qiskit-zx-verified.html#why-pair-a-compiler-pass-with-a-proof-obligation",
-    "title": "qiskit-zx-verified",
+    "title": "Qiskit ZX Verified",
     "section": "Why pair a compiler pass with a proof obligation",
     "text": "Why pair a compiler pass with a proof obligation\nCircuit optimizers that rewrite gates are exactly the kind of code where a silent sign error or an off-by-one convention mismatch produces a circuit that looks right, runs, and returns a subtly wrong answer. ZX-calculus fusion rules are simple enough to state precisely and small enough to actually verify — which makes them a good first target for closing the loop between “this rewrite rule is intended to preserve the circuit’s unitary” and “this rewrite rule is proven to preserve the circuit’s unitary.”"
   },
   {
     "objectID": "projects/qiskit-zx-verified.html#status",
     "href": "projects/qiskit-zx-verified.html#status",
-    "title": "qiskit-zx-verified",
+    "title": "Qiskit ZX Verified",
     "section": "Status",
     "text": "Status\nSubmitted to the Qiskit Ecosystem and currently in review. I’ll update this page and its listing link once the entry is live."
   },
   {
     "objectID": "projects/qiskit-zx-verified.html#links",
     "href": "projects/qiskit-zx-verified.html#links",
-    "title": "qiskit-zx-verified",
+    "title": "Qiskit ZX Verified",
     "section": "Links",
     "text": "Links\n\nGitHub profile — repository link to follow once the Ecosystem listing is confirmed"
   },
@@ -158,7 +158,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Seven projects Qiskit Ecosystem members. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nqiskit-zx-verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nqiskit-sqd-dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Seven projects Qiskit Ecosystem members. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nqiskit-sqd-dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
