@@ -1,5 +1,5 @@
 ---
-title: "qiskit-sqd-dashboard"
+title: "Qiskit SQD Dashboard"
 description: "Live convergence diagnostics for qiskit-addon-sqd's configuration recovery loop"
 date: 2026-07-01
 image: ../images/sqd-dashboard.svg
