@@ -20,7 +20,7 @@ Seven projects, spanning the full stack a Qiskit user actually touches — inter
 - **[Qiskit QKD Lab](projects/qkd-lab.qmd)** — a BB84 protocol simulator where the eavesdropper is real circuit structure, not a shortcut.
 - **[Qiskit Graph Walks](projects/qiskit-graph-walks.qmd)** — quantum walk algorithms treated as graph-problem primitives: spatial search and isomorphism fingerprinting, not just physics demos.
 - **[Qiskit LEAN bridge](projects/qiskit-lean-bridge.qmd)** — bridges Qiskit's `StandardEquivalenceLibrary` to formally verified proofs in Lean 4, and caught a genuine qubit-ordering convention bug in the process.
-- **[qiskit-zx-verified](projects/qiskit-zx-verified.qmd)** *(Ecosystem review in progress)* — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.
+- **[Qiskit ZX Verified](projects/qiskit-zx-verified.qmd)** — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.
 
 Six are confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/); the seventh is in review. [See all projects →](projects.qmd)
 
