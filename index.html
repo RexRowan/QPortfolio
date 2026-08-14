@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,14 +42,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0db66c32e16a2551af7299a43e6f95a1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dab333370b46a58f04c2e79b6e18fa8e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0db66c32e16a2551af7299a43e6f95a1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-1c9ca291b2abd5af6f816a5f1ec46af5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dcab2c9a7f0c84b16e00765f2ce7fa74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-89f93823e13fc4db694bcb11c6b9c878.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-dcab2c9a7f0c84b16e00765f2ce7fa74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1ebd8228365589516030603566a91505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5901848781baa4e8799e3212a10016eb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-1ebd8228365589516030603566a91505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -259,12 +262,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
-<span class="menu-text">Projects</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./projects.html"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -293,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Rex Rowan</h1>
-<p class="subtitle lead">Open-source tools for the Qiskit ecosystem</p>
+<p class="subtitle lead">Open-source infrastructure for the Qiskit ecosystem</p>
 </div>
 
 
@@ -313,11 +316,36 @@ ul.task-list li input[type="checkbox"] {
 <div class="circuit-rule">
 
 </div>
-<p>I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which tends to show up in how I approach circuit construction and error mitigation: as things to prove correct, not just get working.</p>
-<p>Fou projects are live so far: - <strong>Qiberis</strong>, a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane. - <strong>Qiskit SQD Dashboard</strong>, a live convergence widget for sample-based quantum diagonalization. Both are verified Qiskit Ecosystem members. - <strong>Qiskit StateViz</strong>, Interactive, Plotly-based statevector visualizations for Qiskit — a drop-in, rotate/zoom/hover companion to the static matplotlib views in qiskit.visualization. - <strong>Qiskit QKD Lab</strong>, A QKD protocol simulator built on Qiskit primitives, with circuit-level eavesdropping models.</p>
-<p><a href="./projects.html">See the projects →</a></p>
+<p>I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which shows up directly in how I approach circuit construction and verification: as things to prove correct, not just get working.</p>
+<section id="what-ive-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-ive-built">What I’ve built</h2>
+<p>Seven projects, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, and formal verification:</p>
+<ul>
+<li><strong><a href="./projects/qiberis.html">Qiberis</a></strong> — a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane, with a bit-ordering convention enforced by regression test rather than asserted in a docstring.</li>
+<li><strong><a href="./projects/sqd-dashboard.html">Qiskit SQD Dashboard</a></strong> — live convergence diagnostics for sample-based quantum diagonalization, hooking directly into <code>qiskit-addon-sqd</code>’s callback loop.</li>
+<li><strong><a href="./projects/qiskit-stateviz.html">Qiskit StateViz</a></strong> — interactive, Plotly-based statevector visualization built fresh against current Qiskit, where the prior art has bit-rotted.</li>
+<li><strong><a href="./projects/qkd-lab.html">Qiskit QKD Lab</a></strong> — a BB84 protocol simulator where the eavesdropper is real circuit structure, not a shortcut.</li>
+<li><strong><a href="./projects/qiskit-graph-walks.html">Qiskit Graph Walks</a></strong> — quantum walk algorithms treated as graph-problem primitives: spatial search and isomorphism fingerprinting, not just physics demos.</li>
+<li><strong><a href="./projects/qiskit-lean-bridge.html">Qiskit LEAN bridge</a></strong> — bridges Qiskit’s <code>StandardEquivalenceLibrary</code> to formally verified proofs in Lean 4, and caught a genuine qubit-ordering convention bug in the process.</li>
+<li><strong><a href="./projects/qiskit-zx-verified.html">qiskit-zx-verified</a></strong> <em>(Ecosystem review in progress)</em> — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.</li>
+</ul>
+<p>Six are confirmed <a href="https://qiskit.github.io/ecosystem/">Qiskit Ecosystem members</a>; the seventh is in review. <a href="./projects.html">See all projects →</a></p>
+</section>
+<section id="the-thread-connecting-them" class="level2">
+<h2 class="anchored" data-anchor-id="the-thread-connecting-them">The thread connecting them</h2>
+<p>Most of what’s above reads as unrelated tooling until you look at the sequence. Qiberis and StateViz solve the ordinary interoperability and visualization gaps every Qiskit user eventually hits. QKD Lab and SQD Dashboard go further — they model real experimental structure (an actual eavesdropper, an actual convergence loop) instead of a simplified stand-in for it. Graph Walks pushes into genuinely underserved territory: quantum walks written as algorithmic primitives rather than teaching demos. And the LEAN bridge and ZX-verified pair do something almost nobody else in the ecosystem is doing — treating Qiskit’s own gate identities and rewrite rules as claims that should be <em>proven</em>, not just tested against expected output.</p>
+<p>That progression — from “make Qiskit easier to use” toward “make Qiskit’s own foundations checkable” — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward.</p>
+</section>
+<section id="recent-and-ongoing" class="level2">
+<h2 class="anchored" data-anchor-id="recent-and-ongoing">Recent and ongoing</h2>
+<p>I’ve worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory, on structures related to modular arithmetic and their component topology, and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.</p>
+<p><strong>Elsewhere:</strong></p>
+<ul>
+<li><a href="https://github.com/RexRowan" target="_blank">GitHub</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

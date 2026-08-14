@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-07-01">
-<meta name="description" content="Live convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop">
+<meta name="dcterms.date" content="2026-08-12">
+<meta name="description" content="Quantum walk algorithms as graph-problem primitives, built on Qiskit">
 
-<title>qiskit-sqd-dashboard – Rex Rowan</title>
+<title>Qiskit Graph Walks – Rex Rowan</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -114,8 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.scss">
@@ -334,17 +332,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">qiskit-sqd-dashboard</h1>
+<h1 class="title">Qiskit Graph Walks</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">diagnostics</div>
-    <div class="quarto-category">sqd</div>
+    <div class="quarto-category">algorithms</div>
+    <div class="quarto-category">graph-theory</div>
     <div class="quarto-category">ecosystem-member</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Live convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop
+    Quantum walk algorithms as graph-problem primitives, built on Qiskit
   </div>
 </div>
 
@@ -355,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">August 12, 2026</p>
     </div>
   </div>
   
@@ -371,179 +369,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 <div class="status-readout">
-<p>STATUS · Qiskit Ecosystem Member · Tooling · Apache 2.0 · source install only, not yet on PyPI</p>
+<p>STATUS · Qiskit Ecosystem Member · Application · Apache 2.0 · on PyPI (v0.1.0) · 28 passing tests</p>
 </div>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
-<p><code>qiskit-addon-sqd</code> is a pure compute library — it runs sample-based quantum diagonalization’s self-consistent configuration recovery loop, but it has no visualization layer. The standard workflow is to run the whole loop, then plot whatever you logged, after the fact. Mid-run, you can’t easily see whether the energy is actually converging or the recovered configurations are still drifting.</p>
+<p>Quantum walks are almost always introduced as a physics demo — ballistic spreading on a line or a lattice, contrasted with classical diffusion. That framing undersells them. Continuous- and discrete-time quantum walks are algorithmic primitives with concrete uses on arbitrary graphs: spatial search, and graph-invariant fingerprinting for isomorphism testing. There wasn’t a Qiskit-native package that treated them that way — as composable circuits that plug into transpilation, backends, and noise models like anything else in the ecosystem, rather than one-off demo scripts.</p>
 </section>
-<section id="what-the-dashboard-does" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-dashboard-does">What the dashboard does</h2>
-<p><code>qiskit-sqd-dashboard</code> hooks directly into that loop using the <code>callback</code> parameter that <code>diagonalize_fermionic_hamiltonian</code> already exposes — no server, no separate process, no data hand-off. You instantiate <code>SQDDiagnostics</code>, call <code>.display()</code> in a notebook cell, and pass <code>diag.callback</code> straight through:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_sqd_dashboard <span class="im">import</span> SQDDiagnostics</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_addon_sqd.fermion <span class="im">import</span> diagonalize_fermionic_hamiltonian</span>
+<section id="what-it-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-does">What it does</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_graph_walks <span class="im">import</span> ContinuousTimeQuantumWalk, SpatialSearch, are_possibly_isomorphic</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>diag <span class="op">=</span> SQDDiagnostics()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>diag.display()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> diagonalize_fermionic_hamiltonian(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    hcore, eri, bit_array,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    samples_per_batch<span class="op">=</span>samples_per_batch,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    norb<span class="op">=</span>norb, nelec<span class="op">=</span>nelec,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    callback<span class="op">=</span>diag.callback,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Each configuration-recovery iteration, it redraws a live Plotly figure tracking:</p>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.petersen_graph()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>walk <span class="op">=</span> ContinuousTimeQuantumWalk(G)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>circuit <span class="op">=</span> walk.circuit(time<span class="op">=</span><span class="fl">2.5</span>, initial_vertex<span class="op">=</span><span class="dv">0</span>)   <span class="co"># a genuine Qiskit QuantumCircuit</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> walk.probabilities(time<span class="op">=</span><span class="fl">2.5</span>, initial_vertex<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SpatialSearch(nx.complete_graph(<span class="dv">16</span>), marked_vertices<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> search.optimize()   <span class="co"># matches the Childs–Goldstone closed form on K_n</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>circuit <span class="op">=</span> search.circuit(result.gamma, result.time)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Four modules:</p>
 <ul>
-<li><strong>Energy convergence</strong> — best energy found so far, plus the min/max spread across batches</li>
-<li><strong>Subspace dimension per batch</strong> — <code>len(ci_strs_a) * len(ci_strs_b)</code> for each batch’s result</li>
-<li><strong>Orbital occupancy convergence</strong> — the max change in average orbital occupancies since the last iteration, which is the same quantity configuration recovery uses internally to correct noisy samples, so watching it flatten is a direct convergence signal</li>
+<li><strong><code>ctqw</code></strong> — continuous-time quantum walks (<code>H = -γA</code> or the graph Laplacian), circuit construction and exact simulation.</li>
+<li><strong><code>dtqw</code></strong> — discrete-time (Szegedy) quantum walks, which work on any graph, not just regular ones.</li>
+<li><strong><code>search</code></strong> — Childs &amp; Goldstone (2004) spatial search, with automatic parameter optimization for arbitrary graphs, not just the textbook complete-graph case.</li>
+<li><strong><code>isomorphism</code></strong> — CTQW-based graph invariants for isomorphism testing.</li>
 </ul>
-<p>An earlier version used Plotly’s <code>FigureWidget</code> (via <code>anywidget</code>), but that was dropped in favor of a <code>clear_output()</code> + redraw pattern after <code>FigureWidget</code> turned out to be broken in Colab.</p>
 </section>
-<section id="validation" class="level2">
-<h2 class="anchored" data-anchor-id="validation">Validation</h2>
-<p>The panel below is a <strong>synthetic reconstruction</strong> of the shape of a real run, built from the numbers reported for the project’s actual validation case: an N2 active space (8 orbitals, 10 electrons, STO-3G), with a LUCJ ansatz built from CCSD amplitudes via <code>ffsim</code>, and 2% per-bit hardware noise injected. That run showed genuine multi-iteration convergence — energy improving monotonically over 4-6 iterations, subspace dimension growing from roughly 380 to 700, and the occupancy delta rising slightly before decaying toward zero. It hasn’t yet been validated at the scale of IBM’s full N2/6-31g tutorial (59 qubits).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="52" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 51;"><span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>Plot <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/plot@0.6.16"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="57" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>viewof iterations <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Configuration recovery iterations"</span>}</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="65" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>targetEnergy <span class="op">=</span> <span class="op">-</span><span class="fl">107.62</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>startEnergy <span class="op">=</span> <span class="op">-</span><span class="fl">106.55</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> []<span class="op">;</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> iterations<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> progress <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(i <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="fl">1.8</span>)<span class="op">;</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> energy <span class="op">=</span> startEnergy <span class="op">+</span> (targetEnergy <span class="op">-</span> startEnergy) <span class="op">*</span> progress<span class="op">;</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> subspaceDim <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="dv">380</span> <span class="op">+</span> (<span class="dv">700</span> <span class="op">-</span> <span class="dv">380</span>) <span class="op">*</span> (i <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">5</span>)<span class="op">;</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    <span class="co">// occupancy delta: rises slightly at iteration 2, then decays toward zero</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> occDelta <span class="op">=</span> i <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="fl">0.15</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="fl">0.19</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(i <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> <span class="fl">1.1</span>) <span class="op">+</span> <span class="fl">0.001</span><span class="op">;</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    rows<span class="op">.</span><span class="fu">push</span>({ <span class="dt">iteration</span><span class="op">:</span> i<span class="op">,</span> energy<span class="op">,</span> subspaceDim<span class="op">,</span> occDelta })<span class="op">;</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rows<span class="op">;</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="ojs-panel">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="85" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 84;"><span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">620</span><span class="op">,</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Configuration recovery iteration"</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span> }<span class="op">,</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Best energy (Ha)"</span> }<span class="op">,</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([targetEnergy]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0F9D8C"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span> })<span class="op">,</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"iteration"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"energy"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2B6CB0"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> })<span class="op">,</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(data<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"iteration"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"energy"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2B6CB0"</span> })</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="101" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 100;"><span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin: 0.25rem 0 1.25rem 0;"&gt;</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span style="color:#0F9D8C;"&gt;— target energy&lt;/span&gt;</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="108" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">620</span><span class="op">,</span></span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">220</span><span class="op">,</span></span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Configuration recovery iteration"</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span> }<span class="op">,</span></span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Max occupancy Δ vs. prior iteration"</span> }<span class="op">,</span></span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"iteration"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"occDelta"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#7A6FF0"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> })<span class="op">,</span></span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(data<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"iteration"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"occDelta"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#7A6FF0"</span> })</span>
-<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-6" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-</div>
-<p>Drag the slider — energy tightens toward the target as iterations accumulate, while the occupancy delta ticks up once (as configuration recovery starts correcting noisy samples) before collapsing toward zero, which is the actual convergence signal the real widget is built to surface live.</p>
+<section id="the-part-worth-reading-carefully" class="level2">
+<h2 class="anchored" data-anchor-id="the-part-worth-reading-carefully">The part worth reading carefully</h2>
+<p>A fingerprint <em>mismatch</em> in the isomorphism module is a genuine proof of non-isomorphism. A fingerprint <em>match</em> is <strong>not</strong> a proof of isomorphism — it means the test didn’t find a difference, which isn’t the same claim. The package is explicit about this rather than letting the function name imply more than the math supports, and <code>docs/isomorphism.md</code> walks through a classic cospectral-but-non-isomorphic graph pair that the fingerprint <em>does</em> correctly separate, as a worked example of what the technique can and can’t do.</p>
 </section>
-<section id="current-limitations-v1" class="level2">
-<h2 class="anchored" data-anchor-id="current-limitations-v1">Current limitations (v1)</h2>
+<section id="known-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="known-limitations">Known limitations</h2>
 <ul>
-<li>Single-run view only — no side-by-side comparison across <code>samples_per_batch</code> settings yet</li>
-<li>No persistence — diagnostics live only for the notebook session</li>
-<li>Not yet published to PyPI (<code>pip install -e .</code> from source is the only install path today)</li>
-<li>Not yet validated at the full 59-qubit N2/6-31g scale</li>
+<li>The Szegedy walk step operator is built as an explicit dense unitary. Exact and easy to verify, but it doesn’t scale past a few hundred vertices before the dense linear algebra becomes the bottleneck — synthesizing it into an elementary-gate decomposition for larger graphs is an open contribution.</li>
+<li><code>SpatialSearch.optimize()</code> uses local numerical optimization (Nelder–Mead) seeded from the complete-graph closed form. For graphs structurally very different from a complete graph, a single local-optimizer run isn’t guaranteed to find the global optimum — worth trying multiple seeds.</li>
 </ul>
 </section>
 <section id="links" class="level2">
 <h2 class="anchored" data-anchor-id="links">Links</h2>
 <ul>
-<li><a href="https://github.com/RexRowan/Qiskit-SQD-Dashboard" target="_blank">Repository</a></li>
-<li><a href="https://qiskit.github.io/ecosystem/p/7b1e622a/" target="_blank">Qiskit Ecosystem listing</a> — classified <code>Tooling</code>, labeled <code>chemistry</code>, <code>research</code>, <code>utility-scale</code></li>
-<li><a href="https://github.com/RexRowan/Qiskit-SQD-Dashboard/blob/main/sqd_dashboard_colab.ipynb" target="_blank">Colab notebook: full N2 example</a></li>
-<li>Built on <a href="https://github.com/Qiskit/qiskit-addon-sqd" target="_blank"><code>qiskit-addon-sqd</code></a></li>
+<li><a href="https://github.com/RexRowan/Qiskit-Graph-Walks" target="_blank">Repository</a></li>
+<li><a href="https://qiskit.github.io/ecosystem/p/20f2d93f/" target="_blank">Qiskit Ecosystem listing</a> — classified <code>Application</code>, labeled <code>quantum information</code>, <code>research</code>, <code>circuit building</code>, <code>physics</code>, <code>Hamiltonian simulation</code></li>
+<li><code>pip install qiskit-graph-walks</code></li>
 </ul>
 
 
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QgPSByZXF1aXJlKFwiQG9ic2VydmFibGVocS9wbG90QDAuNi4xNlwiKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIGl0ZXJhdGlvbnMgPSBJbnB1dHMucmFuZ2UoXG4gIFsxLCA2XSwge3ZhbHVlOiA1LCBzdGVwOiAxLCBsYWJlbDogXCJDb25maWd1cmF0aW9uIHJlY292ZXJ5IGl0ZXJhdGlvbnNcIn1cbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InRhcmdldEVuZXJneSA9IC0xMDcuNjJcbnN0YXJ0RW5lcmd5ID0gLTEwNi41NVxuXG5kYXRhID0ge1xuICBjb25zdCByb3dzID0gW107XG4gIGZvciAobGV0IGkgPSAxOyBpIDw9IGl0ZXJhdGlvbnM7IGkrKykge1xuICAgIGNvbnN0IHByb2dyZXNzID0gMSAtIE1hdGguZXhwKC0oaSAtIDEpIC8gMS44KTtcbiAgICBjb25zdCBlbmVyZ3kgPSBzdGFydEVuZXJneSArICh0YXJnZXRFbmVyZ3kgLSBzdGFydEVuZXJneSkgKiBwcm9ncmVzcztcbiAgICBjb25zdCBzdWJzcGFjZURpbSA9IE1hdGgucm91bmQoMzgwICsgKDcwMCAtIDM4MCkgKiAoaSAtIDEpIC8gNSk7XG4gICAgLy8gb2NjdXBhbmN5IGRlbHRhOiByaXNlcyBzbGlnaHRseSBhdCBpdGVyYXRpb24gMiwgdGhlbiBkZWNheXMgdG93YXJkIHplcm9cbiAgICBjb25zdCBvY2NEZWx0YSA9IGkgPT09IDEgPyAwLjE1XG4gICAgICA6IDAuMTkgKiBNYXRoLmV4cCgtKGkgLSAyKSAvIDEuMSkgKyAwLjAwMTtcbiAgICByb3dzLnB1c2goeyBpdGVyYXRpb246IGksIGVuZXJneSwgc3Vic3BhY2VEaW0sIG9jY0RlbHRhIH0pO1xuICB9XG4gIHJldHVybiByb3dzO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgd2lkdGg6IDYyMCxcbiAgaGVpZ2h0OiAyNjAsXG4gIG1hcmdpbkxlZnQ6IDYwLFxuICB4OiB7IGxhYmVsOiBcIkNvbmZpZ3VyYXRpb24gcmVjb3ZlcnkgaXRlcmF0aW9uXCIsIHRpY2tGb3JtYXQ6IFwiZFwiIH0sXG4gIHk6IHsgbGFiZWw6IFwiQmVzdCBlbmVyZ3kgKEhhKVwiIH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbdGFyZ2V0RW5lcmd5XSwgeyBzdHJva2U6IFwiIzBGOUQ4Q1wiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCIgfSksXG4gICAgUGxvdC5saW5lKGRhdGEsIHsgeDogXCJpdGVyYXRpb25cIiwgeTogXCJlbmVyZ3lcIiwgc3Ryb2tlOiBcIiMyQjZDQjBcIiwgc3Ryb2tlV2lkdGg6IDIgfSksXG4gICAgUGxvdC5kb3QoZGF0YSwgeyB4OiBcIml0ZXJhdGlvblwiLCB5OiBcImVuZXJneVwiLCByOiAzLCBmaWxsOiBcIiMyQjZDQjBcIiB9KVxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IHN0eWxlPVwiZm9udC1mYW1pbHk6ICdKZXRCcmFpbnMgTW9ubycsIG1vbm9zcGFjZTsgZm9udC1zaXplOiAwLjhyZW07IG1hcmdpbjogMC4yNXJlbSAwIDEuMjVyZW0gMDtcIj5cbiAgPHNwYW4gc3R5bGU9XCJjb2xvcjojMEY5RDhDO1wiPuKAlCB0YXJnZXQgZW5lcmd5PC9zcGFuPlxuPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgd2lkdGg6IDYyMCxcbiAgaGVpZ2h0OiAyMjAsXG4gIG1hcmdpbkxlZnQ6IDYwLFxuICB4OiB7IGxhYmVsOiBcIkNvbmZpZ3VyYXRpb24gcmVjb3ZlcnkgaXRlcmF0aW9uXCIsIHRpY2tGb3JtYXQ6IFwiZFwiIH0sXG4gIHk6IHsgbGFiZWw6IFwiTWF4IG9jY3VwYW5jeSDOlCB2cy4gcHJpb3IgaXRlcmF0aW9uXCIgfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmxpbmUoZGF0YSwgeyB4OiBcIml0ZXJhdGlvblwiLCB5OiBcIm9jY0RlbHRhXCIsIHN0cm9rZTogXCIjN0E2RkYwXCIsIHN0cm9rZVdpZHRoOiAyIH0pLFxuICAgIFBsb3QuZG90KGRhdGEsIHsgeDogXCJpdGVyYXRpb25cIiwgeTogXCJvY2NEZWx0YVwiLCByOiAzLCBmaWxsOiBcIiM3QTZGRjBcIiB9KVxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdpdGVyYXRpb25zJykifV19
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../projects";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
