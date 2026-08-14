@@ -10,7 +10,7 @@ categories: [formal-verification, compiler, lean4]
 :::
 
 ::: {.status-readout}
-STATUS · Qiskit Ecosystem · 34 passing tests
+STATUS · Qiskit Ecosystem member · 34 passing tests
 :::
 
 ## What it does
