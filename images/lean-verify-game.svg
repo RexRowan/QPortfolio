@@ -1,0 +1,28 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <text x="60" y="55" font-family="JetBrains Mono, monospace" font-size="13" fill="#14171F">pick gates</text>
+  <line x1="60" y1="120" x2="280" y2="120" stroke="#2B6CB0" stroke-width="2.5"/>
+  <rect x="100" y="102" width="36" height="36" fill="#EEF3F9" stroke="#14171F" stroke-width="2.5"/>
+  <text x="112" y="125" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">H</text>
+  <rect x="170" y="102" width="36" height="36" fill="#0F9D8C" stroke="#14171F" stroke-width="2.5" opacity="0.15"/>
+  <rect x="170" y="102" width="36" height="36" fill="none" stroke="#0F9D8C" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <text x="180" y="125" font-family="JetBrains Mono, monospace" font-size="14" fill="#0F9D8C">?</text>
+
+  <path d="M320,140 L380,140" stroke="#0F9D8C" stroke-width="3" fill="none" marker-end="url(#arrow4)"/>
+  <text x="315" y="125" font-family="JetBrains Mono, monospace" font-size="11" fill="#0F9D8C">decide</text>
+  <defs>
+    <marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F9D8C"/>
+    </marker>
+  </defs>
+
+  <!-- turnstile, the Lean "proves" symbol -->
+  <text x="420" y="150" font-family="JetBrains Mono, monospace" font-size="42" fill="#14171F">⊢</text>
+  <text x="480" y="150" font-family="JetBrains Mono, monospace" font-size="16" fill="#14171F">Lean</text>
+
+  <circle cx="480" cy="220" r="20" fill="#EEF3F9" stroke="#0F9D8C" stroke-width="2.5"/>
+  <path d="M470,220 L477,228 L492,210" stroke="#0F9D8C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="380" y="260" font-family="JetBrains Mono, monospace" font-size="12" fill="#14171F">same circuit, checked two ways</text>
+  <text x="380" y="280" font-family="JetBrains Mono, monospace" font-size="11" fill="#14171F">Lean kernel and Qiskit Statevector</text>
+</svg>

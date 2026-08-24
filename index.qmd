@@ -12,27 +12,124 @@ I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My
 
 ## What I've built
 
-Seven projects, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, and formal verification:
+Eleven projects, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, and formal verification. Nine are Qiskit Ecosystem members, one is in review, and one is Ecosystem-ready but not yet submitted; details and links are on each project's own page.
 
-- **[Qiberis](projects/qiberis.qmd)** — a backend-agnostic circuit API spanning Qiskit, Cirq, and PennyLane, with a bit-ordering convention enforced by regression test rather than asserted in a docstring.
-- **[Qiskit SQD Dashboard](projects/sqd-dashboard.qmd)** — live convergence diagnostics for sample-based quantum diagonalization, hooking directly into `qiskit-addon-sqd`'s callback loop.
-- **[Qiskit StateViz](projects/qiskit-stateviz.qmd)** — interactive, Plotly-based statevector visualization built fresh against current Qiskit, where the prior art has bit-rotted.
-- **[Qiskit QKD Lab](projects/qkd-lab.qmd)** — a BB84 protocol simulator where the eavesdropper is real circuit structure, not a shortcut.
-- **[Qiskit Graph Walks](projects/qiskit-graph-walks.qmd)** — quantum walk algorithms treated as graph-problem primitives: spatial search and isomorphism fingerprinting, not just physics demos.
-- **[Qiskit LEAN bridge](projects/qiskit-lean-bridge.qmd)** — bridges Qiskit's `StandardEquivalenceLibrary` to formally verified proofs in Lean 4, and caught a genuine qubit-ordering convention bug in the process.
-- **[Qiskit ZX Verified](projects/qiskit-zx-verified.qmd)** — a Clifford phase-gate fusion pass that pairs each rewrite rule with a Lean 4 proof obligation.
+::: {.table-responsive}
+<table class="table table-hover align-middle qportfolio-table">
+<thead>
+<tr>
+  <th>Project</th>
+  <th>Category</th>
+  <th>Problem it solves</th>
+  <th>Status</th>
+  <th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
 
-Seven confirmed [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/). [See all projects →](projects.qmd)
+<tr>
+  <td><a href="projects/qiberis.qmd"><strong>Qiberis</strong></a></td>
+  <td>Interoperability</td>
+  <td>Qiskit, Cirq, and PennyLane circuits don't share a common IR — cross-framework work means hand-porting circuits.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Bit-ordering convention enforced by a regression test, not just asserted in a docstring.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/sqd-dashboard.qmd"><strong>Qiskit SQD Dashboard</strong></a></td>
+  <td>Diagnostics</td>
+  <td>SQD's configuration-recovery loop runs blind — no visibility into convergence until it finishes.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Hooks directly into <code>qiskit-addon-sqd</code>'s live callback loop, validated against real N₂ SQD runs.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-stateviz.qmd"><strong>Qiskit StateViz</strong></a></td>
+  <td>Visualization</td>
+  <td>Prior statevector visualization tools have bit-rotted against current Qiskit.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Built fresh against current Qiskit, interactive and Plotly-based rather than a static plot.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qkd-lab.qmd"><strong>Qiskit QKD Lab</strong></a></td>
+  <td>Protocol simulation</td>
+  <td>BB84 teaching demos usually fake the eavesdropper instead of simulating one.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Eve is real circuit structure — mid-circuit measurement, reset, conditional re-prep — not a shortcut.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-graph-walks.qmd"><strong>Qiskit Graph Walks</strong></a></td>
+  <td>Algorithms</td>
+  <td>Quantum walks are usually taught as physics demos, not shipped as usable algorithmic primitives.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Spatial search and graph-isomorphism fingerprinting as reusable, tested primitives.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-lean-bridge.qmd"><strong>Qiskit LEAN Bridge</strong></a></td>
+  <td>Formal verification</td>
+  <td>Qiskit's gate-equivalence library is trusted by convention, not proven.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>130 equivalences bridged to Lean 4 lemma stubs; caught a genuine qubit-ordering bug in the process.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-zx-verified.qmd"><strong>Qiskit ZX Verified</strong></a></td>
+  <td>Compiler · Formal verification</td>
+  <td>Transpiler rewrite passes can silently produce a circuit that runs but computes the wrong thing.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Zero <code>sorry</code>s; Lean/Python cross-check on all 16 Clifford-phase fusion cases.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-transpile-verify.qmd"><strong>Qiskit Transpile Verify</strong></a></td>
+  <td>Tooling</td>
+  <td>No standard way to check a transpiled circuit is still equivalent to the original.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Translation validation checked post-hoc, on real transpiler output — not trusted by construction.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-qubit-mapping-toolkit.qmd"><strong>Qiskit Qubit Mapping Toolkit</strong></a></td>
+  <td>Transpiler plugin</td>
+  <td>Initial layout and routing are graph problems, usually solved with special-cased heuristics.</td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
+  <td>Isomorphism- and walk-based heuristics, benchmarked directly against Qiskit's own LightSABRE default.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-cayley-codes.qmd"><strong>Qiskit Cayley Codes</strong></a></td>
+  <td>Quantum error correction</td>
+  <td>Hand-designing CSS stabilizer codes doesn't scale or generalize.</td>
+  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><code>[[8,4,2]]</code> validated against the CDZ construction's Theorem 10; open issues documented, not hidden.</td>
+</tr>
+
+<tr>
+  <td><a href="projects/qiskit-lean-verify-game.qmd"><strong>Qiskit LEAN Verify Game</strong></a></td>
+  <td>Formal verification · Education</td>
+  <td>Formal proofs are illegible to anyone who doesn't already read Lean.</td>
+  <td><span class="badge bg-secondary">Ecosystem-ready</span></td>
+  <td>Same gate identities checked two independent ways — Lean's kernel and Qiskit's own <code>Statevector</code>.</td>
+</tr>
+
+</tbody>
+</table>
+:::
+
+[See all projects →](projects.qmd)
 
 ## The thread connecting them
 
-Most of what's above reads as unrelated tooling until you look at the sequence. Qiberis and StateViz solve the ordinary interoperability and visualization gaps every Qiskit user eventually hits. QKD Lab and SQD Dashboard go further — they model real experimental structure (an actual eavesdropper, an actual convergence loop) instead of a simplified stand-in for it. Graph Walks pushes into genuinely underserved territory: quantum walks written as algorithmic primitives rather than teaching demos. And the LEAN bridge and ZX-verified pair do something almost nobody else in the ecosystem is doing — treating Qiskit's own gate identities and rewrite rules as claims that should be *proven*, not just tested against expected output.
+Most of the table above reads as unrelated tooling until you look at the sequence. Qiberis and StateViz solve the ordinary interoperability and visualization gaps every Qiskit user eventually hits. QKD Lab and SQD Dashboard go further — they model real experimental structure (an actual eavesdropper, an actual convergence loop) instead of a simplified stand-in for it. Graph Walks and Cayley Codes push into genuinely underserved territory: quantum walks as algorithmic primitives, and error-correcting codes generated from group-theoretic structure rather than designed by hand. Transpile Verify and the Qubit Mapping Toolkit take on the transpiler itself — checking its output and improving its layout/routing decisions respectively, both benchmarked rather than asserted. And the LEAN bridge, ZX-verified, and LEAN Verify Game do something almost nobody else in the ecosystem is doing — treating Qiskit's own gate identities and rewrite rules as claims that should be *proven*, not just tested against expected output, and then making that proof legible to people who don't read Lean.
 
-That progression — from "make Qiskit easier to use" toward "make Qiskit's own foundations checkable" — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward.
+That progression — from "make Qiskit easier to use" toward "make Qiskit's own foundations checkable, and make the checking itself legible" — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward.
 
 ## Recent and ongoing
 
-I've worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory, on structures related to modular arithmetic and their component topology, and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.
+I've worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory and number theory — ℓ-zero-sumfree sets, the Davenport constant, and structures related to modular arithmetic and their component topology — and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.
 
 **Elsewhere:**
 

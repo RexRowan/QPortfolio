@@ -1,0 +1,31 @@
+---
+title: "Qiskit LEAN Verify Game"
+description: "Circuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus"
+date: 2026-08-24
+image: ../images/lean-verify-game.svg
+categories: [formal-verification, education, lean4]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Ecosystem-ready, not yet submitted · 27 passing tests
+:::
+
+## What it does
+
+A Qiskit-native circuit puzzle package: pick gates in a Jupyter widget, and a decidable checker built on `qiskit.quantum_info.Statevector` grades whether your circuit reaches the target state. The same underlying gate identities are independently proven in [CliffordGame](https://github.com/RexRowan/CliffordGame), a companion [lean4game](https://github.com/leanprover-community/lean4game) submission where Lean itself is the referee — two independent implementations of the same claims, one in Qiskit, one in Lean's kernel, cross-checked against each other rather than trusted separately.
+
+## Two products from one proof corpus, not one product with two names
+
+This is deliberately split rather than merged: CliffordGame is a Lean-only game with no Qiskit dependency, so it can never be a Qiskit Ecosystem member — hosting it there would misrepresent what it is. This package is the Qiskit-facing half, built to actually qualify: it interfaces with `QuantumCircuit` and `Statevector` directly, not as a wrapper for appearances.
+
+## Cross-checked, not just asserted
+
+`scripts/crosscheck_against_lean.py` compiles and runs a vendored copy of CliffordGame's actual Lean proofs and diffs the result against this package's independently-computed Qiskit simulation for the same circuit — the same discipline as `qiskit-zx-verified`'s Lean/Python cross-check harness, applied here across two separate repositories instead of within one.
+
+## Links
+
+- [Repository (demo, `GameShell` widget)](https://github.com/RexRowan/Qiskit-LEAN-Verify-Game){target="_blank"}
+- [CliffordGame (companion Lean project)](https://github.com/RexRowan/CliffordGame){target="_blank"}

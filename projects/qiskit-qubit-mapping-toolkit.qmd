@@ -1,0 +1,32 @@
+---
+title: "Qiskit Qubit Mapping Toolkit"
+description: "Graph-theoretic layout and routing heuristics, benchmarked against LightSABRE"
+date: 2026-08-17
+image: ../images/qubit-mapping-toolkit.svg
+categories: [transpiler-plugin, circuit-optimization, graph-theory]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · PyPI v0.1.1
+:::
+
+## What it does
+
+Graph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps: `IsomorphismLayout` and `WalkBasedLayout` for initial placement, `BaselineSwapRouter` and `LookaheadSwapRouter` for routing. Registered as Qiskit transpiler plugins (prefixed `qqm_` to avoid colliding with Qiskit's own built-in plugin names), so they drop into an existing transpile pipeline rather than requiring a separate workflow.
+
+## Why graph theory for this problem
+
+Initial layout and routing are graph problems — matching a logical circuit's interaction graph against a hardware coupling graph, and finding low-cost paths through it when a direct edge isn't available — and treating them as such (isomorphism search, walk-based cost heuristics) rather than as transpiler-specific special cases is what the underlying math background this portfolio's other work draws on (graph theory, walk algorithms) is actually good for here.
+
+## Benchmarked, not just implemented
+
+Every heuristic here is benchmarked directly against Qiskit's own production default, LightSABRE (`SabreLayout`/`SabreSwap`, Qiskit ≥1.2), rather than presented as a improvement without a baseline comparison. This project's claim is about where these heuristics land relative to LightSABRE on specific circuit/coupling-map combinations, not a general "faster than Qiskit" claim.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Qubit-Mapping-Toolkit){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/4ab16aaa/){target="_blank"} — classified `Transpiler plugin`, labeled `circuit optimization`, `research`, `quantum information`
+- [PyPI](https://pypi.org/project/qiskit-qubit-mapping-toolkit/){target="_blank"}

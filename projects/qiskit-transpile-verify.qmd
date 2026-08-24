@@ -1,0 +1,28 @@
+---
+title: "Qiskit Transpile Verify"
+description: "Translation validation for the Qiskit transpiler"
+date: 2026-08-20
+image: ../images/transpile-verify.svg
+categories: [tooling, transpiler, verification]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem Member · PyPI v0.1.0
+:::
+
+## What it does
+
+A translation-validation tool for the Qiskit transpiler: given a circuit before and after transpilation, it checks that the two are actually equivalent as unitaries, rather than trusting the transpiler pass by construction. Same underlying question as the LEAN bridge and ZX-verified projects — "does this rewrite actually preserve the circuit's meaning?" — answered here numerically, at the scale of full transpiler output, rather than proof-by-proof for individual gate identities.
+
+## Why translation validation, not just tests
+
+Transpiler passes are exactly the kind of code where a subtle convention mismatch (qubit ordering, a sign error in a phase gate, an off-by-one in a routing swap) produces a circuit that still runs and still looks plausible, but computes something different from what was asked for. Unit tests catch the cases someone thought to write; translation validation checks the actual pair of circuits the transpiler produced, every time, against each other — closer to how compiler correctness is checked in classical software than to how most quantum tooling is tested today.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Transpile-Verify){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/f912d0ae/){target="_blank"} — classified `Tooling`, labeled `quantum information`, `research`
+- [PyPI](https://pypi.org/project/qiskit-transpile-verify/){target="_blank"}

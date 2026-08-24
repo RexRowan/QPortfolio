@@ -1,0 +1,32 @@
+---
+title: "Qiskit Cayley Codes"
+description: "CSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction"
+date: 2026-08-22
+image: ../images/cayley-codes.svg
+categories: [quantum-error-correction, coding-theory, graph-theory]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem submission in review · PyPI v0.1.1
+:::
+
+## What it does
+
+A CSS quantum code construction package implementing the Couvreur-Delfosse-Zémor (CDZ) construction — building quantum error-correcting codes directly from Cayley graphs on a group and a chosen generating set, rather than from a hand-designed stabilizer layout. The n=4 case reproduces the `[[8,4,2]]` code and is validated directly against Theorem 10 of the CDZ paper.
+
+## Where the two research threads meet
+
+This is the point where the number-theory/graph-theory background behind this portfolio and the Qiskit-facing tooling work actually converge on the same object: a Cayley graph is simultaneously a group-theoretic construction and a graph one, and the CDZ construction turns its combinatorial structure directly into a quantum code's stabilizer structure.
+
+## Open, and documented as open
+
+Two issues are tracked openly rather than papered over: a self-orthogonality condition that needs checking outside the specific case of F₂ⁿ, and a parameter mismatch between the ISIT conference version and the arXiv version of the CDZ paper that hasn't been fully reconciled yet. Neither blocks the validated `[[8,4,2]]` case, but both are real open items, not resolved footnotes.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/qiskit-cayley-codes){target="_blank"}
+- [Qiskit Ecosystem submission (in review)](https://github.com/Qiskit/ecosystem/pull/1321){target="_blank"}
+- [PyPI](https://pypi.org/project/qiskit-cayley-codes/){target="_blank"}
