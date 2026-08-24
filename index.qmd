@@ -103,7 +103,7 @@ Eleven projects, spanning the full stack a Qiskit user actually touches — inte
   <td><a href="projects/qiskit-cayley-codes.qmd"><strong>Qiskit Cayley Codes</strong></a></td>
   <td>Quantum error correction</td>
   <td>Hand-designing CSS stabilizer codes doesn't scale or generalize.</td>
-  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td><code>[[8,4,2]]</code> validated against the CDZ construction's Theorem 10; open issues documented, not hidden.</td>
 </tr>
 
