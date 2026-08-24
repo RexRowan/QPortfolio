@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-24">
+<meta name="description" content="Circuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus">
 
-<title>Projects – Rex Rowan</title>
+<title>Qiskit LEAN Verify Game – Rex Rowan</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,29 +31,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-1c9ca291b2abd5af6f816a5f1ec46af5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-03e5370df77ac8eea80813636867daf2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-376a173da8714cc4a36fb41e185a7f29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-03e5370df77ac8eea80813636867daf2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1c9ca291b2abd5af6f816a5f1ec46af5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f4388760b4213d6f7381959b935ecb9f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-03e5370df77ac8eea80813636867daf2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-376a173da8714cc4a36fb41e185a7f29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-03e5370df77ac8eea80813636867daf2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,67 +79,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.scss">
+<link rel="stylesheet" href="../styles.scss">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -311,7 +253,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Rex Rowan</span>
     </a>
   </div>
@@ -322,11 +264,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./projects.html" aria-current="page"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -355,14 +297,30 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projects</h1>
-</div>
+<h1 class="title">Qiskit LEAN Verify Game</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">formal-verification</div>
+    <div class="quarto-category">education</div>
+    <div class="quarto-category">lean4</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Circuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-page">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 24, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -375,258 +333,32 @@ window.Quarto = {
 <div class="circuit-rule">
 
 </div>
-<p>Eleven projects. Nine are <a href="https://qiskit.github.io/ecosystem/">Qiskit Ecosystem members</a>, one is in review, and one is Ecosystem-ready but not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.</p>
+<div class="status-readout">
+<p>STATUS · Ecosystem-ready, not yet submitted · 27 passing tests</p>
+</div>
+<section id="what-it-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-does">What it does</h2>
+<p>A Qiskit-native circuit puzzle package: pick gates in a Jupyter widget, and a decidable checker built on <code>qiskit.quantum_info.Statevector</code> grades whether your circuit reaches the target state. The same underlying gate identities are independently proven in <a href="https://github.com/RexRowan/CliffordGame">CliffordGame</a>, a companion <a href="https://github.com/leanprover-community/lean4game">lean4game</a> submission where Lean itself is the referee — two independent implementations of the same claims, one in Qiskit, one in Lean’s kernel, cross-checked against each other rather than trusted separately.</p>
+</section>
+<section id="two-products-from-one-proof-corpus-not-one-product-with-two-names" class="level2">
+<h2 class="anchored" data-anchor-id="two-products-from-one-proof-corpus-not-one-product-with-two-names">Two products from one proof corpus, not one product with two names</h2>
+<p>This is deliberately split rather than merged: CliffordGame is a Lean-only game with no Qiskit dependency, so it can never be a Qiskit Ecosystem member — hosting it there would misrepresent what it is. This package is the Qiskit-facing half, built to actually qualify: it interfaces with <code>QuantumCircuit</code> and <code>Statevector</code> directly, not as a wrapper for appearances.</p>
+</section>
+<section id="cross-checked-not-just-asserted" class="level2">
+<h2 class="anchored" data-anchor-id="cross-checked-not-just-asserted">Cross-checked, not just asserted</h2>
+<p><code>scripts/crosscheck_against_lean.py</code> compiles and runs a vendored copy of CliffordGame’s actual Lean proofs and diffs the result against this package’s independently-computed Qiskit simulation for the same circuit — the same discipline as <code>qiskit-zx-verified</code>’s Lean/Python cross-check harness, applied here across two separate repositories instead of within one.</p>
+</section>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/RexRowan/Qiskit-LEAN-Verify-Game" target="_blank">Repository (demo, <code>GameShell</code> widget)</a></li>
+<li><a href="https://github.com/RexRowan/CliffordGame" target="_blank">CliffordGame (companion Lean project)</a></li>
+</ul>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Zm9ybWFsLXZlcmlmaWNhdGlvbiUyQ2VkdWNhdGlvbiUyQ2xlYW40" data-listing-date-sort="1787529600000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205">
-<div class="thumbnail"><a href="./projects/qiskit-lean-verify-game.html" class="no-external">
-
-<img loading="lazy" src="./images/lean-verify-game.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-lean-verify-game.html" class="no-external">Qiskit LEAN Verify Game</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-lean-verify-game.html" class="no-external">
-<p>Circuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-lean-verify-game.html" class="no-external">
-<div class="listing-date">
-Aug 24, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="cXVhbnR1bS1lcnJvci1jb3JyZWN0aW9uJTJDY29kaW5nLXRoZW9yeSUyQ2dyYXBoLXRoZW9yeQ==" data-listing-date-sort="1787356800000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
-<div class="thumbnail"><a href="./projects/qiskit-cayley-codes.html" class="no-external">
-
-<img loading="lazy" src="./images/cayley-codes.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-cayley-codes.html" class="no-external">Qiskit Cayley Codes</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-cayley-codes.html" class="no-external">
-<p>CSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-cayley-codes.html" class="no-external">
-<div class="listing-date">
-Aug 22, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="dG9vbGluZyUyQ3RyYW5zcGlsZXIlMkN2ZXJpZmljYXRpb24=" data-listing-date-sort="1787184000000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
-<div class="thumbnail"><a href="./projects/qiskit-transpile-verify.html" class="no-external">
-
-<img loading="lazy" src="./images/transpile-verify.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-transpile-verify.html" class="no-external">Qiskit Transpile Verify</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-transpile-verify.html" class="no-external">
-<p>Translation validation for the Qiskit transpiler</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-transpile-verify.html" class="no-external">
-<div class="listing-date">
-Aug 20, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="dHJhbnNwaWxlci1wbHVnaW4lMkNjaXJjdWl0LW9wdGltaXphdGlvbiUyQ2dyYXBoLXRoZW9yeQ==" data-listing-date-sort="1786924800000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="206">
-<div class="thumbnail"><a href="./projects/qiskit-qubit-mapping-toolkit.html" class="no-external">
-
-<img loading="lazy" src="./images/qubit-mapping-toolkit.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-qubit-mapping-toolkit.html" class="no-external">Qiskit Qubit Mapping Toolkit</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-qubit-mapping-toolkit.html" class="no-external">
-<p>Graph-theoretic layout and routing heuristics, benchmarked against LightSABRE</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-qubit-mapping-toolkit.html" class="no-external">
-<div class="listing-date">
-Aug 17, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Zm9ybWFsLXZlcmlmaWNhdGlvbiUyQ2NvbXBpbGVyJTJDbGVhbjQ=" data-listing-date-sort="1786579200000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="222">
-<div class="thumbnail"><a href="./projects/qiskit-zx-verified.html" class="no-external">
-
-<img loading="lazy" src="./images/zx-verified.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-zx-verified.html" class="no-external">Qiskit ZX Verified</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-zx-verified.html" class="no-external">
-<p>A Clifford phase-gate fusion pass with a Lean 4 formal verification bridge</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-zx-verified.html" class="no-external">
-<div class="listing-date">
-Aug 13, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="YWxnb3JpdGhtcyUyQ2dyYXBoLXRoZW9yeSUyQ2Vjb3N5c3RlbS1tZW1iZXI=" data-listing-date-sort="1786492800000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="401">
-<div class="thumbnail"><a href="./projects/qiskit-graph-walks.html" class="no-external">
-
-<img loading="lazy" src="./images/graph-walks.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-graph-walks.html" class="no-external">Qiskit Graph Walks</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-graph-walks.html" class="no-external">
-<p>Quantum walk algorithms as graph-problem primitives, built on Qiskit</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-graph-walks.html" class="no-external">
-<div class="listing-date">
-Aug 12, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="Zm9ybWFsLXZlcmlmaWNhdGlvbiUyQ2xlYW40JTJDZWNvc3lzdGVtLW1lbWJlcg==" data-listing-date-sort="1786320000000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="423">
-<div class="thumbnail"><a href="./projects/qiskit-lean-bridge.html" class="no-external">
-
-<img loading="lazy" src="./images/lean-bridge.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-lean-bridge.html" class="no-external">Qiskit LEAN bridge</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-lean-bridge.html" class="no-external">
-<p>Bridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-lean-bridge.html" class="no-external">
-<div class="listing-date">
-Aug 10, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="Y3J5cHRvZ3JhcGh5JTJDZWNvc3lzdGVtLW1lbWJlcg==" data-listing-date-sort="1786147200000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="330">
-<div class="thumbnail"><a href="./projects/qkd-lab.html" class="no-external">
-
-<img loading="lazy" src="./images/qkd-lab.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qkd-lab.html" class="no-external">Qiskit QKD Lab</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qkd-lab.html" class="no-external">
-<p>A BB84 QKD protocol simulator built directly on Qiskit primitives</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qkd-lab.html" class="no-external">
-<div class="listing-date">
-Aug 8, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="dmlzdWFsaXphdGlvbg==" data-listing-date-sort="1785542400000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
-<div class="thumbnail"><a href="./projects/qiskit-stateviz.html" class="no-external">
-
-<img loading="lazy" src="./images/qsphere-screenshot.png" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiskit-stateviz.html" class="no-external">Qiskit StateViz</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiskit-stateviz.html" class="no-external">
-<p>Interactive, Plotly-based statevector visualization for Qiskit</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiskit-stateviz.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="ZGlhZ25vc3RpY3MlMkNzcWQlMkNlY29zeXN0ZW0tbWVtYmVy" data-listing-date-sort="1782864000000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="753">
-<div class="thumbnail"><a href="./projects/sqd-dashboard.html" class="no-external">
-
-<img loading="lazy" src="./images/sqd-dashboard.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/sqd-dashboard.html" class="no-external">Qiskit SQD Dashboard</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/sqd-dashboard.html" class="no-external">
-<p>Live convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/sqd-dashboard.html" class="no-external">
-<div class="listing-date">
-Jul 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="Y2lyY3VpdHMlMkNlY29zeXN0ZW0tbWVtYmVy" data-listing-date-sort="1780272000000" data-listing-file-modified-sort="1787563118281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="533">
-<div class="thumbnail"><a href="./projects/qiberis.html" class="no-external">
-
-<img loading="lazy" src="./images/qiberis.svg" class="thumbnail-image" style="height: 160px;">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/qiberis.html" class="no-external">Qiberis</a>
-</h3>
-<div class="delink listing-description"><a href="./projects/qiberis.html" class="no-external">
-<p>A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./projects/qiberis.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

@@ -2,6 +2,10 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/qiskit-lean-verify-game.html",
+      "/projects/qiskit-cayley-codes.html",
+      "/projects/qiskit-transpile-verify.html",
+      "/projects/qiskit-qubit-mapping-toolkit.html",
       "/projects/qiskit-zx-verified.html",
       "/projects/qiskit-graph-walks.html",
       "/projects/qiskit-lean-bridge.html",
