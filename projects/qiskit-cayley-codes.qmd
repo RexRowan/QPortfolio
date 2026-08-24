@@ -28,5 +28,5 @@ Two issues are tracked openly rather than papered over: a self-orthogonality con
 ## Links
 
 - [Repository](https://github.com/RexRowan/qiskit-cayley-codes){target="_blank"}
-- [Qiskit Ecosystem submission (in review)](https://github.com/Qiskit/ecosystem/pull/1321){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/ccc8f071/){target="_blank"} - classified `Tooling`, labeled `quantum information` `research`
 - [PyPI](https://pypi.org/project/qiskit-cayley-codes/){target="_blank"}
