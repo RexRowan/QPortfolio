@@ -8,7 +8,7 @@ title-block-banner: false
 ::: {.circuit-rule}
 :::
 
-I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which shows up directly in how I approach circuit construction and verification: as things to prove correct, not just get working.
+I am a Qiskit Advocate. I build open-source quantum computing tools, mostly for the Qiskit ecosystem. My background is in mathematics — number theory, graph theory, and formal proof in Lean 4 — which shows up directly in how I approach circuit construction and verification: as things to prove correct, not just get working.
 
 ## What I've built
 
