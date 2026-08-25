@@ -111,7 +111,7 @@ Eleven projects, spanning the full stack a Qiskit user actually touches — inte
   <td><a href="projects/qiskit-lean-verify-game.qmd"><strong>Qiskit LEAN Verify Game</strong></a></td>
   <td>Formal verification · Education</td>
   <td>Formal proofs are illegible to anyone who doesn't already read Lean.</td>
-  <td><span class="badge bg-secondary">Ecosystem-ready</span></td>
+  <td><span class="badge bg-warning text-dark">In Review</span></td>
   <td>Same gate identities checked two independent ways — Lean's kernel and Qiskit's own <code>Statevector</code>.</td>
 </tr>
 
