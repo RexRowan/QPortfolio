@@ -28,4 +28,6 @@ This is deliberately split rather than merged: CliffordGame is a Lean-only game 
 ## Links
 
 - [Repository (demo, `GameShell` widget)](https://github.com/RexRowan/Qiskit-LEAN-Verify-Game){target="_blank"}
+- [Qiskit Ecosystem listing]https://qiskit.github.io/ecosystem/p/26484722/){target="_blank"} - classified `Game/Educational`, labeled `quantum information`, `circuit building`
+- [PyPI](https://pypi.org/project/qiskit-lean-verify-game/){target="_blank"}
 - [CliffordGame (companion Lean project)](https://github.com/RexRowan/CliffordGame){target="_blank"}
