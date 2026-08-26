@@ -2,6 +2,7 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/qiskit-certified-qrng.html",
       "/projects/qiskit-lean-verify-game.html",
       "/projects/qiskit-cayley-codes.html",
       "/projects/qiskit-transpile-verify.html",
