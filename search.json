@@ -25,7 +25,7 @@
     "href": "projects/qiskit-lean-verify-game.html#links",
     "title": "Qiskit LEAN Verify Game",
     "section": "Links",
-    "text": "Links\n\nRepository (demo, GameShell widget)\n[Qiskit Ecosystem listing]https://qiskit.github.io/ecosystem/p/26484722/){target=“_blank”} - classified Game/Educational, labeled quantum information, circuit building\nPyPI\nCliffordGame (companion Lean project)"
+    "text": "Links\n\nRepository (demo, GameShell widget)\nQiskit Ecosystem listing - classified Game/Educational, labeled quantum information, circuit building\nPyPI\nCliffordGame (companion Lean project)"
   },
   {
     "objectID": "projects/qkd-lab.html#what-it-does",
