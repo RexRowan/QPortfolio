@@ -12,7 +12,7 @@ I am a Qiskit Advocate. I build open-source quantum computing tools, mostly for 
 
 ## What I've built
 
-Eleven projects, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, and formal verification. Ten are Qiskit Ecosystem members, one is in review; details and links are on each project's own page.
+Eleven projects, all open-source, all Qiskit ecosystem members, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, and formal verification. Details and links are on each project's own page.
 
 ::: {.table-responsive}
 <table class="table table-hover align-middle qportfolio-table">
@@ -111,7 +111,7 @@ Eleven projects, spanning the full stack a Qiskit user actually touches — inte
   <td><a href="projects/qiskit-lean-verify-game.qmd"><strong>Qiskit LEAN Verify Game</strong></a></td>
   <td>Formal verification · Education</td>
   <td>Formal proofs are illegible to anyone who doesn't already read Lean.</td>
-  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td>Same gate identities checked two independent ways — Lean's kernel and Qiskit's own <code>Statevector</code>.</td>
 </tr>
 
