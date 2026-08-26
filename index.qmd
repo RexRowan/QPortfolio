@@ -12,7 +12,7 @@ I am a Qiskit Advocate. I build open-source quantum computing tools, mostly for 
 
 ## What I've built
 
-Eleven projects, all open-source, all Qiskit ecosystem members, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, and formal verification. Details and links are on each project's own page.
+Twelve projects, all open-source, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, cryptography, and formal verification. Most are Qiskit ecosystem members; the newest is still early-stage. Details and links are on each project's own page.
 
 ::: {.table-responsive}
 <table class="table table-hover align-middle qportfolio-table">
@@ -115,6 +115,14 @@ Eleven projects, all open-source, all Qiskit ecosystem members, spanning the ful
   <td>Same gate identities checked two independent ways — Lean's kernel and Qiskit's own <code>Statevector</code>.</td>
 </tr>
 
+<tr>
+  <td><a href="projects/qiskit-certified-qrng.qmd"><strong>Qiskit Certified QRNG</strong></a></td>
+  <td>Cryptography · Formal verification</td>
+  <td>QRNG libraries produce bits and call them "quantum random" without any entropy accounting or statistical soundness check.</td>
+  <td><span class="badge bg-secondary">In Development</span></td>
+  <td>Confidence-bound (not point-estimate) entropy certification, with a Lean proof of extractor soundness in progress — a real, tracked constant discrepancy included, not hidden.</td>
+</tr>
+
 </tbody>
 </table>
 :::
@@ -125,7 +133,7 @@ Eleven projects, all open-source, all Qiskit ecosystem members, spanning the ful
 
 Most of the table above reads as unrelated tooling until you look at the sequence. Qiberis and StateViz solve the ordinary interoperability and visualization gaps every Qiskit user eventually hits. QKD Lab and SQD Dashboard go further — they model real experimental structure (an actual eavesdropper, an actual convergence loop) instead of a simplified stand-in for it. Graph Walks and Cayley Codes push into genuinely underserved territory: quantum walks as algorithmic primitives, and error-correcting codes generated from group-theoretic structure rather than designed by hand. Transpile Verify and the Qubit Mapping Toolkit take on the transpiler itself — checking its output and improving its layout/routing decisions respectively, both benchmarked rather than asserted. And the LEAN bridge, ZX-verified, and LEAN Verify Game do something almost nobody else in the ecosystem is doing — treating Qiskit's own gate identities and rewrite rules as claims that should be *proven*, not just tested against expected output, and then making that proof legible to people who don't read Lean.
 
-That progression — from "make Qiskit easier to use" toward "make Qiskit's own foundations checkable, and make the checking itself legible" — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward.
+That progression — from "make Qiskit easier to use" toward "make Qiskit's own foundations checkable, and make the checking itself legible" — is the actual throughline, not a plan I set out to follow but the direction each project kept pointing the next one toward. Certified QRNG extends that thread outward, from Qiskit's own gates and passes to a cryptographic security claim built on top of Qiskit circuits — proven the same way, in the open, discrepancies and all.
 
 ## Recent and ongoing
 

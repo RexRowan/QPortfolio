@@ -1,0 +1,53 @@
+---
+title: "Qiskit Certified QRNG"
+description: "Device-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress"
+date: 2026-08-26
+image: ../images/certified-qrng.svg
+categories: [cryptography, formal-verification, lean4]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Not yet submitted to Qiskit Ecosystem · not on PyPI · Lean proof is a stub (core theorem not yet proven) · 16 passing tests
+:::
+
+## What it does
+
+A device-independent randomness *expansion* pipeline: CHSH-game circuits on a Bell pair, a statistically sound lower-confidence bound on the observed Bell violation (not the raw point estimate — see below), the cited Pironio et al. (2010) min-entropy bound, and a Toeplitz-hashing extractor. A Lean 4 formalization of the extractor's soundness argument (the classical leftover hash lemma) is in progress alongside it, in the same spirit as [`Qiskit-ZX-Verified`](qiskit-zx-verified.qmd) and [`Qiskit-LEAN-Bridge`](qiskit-lean-bridge.qmd): the security claim is meant to be machine-checked, not just asserted.
+
+It is **not** randomness created from nothing. Every device-independent QRNG protocol in the literature — this one included — consumes a short trusted weak-random seed to choose measurement settings, and uses the certified Bell violation to expand that seed into a longer string with more min-entropy than went in. The seed cost is accounted for explicitly rather than hidden.
+
+```bash
+pip install -e .  # not yet published to PyPI
+```
+
+Requires Qiskit 2.0 or later (`qiskit>=2.0,<3`).
+
+## Why the confidence bound, not the point estimate
+
+Using the raw point estimate of the CHSH value S to certify min-entropy is not sound: at realistic shot counts, ordinary sampling noise alone routinely pushes the *measured* S above the true value — even above the Tsirelson bound outright. An early version of this pipeline did exactly that and crashed on its own noise. The fix, `entropy.chsh_lower_confidence_bound`, uses a Hoeffding-based one-sided confidence bound instead, so the entropy certification holds with a stated confidence level rather than being an artifact of finite sampling.
+
+## Status
+
+Implemented and validated against a real local simulator run (16/16 tests):
+
+- CHSH circuit layer and correlator estimation
+- Statistically sound lower-confidence-bound entropy certification
+- Toeplitz-hashing extractor, with an explicit seed-length helper
+- End-to-end pipeline wiring the above together
+
+::: {.status-readout}
+Not yet done, and stated plainly rather than glossed over: `lean/LeftoverHash/Basic.lean` proves only the elementary expected-collision-probability half of the leftover hash lemma — the Cauchy–Schwarz step that actually yields the statistical-distance guarantee is an explicit `sorry`, and the file has not been built with `lake build` in this repository yet. A standing cross-check script (`bridge/cross_check.py`) currently shows a real, unresolved 2-bit discrepancy between this package's output-length formula and the textbook L2-method constant — closing that is the next milestone, not a footnote. There has also been no real-hardware run yet, only the ideal local simulator.
+:::
+
+## Roadmap
+
+- **v0.2** — finish the Lean proof of the classical leftover hash lemma and reconcile the 2-bit constant discrepancy the cross-check script currently flags.
+- **v0.3** — noisy-simulator and real-hardware validation; real devices never saturate the Tsirelson bound, so the confidence-bound margins need a realistic re-check.
+- **v0.4** — the harder, real target: a *quantum-conditioned* leftover hash lemma (min-entropy conditioned on a quantum eavesdropper's system, not just a classical one), which is what device-independent security actually requires and what v0.1–v0.3 do not yet establish. Until it lands, this package is honestly "certified against a classical adversary," not yet "device-independently certified against a quantum one," and the docs say so rather than let the project name carry more weight than the proof does.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/qiskit-certified-qrng){target="_blank"}

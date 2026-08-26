@@ -14,4 +14,4 @@ listing:
 ::: {.circuit-rule}
 :::
 
-Eleven projects. Nine are [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/), one is in review, and one is Ecosystem-ready but not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.
+Twelve projects. Nine are [Qiskit Ecosystem members](https://qiskit.github.io/ecosystem/), one is in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.
