@@ -1,0 +1,25 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <text x="60" y="110" font-family="JetBrains Mono, monospace" font-size="20" fill="#14171F">Rex tests da metal!</text>
+
+  <path d="M60,140 L580,140" stroke="#2B6CB0" stroke-width="2" marker-end="url(#arrow3)"/>
+  <defs>
+    <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2B6CB0"/>
+    </marker>
+  </defs>
+  <text x="250" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#2B6CB0">T1 decay, t → ∞</text>
+
+  <text x="60" y="185" font-family="JetBrains Mono, monospace" font-size="20" fill="#B0473F">R#x t3st5 d@ m3t*l!</text>
+
+  <!-- Fano-plane style protected version, staying clean -->
+  <circle cx="500" cy="215" r="10" fill="#EEF3F9" stroke="#0F9D8C" stroke-width="2"/>
+  <circle cx="460" cy="245" r="10" fill="#EEF3F9" stroke="#0F9D8C" stroke-width="2"/>
+  <circle cx="540" cy="245" r="10" fill="#EEF3F9" stroke="#0F9D8C" stroke-width="2"/>
+  <polygon points="500,215 460,245 540,245" fill="none" stroke="#0F9D8C" stroke-width="1.5"/>
+  <text x="60" y="245" font-family="JetBrains Mono, monospace" font-size="20" fill="#0F9D8C">Rex tests da metal!</text>
+  <text x="400" y="280" font-family="JetBrains Mono, monospace" font-size="11" fill="#8A93A3">Steane [[7,1,3]] — corrected</text>
+
+  <text x="46" y="40" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">Same message, three fates: unprotected, corrupted, corrected</text>
+</svg>
