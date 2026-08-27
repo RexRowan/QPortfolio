@@ -139,6 +139,41 @@ That progression — from "make Qiskit easier to use" toward "make Qiskit's own 
 
 I've worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory and number theory — ℓ-zero-sumfree sets, the Davenport constant, and structures related to modular arithmetic and their component topology — and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.
 
+## Long-term goals
+
+Two directions I'm scoping but haven't started building — real enough to be worth stating publicly, honest enough to label as concept-stage rather than dress up as more than they are.
+
+::: {.table-responsive}
+<table class="table table-hover align-middle qportfolio-table">
+<thead>
+<tr>
+  <th>Goal</th>
+  <th>What it would be</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+  <td><a href="goals/quantum-registry.qmd"><strong>Quantum Certified Registry</strong></a></td>
+  <td>A Palomar-style registry for quantum results, with a mandatory physical-hypothesis disclosure Palomar's pure-math model has no field for.</td>
+  <td><span class="badge bg-secondary">Concept Stage</span></td>
+</tr>
+
+<tr>
+  <td><a href="goals/quantum-proof-factory.qmd"><strong>Quantum Proof Factory</strong></a></td>
+  <td>A Tau-Ceti-style, continuously-running proof factory for quantum information theory, built on Lean-QIT — peer agents, not a fixed pipeline.</td>
+  <td><span class="badge bg-secondary">Concept Stage</span></td>
+</tr>
+
+</tbody>
+</table>
+:::
+
+## Other projects
+
+Not everything I build is Qiskit-related. **[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** is a separate site covering two space engineering concepts — a reflective sail swarm near Sun-Earth L1, and a space-based solar power harvester in the spirit of ESA's SOLARIS program. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
+
 **Elsewhere:**
 
 - [GitHub](https://github.com/RexRowan){target="_blank"}

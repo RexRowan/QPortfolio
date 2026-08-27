@@ -1,0 +1,29 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <!-- two stacked "ledger" cards representing dual disclosure -->
+  <rect x="90" y="70" width="220" height="90" fill="#EEF3F9" stroke="#2B6CB0" stroke-width="2.5"/>
+  <text x="105" y="95" font-family="JetBrains Mono, monospace" font-size="12" fill="#14171F">⊢ Lean-checked</text>
+  <line x1="105" y1="108" x2="290" y2="108" stroke="#14171F" stroke-width="1.5"/>
+  <text x="105" y="128" font-family="JetBrains Mono, monospace" font-size="11" fill="#2B6CB0">theorem soundness</text>
+  <text x="105" y="145" font-family="JetBrains Mono, monospace" font-size="11" fill="#2B6CB0">extractor_ok : ∀ x, ...</text>
+
+  <rect x="330" y="70" width="220" height="90" fill="#14171F"/>
+  <text x="345" y="95" font-family="JetBrains Mono, monospace" font-size="12" fill="#F7F7F5">◇ physical hypothesis</text>
+  <line x1="345" y1="108" x2="530" y2="108" stroke="#F7F7F5" stroke-width="1.5"/>
+  <text x="345" y="128" font-family="JetBrains Mono, monospace" font-size="11" fill="#0F9D8C">no-signaling: cited</text>
+  <text x="345" y="145" font-family="JetBrains Mono, monospace" font-size="11" fill="#0F9D8C">IID sampling: cited</text>
+
+  <path d="M310,115 L330,115" stroke="#0F9D8C" stroke-width="3" fill="none" marker-end="url(#arrow2)"/>
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F9D8C"/>
+    </marker>
+  </defs>
+
+  <!-- registry seal -->
+  <circle cx="320" cy="215" r="26" fill="none" stroke="#14171F" stroke-width="2.5"/>
+  <text x="308" y="221" font-family="JetBrains Mono, monospace" font-size="16" fill="#14171F">✓</text>
+
+  <text x="46" y="270" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">A registry that discloses the physics, not just the proof</text>
+</svg>

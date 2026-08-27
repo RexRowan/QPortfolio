@@ -1,0 +1,40 @@
+---
+title: "Quantum Certified Registry"
+description: "A Palomar-style registry for quantum results, with a mandatory physical-hypothesis disclosure Palomar's pure-math model has no field for"
+date: 2026-08-27
+image: ../images/quantum-registry.svg
+categories: [long-term-goal, formal-verification, cryptography]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Concept stage · scoped, not started · no repository yet
+:::
+
+## The gap this would fill
+
+[Palomar](https://palomar-registry.org/) registers Lean-checked mathematical claims — the formal statement *is* the claim, checked for fidelity by an LLM against an informal account, with no physical assumptions in the loop. That works for pure math. It doesn't work for most quantum results worth registering: a CHSH-certified min-entropy bound, a QEC distance certification, a gate-equivalence proof are all hybrid claims — a Lean-checkable mathematical core sitting on a *physical* premise Lean cannot check at all (no-signaling, a specific noise model, "quantum mechanics is true"). [`Qiskit Certified QRNG`](../projects/qiskit-certified-qrng.qmd)'s own `entropy.py` already draws this line explicitly: the Bell-violation-to-entropy bound is cited, not re-derived. A registry that doesn't force that distinction into the open isn't differentiated from Palomar — it's just Palomar with a subject filter.
+
+## What would actually be new
+
+Every entry would disclose two things, not one:
+
+- the Lean-checked mathematical claim (same dual-kernel Comparator model Palomar already uses)
+- a structured **physical hypothesis statement** — which physical postulates or protocol assumptions the result depends on, each tagged as "standard textbook physics" or "an additional, non-standard assumption" — so a reader immediately knows what's mathematically airtight versus physically asserted
+
+## Reuse, don't rebuild
+
+- Fork `PalomarWeb` and `PalomarPolicy` as the starting skeleton — both are published openly, and Palomar's own FAQ says they're open to this kind of extension.
+- No changes needed to Comparator for the *proof* side — pinned Git dependencies are already unrestricted there.
+- The genuinely new work: a physical-hypothesis schema (a sibling to `formalization.yaml`) and an editorial-review prompt addition that checks whether disclosed hypotheses are actually necessary, correctly characterized as standard/nonstandard, and consistent with the informal account.
+
+## Why this is a long-term goal, not a project
+
+Palomar's credibility rests on real institutional weight — Lean FRO, ICARM, a board that includes Terence Tao. A registry claiming the same evaluative authority starts with a credibility gap no amount of good code closes alone. The realistic path is partnering with maintainers of libraries like [`QuAIR/Lean-QIT`](https://github.com/QuAIR/Lean-QIT) as initial reviewers, mirroring how Palomar itself is structured, rather than building in isolation and hoping for adoption after the fact — which makes this a multi-month, likely multi-contributor undertaking whose actual prerequisite is a relationship with the community it would serve, not code.
+
+## Links
+
+- [Palomar](https://palomar-registry.org/){target="_blank"} — the registry this would sit alongside
+- [QuAIR/Lean-QIT](https://github.com/QuAIR/Lean-QIT){target="_blank"} — a candidate foundation library for quantum-flavored statements

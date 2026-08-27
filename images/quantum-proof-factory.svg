@@ -1,0 +1,23 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <!-- three agent nodes in a peer ring, not a strict pipeline -->
+  <circle cx="200" cy="110" r="34" fill="#EEF3F9" stroke="#2B6CB0" stroke-width="2.5"/>
+  <text x="170" y="106" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14171F">formalize</text>
+  <text x="182" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14171F">agent</text>
+
+  <circle cx="440" cy="110" r="34" fill="#EEF3F9" stroke="#2B6CB0" stroke-width="2.5"/>
+  <text x="410" y="106" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14171F">prove</text>
+  <text x="415" y="120" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#14171F">agent</text>
+
+  <circle cx="320" cy="215" r="34" fill="#14171F"/>
+  <text x="288" y="211" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#F7F7F5">review</text>
+  <text x="296" y="225" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#0F9D8C">agent</text>
+
+  <!-- peer edges, bidirectional -->
+  <line x1="234" y1="110" x2="406" y2="110" stroke="#0F9D8C" stroke-width="2.5"/>
+  <line x1="229" y1="138" x2="298" y2="192" stroke="#0F9D8C" stroke-width="2.5"/>
+  <line x1="411" y1="138" x2="342" y2="192" stroke="#0F9D8C" stroke-width="2.5"/>
+
+  <text x="46" y="270" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">Peer agents, a human roadmap, Lean-QIT as the foundation</text>
+</svg>

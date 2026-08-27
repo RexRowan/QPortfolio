@@ -1,0 +1,40 @@
+---
+title: "Quantum Proof Factory"
+description: "A Tau-Ceti-style, continuously-running proof factory for quantum information theory — peer agents, not a fixed pipeline, evolving the Q-Swarm thesis"
+date: 2026-08-27
+image: ../images/quantum-proof-factory.svg
+categories: [long-term-goal, formal-verification, lean4]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Concept stage · architecture scoped, not started · no repository yet
+:::
+
+## The idea
+
+[Tau Ceti](https://taucetiproject.github.io/TauCeti/)'s model — humans set a roadmap, AI agents write the Lean proofs, AI reviewers gate every merge against fixed rubrics — is a continuously-running proof factory, not a one-off project. Nobody has built that factory for quantum information theory specifically. The pieces already exist, separately:
+
+- **[QuAIR/Lean-QIT](https://github.com/QuAIR/Lean-QIT)** — the foundation library the agents would build on: states, channels, entropy, hypothesis testing, coding and protocols, and — directly relevant to [`Qiskit Certified QRNG`](../projects/qiskit-certified-qrng.qmd) — nonlocality (Bell phenomena, self-testing) and security (QKD) modules already exist.
+- **MerLean** (arXiv:2602.16554) — an agentic autoformalization method: extract a mathematical statement from a paper's LaTeX source, formalize it into Lean/Mathlib, translate the result back into human-readable text for review.
+- **Tau Ceti's three-repository architecture** — a human-owned roadmap repo, an AI-reviewed rubric repo, and the proof repo itself — as a structure to adapt rather than invent from scratch.
+
+## What Q-Swarm adds that none of these have alone
+
+My earlier exploration of Q-Swarm centered on heterogeneous agents as *peers* — publishing and verifying each other's claims, not following a fixed assembly line. Tau Ceti's agents don't peer-review each other's mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other's work against the roadmap — closer to the original social-epistemics framing than Tau Ceti's more linear pipeline.
+
+## Where the review rubric gets interesting
+
+A quantum-specific review rubric is also where the physical-hypothesis disclosure idea from [`Quantum Certified Registry`](quantum-registry.qmd) could actually live in practice — a rubric check specific to quantum results, not just generic Lean style, deciding whether a proof correctly separates its Lean-checked mathematical core from any physical premise it depends on.
+
+## Why this is a long-term goal, not a project
+
+This is closer in kind to the registry idea above than to any of my shipped Qiskit packages: real infrastructure, a roadmap that has to be curated deliberately (which quantum-info theorems are actually worth formalizing?), and a review rubric that has to be designed rather than copied. What's different from the registry idea is that all three hard dependencies here already exist as real, working, citable projects to study line-by-line rather than reason about from a README — the risk isn't "does the tooling exist" but "can a solo effort curate a roadmap and rubric worth other people's trust."
+
+## Links
+
+- [Tau Ceti](https://taucetiproject.github.io/TauCeti/){target="_blank"}
+- [QuAIR/Lean-QIT](https://github.com/QuAIR/Lean-QIT){target="_blank"}
+- [MerLean (arXiv:2602.16554)](https://arxiv.org/abs/2602.16554){target="_blank"}
