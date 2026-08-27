@@ -172,7 +172,9 @@ Two directions I'm scoping but haven't started building — real enough to be wo
 
 ## Other projects
 
-Not everything I build is Qiskit-related. **[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** is a site related to my ideas of combating climate change by exploring solar energy. The solar eclipse inspired me to look into this field further. The current solution covers two space engineering concepts — a reflective sail swarm (or ejected mist/fog) near the Sun-Earth L1, and space-based solar power harvesters in the spirit of ESA's SOLARIS program. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
+I have broad interests in a myriad of subjects. I have around 800 certificates from online learning sites such as Edex, Coursera, FutureLearn and many others. Not everything I build is Qiskit-related. 
+
+**[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** is a site related to my ideas of combating climate change by exploring solar energy. The solar eclipse inspired me to look into this field further. The current solution covers two space engineering concepts — a reflective sail swarm (or ejected mist/fog) near the Sun-Earth L1, and space-based solar power harvesters in the spirit of ESA's SOLARIS program. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
 
 **Elsewhere:**
 
