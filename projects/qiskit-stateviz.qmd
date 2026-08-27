@@ -48,6 +48,14 @@ Rotate, zoom, and hover for exact amplitude/phase/probability at each basis stat
 ![Per-qubit Bloch multivector](../images/bloch-screenshot.png)
 :::
 
+## Emission-spectrum rendering (merged from Qiskit EigenLight)
+
+`qiskit-stateviz` also renders a Hamiltonian's eigenspectrum as an emission spectrum — spectral lines positioned at true eigenvalue gaps, colored and intensity-scaled from the actual coherence structure of the evolving state, rather than a stylized stand-in for it. This was originally its own standalone package, `Qiskit-EigenLight`; it's now merged in here rather than maintained as a second small package with its own release cadence.
+
+![A Hamiltonian's eigenspectrum, rendered instead of sonified](../images/qiskit-eigenlight.svg)
+
+The same honest limitations carry over unchanged: the probe operator defaults to uniform all-pairs coupling rather than a real atom's transition operator, and everything is unitary — no dissipation, so lines are infinitely sharp.
+
 ## Why this exists
 
 There's real prior art, and it's worth naming rather than pretending this fills an empty gap:
