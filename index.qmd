@@ -186,7 +186,7 @@ Smaller, standalone, built to show something rather than ship something — no E
 <tbody>
 
 <tr>
-  <td><a href="demos/entropy-demo.qmd"><strong>Entropy Demo</strong></a></td>
+  <td><a href="https://rexrowan.github.io/Entropy-Demo/"><strong>Entropy Demo</strong></a></td>
   <td>A message decoheres under simulated T1 noise, side by side unprotected, corrupted, and Steane-code corrected.</td>
   <td><span class="badge bg-info text-dark">Demo</span></td>
 </tr>
@@ -199,7 +199,7 @@ Smaller, standalone, built to show something rather than ship something — no E
 
 I have broad interests well outside quantum computing — somewhere around 800 completed certificates across edX, Coursera, FutureLearn, and other platforms, spread across far more fields than any one portfolio page could hold. Not everything I build is Qiskit-related.
 
-**[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** started with a solar eclipse: watching four minutes of the Sun's output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA's SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
+**[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** started with a solar eclipse: watching four minutes of the Sun's output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA's SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Project [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
 
 **Elsewhere:**
 
