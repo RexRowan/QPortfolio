@@ -231,6 +231,83 @@
     "text": "Links\n\nLive demo\nRepository"
   },
   {
+    "objectID": "goals/quantum-registry.html#the-gap-this-would-fill",
+    "href": "goals/quantum-registry.html#the-gap-this-would-fill",
+    "title": "Quantum Certified Registry",
+    "section": "The gap this would fill",
+    "text": "The gap this would fill\nPalomar registers Lean-checked mathematical claims — the formal statement is the claim, checked for fidelity by an LLM against an informal account, with no physical assumptions in the loop. That works for pure math. It doesn’t work for most quantum results worth registering: a CHSH-certified min-entropy bound, a QEC distance certification, a gate-equivalence proof are all hybrid claims — a Lean-checkable mathematical core sitting on a physical premise Lean cannot check at all (no-signaling, a specific noise model, “quantum mechanics is true”). Qiskit Certified QRNG’s own entropy.py already draws this line explicitly: the Bell-violation-to-entropy bound is cited, not re-derived. A registry that doesn’t force that distinction into the open isn’t differentiated from Palomar — it’s just Palomar with a subject filter."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#what-would-actually-be-new",
+    "href": "goals/quantum-registry.html#what-would-actually-be-new",
+    "title": "Quantum Certified Registry",
+    "section": "What would actually be new",
+    "text": "What would actually be new\nEvery entry would disclose two things, not one:\n\nthe Lean-checked mathematical claim (same dual-kernel Comparator model Palomar already uses)\na structured physical hypothesis statement — which physical postulates or protocol assumptions the result depends on, each tagged as “standard textbook physics” or “an additional, non-standard assumption” — so a reader immediately knows what’s mathematically airtight versus physically asserted"
+  },
+  {
+    "objectID": "goals/quantum-registry.html#reuse-dont-rebuild",
+    "href": "goals/quantum-registry.html#reuse-dont-rebuild",
+    "title": "Quantum Certified Registry",
+    "section": "Reuse, don’t rebuild",
+    "text": "Reuse, don’t rebuild\n\nFork PalomarWeb and PalomarPolicy as the starting skeleton — both are published openly, and Palomar’s own FAQ says they’re open to this kind of extension.\nNo changes needed to Comparator for the proof side — pinned Git dependencies are already unrestricted there.\nThe genuinely new work: a physical-hypothesis schema (a sibling to formalization.yaml) and an editorial-review prompt addition that checks whether disclosed hypotheses are actually necessary, correctly characterized as standard/nonstandard, and consistent with the informal account."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
+    "href": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
+    "title": "Quantum Certified Registry",
+    "section": "Why this is a long-term goal, not a project",
+    "text": "Why this is a long-term goal, not a project\nPalomar’s credibility rests on real institutional weight — Lean FRO, ICARM, a board that includes Terence Tao. A registry claiming the same evaluative authority starts with a credibility gap no amount of good code closes alone. The realistic path is partnering with maintainers of libraries like QuAIR/Lean-QIT as initial reviewers, mirroring how Palomar itself is structured, rather than building in isolation and hoping for adoption after the fact — which makes this a multi-month, likely multi-contributor undertaking whose actual prerequisite is a relationship with the community it would serve, not code."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#links",
+    "href": "goals/quantum-registry.html#links",
+    "title": "Quantum Certified Registry",
+    "section": "Links",
+    "text": "Links\n\nPalomar — the registry this would sit alongside\nQuAIR/Lean-QIT — a candidate foundation library for quantum-flavored statements"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Twelve projects. Nine are Qiskit Ecosystem members, one is in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#the-idea",
+    "href": "goals/quantum-proof-factory.html#the-idea",
+    "title": "Quantum Proof Factory",
+    "section": "The idea",
+    "text": "The idea\nTau Ceti’s model — humans set a roadmap, AI agents write the Lean proofs, AI reviewers gate every merge against fixed rubrics — is a continuously-running proof factory, not a one-off project. Nobody has built that factory for quantum information theory specifically. The pieces already exist, separately:\n\nQuAIR/Lean-QIT — the foundation library the agents would build on: states, channels, entropy, hypothesis testing, coding and protocols, and — directly relevant to Qiskit Certified QRNG — nonlocality (Bell phenomena, self-testing) and security (QKD) modules already exist.\nMerLean (arXiv:2602.16554) — an agentic autoformalization method: extract a mathematical statement from a paper’s LaTeX source, formalize it into Lean/Mathlib, translate the result back into human-readable text for review.\nTau Ceti’s three-repository architecture — a human-owned roadmap repo, an AI-reviewed rubric repo, and the proof repo itself — as a structure to adapt rather than invent from scratch."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
+    "href": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
+    "title": "Quantum Proof Factory",
+    "section": "What Q-Swarm adds that none of these have alone",
+    "text": "What Q-Swarm adds that none of these have alone\nMy earlier exploration of Q-Swarm centered on heterogeneous agents as peers — publishing and verifying each other’s claims, not following a fixed assembly line. Tau Ceti’s agents don’t peer-review each other’s mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other’s work against the roadmap — closer to the original social-epistemics framing than Tau Ceti’s more linear pipeline."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
+    "href": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
+    "title": "Quantum Proof Factory",
+    "section": "Where the review rubric gets interesting",
+    "text": "Where the review rubric gets interesting\nA quantum-specific review rubric is also where the physical-hypothesis disclosure idea from Quantum Certified Registry could actually live in practice — a rubric check specific to quantum results, not just generic Lean style, deciding whether a proof correctly separates its Lean-checked mathematical core from any physical premise it depends on."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
+    "href": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
+    "title": "Quantum Proof Factory",
+    "section": "Why this is a long-term goal, not a project",
+    "text": "Why this is a long-term goal, not a project\nThis is closer in kind to the registry idea above than to any of my shipped Qiskit packages: real infrastructure, a roadmap that has to be curated deliberately (which quantum-info theorems are actually worth formalizing?), and a review rubric that has to be designed rather than copied. What’s different from the registry idea is that all three hard dependencies here already exist as real, working, citable projects to study line-by-line rather than reason about from a README — the risk isn’t “does the tooling exist” but “can a solo effort curate a roadmap and rubric worth other people’s trust.”"
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#links",
+    "href": "goals/quantum-proof-factory.html#links",
+    "title": "Quantum Proof Factory",
+    "section": "Links",
+    "text": "Links\n\nTau Ceti\nQuAIR/Lean-QIT\nMerLean (arXiv:2602.16554)"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Rex Rowan",
@@ -278,104 +355,6 @@
     "title": "Rex Rowan",
     "section": "Other projects",
     "text": "Other projects\nI have broad interests well outside quantum computing — somewhere around 800 completed certificates across edX, Coursera, FutureLearn, and other platforms, spread across far more fields than any one portfolio page could hold. Not everything I build is Qiskit-related.\nSolar Shield started with a solar eclipse: watching four minutes of the Sun’s output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA’s SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Project Repository.\nElsewhere:\n\nGitHub"
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#the-idea",
-    "href": "goals/quantum-proof-factory.html#the-idea",
-    "title": "Quantum Proof Factory",
-    "section": "The idea",
-    "text": "The idea\nTau Ceti’s model — humans set a roadmap, AI agents write the Lean proofs, AI reviewers gate every merge against fixed rubrics — is a continuously-running proof factory, not a one-off project. Nobody has built that factory for quantum information theory specifically. The pieces already exist, separately:\n\nQuAIR/Lean-QIT — the foundation library the agents would build on: states, channels, entropy, hypothesis testing, coding and protocols, and — directly relevant to Qiskit Certified QRNG — nonlocality (Bell phenomena, self-testing) and security (QKD) modules already exist.\nMerLean (arXiv:2602.16554) — an agentic autoformalization method: extract a mathematical statement from a paper’s LaTeX source, formalize it into Lean/Mathlib, translate the result back into human-readable text for review.\nTau Ceti’s three-repository architecture — a human-owned roadmap repo, an AI-reviewed rubric repo, and the proof repo itself — as a structure to adapt rather than invent from scratch."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
-    "href": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
-    "title": "Quantum Proof Factory",
-    "section": "What Q-Swarm adds that none of these have alone",
-    "text": "What Q-Swarm adds that none of these have alone\nMy earlier exploration of Q-Swarm centered on heterogeneous agents as peers — publishing and verifying each other’s claims, not following a fixed assembly line. Tau Ceti’s agents don’t peer-review each other’s mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other’s work against the roadmap — closer to the original social-epistemics framing than Tau Ceti’s more linear pipeline."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
-    "href": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
-    "title": "Quantum Proof Factory",
-    "section": "Where the review rubric gets interesting",
-    "text": "Where the review rubric gets interesting\nA quantum-specific review rubric is also where the physical-hypothesis disclosure idea from Quantum Certified Registry could actually live in practice — a rubric check specific to quantum results, not just generic Lean style, deciding whether a proof correctly separates its Lean-checked mathematical core from any physical premise it depends on."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
-    "href": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
-    "title": "Quantum Proof Factory",
-    "section": "Why this is a long-term goal, not a project",
-    "text": "Why this is a long-term goal, not a project\nThis is closer in kind to the registry idea above than to any of my shipped Qiskit packages: real infrastructure, a roadmap that has to be curated deliberately (which quantum-info theorems are actually worth formalizing?), and a review rubric that has to be designed rather than copied. What’s different from the registry idea is that all three hard dependencies here already exist as real, working, citable projects to study line-by-line rather than reason about from a README — the risk isn’t “does the tooling exist” but “can a solo effort curate a roadmap and rubric worth other people’s trust.”"
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#links",
-    "href": "goals/quantum-proof-factory.html#links",
-    "title": "Quantum Proof Factory",
-    "section": "Links",
-    "text": "Links\n\nTau Ceti\nQuAIR/Lean-QIT\nMerLean (arXiv:2602.16554)"
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Twelve projects. Nine are Qiskit Ecosystem members, one is in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "goals/quantum-registry.html#the-gap-this-would-fill",
-    "href": "goals/quantum-registry.html#the-gap-this-would-fill",
-    "title": "Quantum Certified Registry",
-    "section": "The gap this would fill",
-    "text": "The gap this would fill\nPalomar registers Lean-checked mathematical claims — the formal statement is the claim, checked for fidelity by an LLM against an informal account, with no physical assumptions in the loop. That works for pure math. It doesn’t work for most quantum results worth registering: a CHSH-certified min-entropy bound, a QEC distance certification, a gate-equivalence proof are all hybrid claims — a Lean-checkable mathematical core sitting on a physical premise Lean cannot check at all (no-signaling, a specific noise model, “quantum mechanics is true”). Qiskit Certified QRNG’s own entropy.py already draws this line explicitly: the Bell-violation-to-entropy bound is cited, not re-derived. A registry that doesn’t force that distinction into the open isn’t differentiated from Palomar — it’s just Palomar with a subject filter."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#what-would-actually-be-new",
-    "href": "goals/quantum-registry.html#what-would-actually-be-new",
-    "title": "Quantum Certified Registry",
-    "section": "What would actually be new",
-    "text": "What would actually be new\nEvery entry would disclose two things, not one:\n\nthe Lean-checked mathematical claim (same dual-kernel Comparator model Palomar already uses)\na structured physical hypothesis statement — which physical postulates or protocol assumptions the result depends on, each tagged as “standard textbook physics” or “an additional, non-standard assumption” — so a reader immediately knows what’s mathematically airtight versus physically asserted"
-  },
-  {
-    "objectID": "goals/quantum-registry.html#reuse-dont-rebuild",
-    "href": "goals/quantum-registry.html#reuse-dont-rebuild",
-    "title": "Quantum Certified Registry",
-    "section": "Reuse, don’t rebuild",
-    "text": "Reuse, don’t rebuild\n\nFork PalomarWeb and PalomarPolicy as the starting skeleton — both are published openly, and Palomar’s own FAQ says they’re open to this kind of extension.\nNo changes needed to Comparator for the proof side — pinned Git dependencies are already unrestricted there.\nThe genuinely new work: a physical-hypothesis schema (a sibling to formalization.yaml) and an editorial-review prompt addition that checks whether disclosed hypotheses are actually necessary, correctly characterized as standard/nonstandard, and consistent with the informal account."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
-    "href": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
-    "title": "Quantum Certified Registry",
-    "section": "Why this is a long-term goal, not a project",
-    "text": "Why this is a long-term goal, not a project\nPalomar’s credibility rests on real institutional weight — Lean FRO, ICARM, a board that includes Terence Tao. A registry claiming the same evaluative authority starts with a credibility gap no amount of good code closes alone. The realistic path is partnering with maintainers of libraries like QuAIR/Lean-QIT as initial reviewers, mirroring how Palomar itself is structured, rather than building in isolation and hoping for adoption after the fact — which makes this a multi-month, likely multi-contributor undertaking whose actual prerequisite is a relationship with the community it would serve, not code."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#links",
-    "href": "goals/quantum-registry.html#links",
-    "title": "Quantum Certified Registry",
-    "section": "Links",
-    "text": "Links\n\nPalomar — the registry this would sit alongside\nQuAIR/Lean-QIT — a candidate foundation library for quantum-flavored statements"
-  },
-  {
-    "objectID": "demos/qiskit-eigenlight.html#what-it-does",
-    "href": "demos/qiskit-eigenlight.html#what-it-does",
-    "title": "Qiskit EigenLight",
-    "section": "What it does",
-    "text": "What it does\nThere’s a well-worn idea in the ecosystem of sonifying quantum state evolution — mapping amplitudes and phases to pitch, timbre, rhythm. qiskit-eigenlight takes the same underlying object — a Hamiltonian’s eigenspectrum, probed by continuous-time evolution — and asks what it looks like instead of what it sounds like: rendered as an emission spectrum, with spectral lines positioned at true eigenvalue gaps and colored/intensity-scaled from the actual coherence structure of the evolving state. It is not a music-to-image converter — there’s no audio anywhere in this package, just the other rendering of the same physics.\nGiven a Hamiltonian (real symmetric — e.g. a graph’s adjacency matrix) and an initial state, it diagonalizes, evolves under the free Hamiltonian, and decomposes a probe observable’s dynamics into its Fourier components: each one sits at a frequency equal to a true energy gap, with amplitude set by the actual coherence between eigenstates. That’s the real linear-response decomposition of an observable’s dynamics, not a stylized approximation of one.\nIt also drives continuous-time quantum walks (CTQW) directly: build the adjacency matrix of a Cayley graph and get both the walk’s mixing/return-probability dynamics and its emission spectrum from the same machinery, with girth and spectral gap computed exactly rather than estimated."
-  },
-  {
-    "objectID": "demos/qiskit-eigenlight.html#stated-limitations",
-    "href": "demos/qiskit-eigenlight.html#stated-limitations",
-    "title": "Qiskit EigenLight",
-    "section": "Stated limitations",
-    "text": "Stated limitations\nThe one deliberate simplification: the probe operator defaults to uniform all-pairs coupling rather than a real atom’s physical transition operator — a real limitation if you’re trying to reproduce an actual physical spectrum, documented rather than buried. Everything is unitary — no dissipation, so spectral lines are infinitely sharp. Adjacency construction currently covers cyclic groups only; products of cyclic groups are an open item, not silently assumed to work."
-  },
-  {
-    "objectID": "demos/qiskit-eigenlight.html#links",
-    "href": "demos/qiskit-eigenlight.html#links",
-    "title": "Qiskit EigenLight",
-    "section": "Links",
-    "text": "Links\n\nLive demo\nRepository"
   },
   {
     "objectID": "projects/qiskit-graph-walks.html#the-problem",
