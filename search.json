@@ -140,6 +140,13 @@
     "text": "What it does\nqiskit-stateviz gives you interactive equivalents that take the same Statevector / DensityMatrix objects you already have:\nfrom qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nfrom qiskit_stateviz import plot_qsphere_interactive, plot_bloch_multivector_interactive\n\nqc = QuantumCircuit(3)\nqc.h(0)\nqc.cx(0, 1)\nqc.cx(1, 2)  # GHZ state\n\nsv = Statevector(qc)\n\nfig = plot_qsphere_interactive(sv, title=\"GHZ state\")\nfig.show()\n\nfig2 = plot_bloch_multivector_interactive(sv)\nfig2.show()\nRotate, zoom, and hover for exact amplitude/phase/probability at each basis state.\n\n\n\n\n\n\nQ-sphere: GHZ state\n\n\n\n\n\n\n\nPer-qubit Bloch multivector"
   },
   {
+    "objectID": "projects/qiskit-stateviz.html#emission-spectrum-rendering-merged-from-qiskit-eigenlight",
+    "href": "projects/qiskit-stateviz.html#emission-spectrum-rendering-merged-from-qiskit-eigenlight",
+    "title": "Qiskit StateViz",
+    "section": "Emission-spectrum rendering (merged from Qiskit EigenLight)",
+    "text": "Emission-spectrum rendering (merged from Qiskit EigenLight)\nqiskit-stateviz also renders a Hamiltonian’s eigenspectrum as an emission spectrum — spectral lines positioned at true eigenvalue gaps, colored and intensity-scaled from the actual coherence structure of the evolving state, rather than a stylized stand-in for it. This was originally its own standalone package, Qiskit-EigenLight; it’s now merged in here rather than maintained as a second small package with its own release cadence.\n\n\n\nA Hamiltonian’s eigenspectrum, rendered instead of sonified\n\n\nThe same honest limitations carry over unchanged: the probe operator defaults to uniform all-pairs coupling rather than a real atom’s transition operator, and everything is unitary — no dissipation, so lines are infinitely sharp."
+  },
+  {
     "objectID": "projects/qiskit-stateviz.html#why-this-exists",
     "href": "projects/qiskit-stateviz.html#why-this-exists",
     "title": "Qiskit StateViz",

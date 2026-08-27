@@ -414,6 +414,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="emission-spectrum-rendering-merged-from-qiskit-eigenlight" class="level2">
+<h2 class="anchored" data-anchor-id="emission-spectrum-rendering-merged-from-qiskit-eigenlight">Emission-spectrum rendering (merged from Qiskit EigenLight)</h2>
+<p><code>qiskit-stateviz</code> also renders a Hamiltonian’s eigenspectrum as an emission spectrum — spectral lines positioned at true eigenvalue gaps, colored and intensity-scaled from the actual coherence structure of the evolving state, rather than a stylized stand-in for it. This was originally its own standalone package, <code>Qiskit-EigenLight</code>; it’s now merged in here rather than maintained as a second small package with its own release cadence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qiskit-eigenlight.svg" class="img-fluid figure-img"></p>
+<figcaption>A Hamiltonian’s eigenspectrum, rendered instead of sonified</figcaption>
+</figure>
+</div>
+<p>The same honest limitations carry over unchanged: the probe operator defaults to uniform all-pairs coupling rather than a real atom’s transition operator, and everything is unitary — no dissipation, so lines are infinitely sharp.</p>
+</section>
 <section id="why-this-exists" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-exists">Why this exists</h2>
 <p>There’s real prior art, and it’s worth naming rather than pretending this fills an empty gap:</p>
