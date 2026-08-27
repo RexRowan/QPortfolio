@@ -23,7 +23,7 @@ STATUS · Concept stage · architecture scoped, not started · no repository yet
 
 ## What Q-Swarm adds that none of these have alone
 
-My earlier exploration of Q-Swarm centered on heterogeneous agents as *peers* — publishing and verifying each other's claims, not following a fixed assembly line. Tau Ceti's agents don't peer-review each other's mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other's work against the roadmap — closer to the original social-epistemics framing than Tau Ceti's more linear pipeline.
+My earlier exploration of [Q-Swarm](https://q-swarm.netlify.app/) centered on heterogeneous agents as *peers* — publishing and verifying each other's claims, not following a fixed assembly line. Tau Ceti's agents don't peer-review each other's mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other's work against the roadmap — closer to the original social-epistemics framing than Tau Ceti's more linear pipeline.
 
 ## Where the review rubric gets interesting
 
@@ -38,3 +38,4 @@ This is closer in kind to the registry idea above than to any of my shipped Qisk
 - [Tau Ceti](https://taucetiproject.github.io/TauCeti/){target="_blank"}
 - [QuAIR/Lean-QIT](https://github.com/QuAIR/Lean-QIT){target="_blank"}
 - [MerLean (arXiv:2602.16554)](https://arxiv.org/abs/2602.16554){target="_blank"}
+- [Q-Swarm](https://github.com/RexRowan/Q-Swarm)
