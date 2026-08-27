@@ -249,7 +249,7 @@
     "href": "index.html#other-projects",
     "title": "Rex Rowan",
     "section": "Other projects",
-    "text": "Other projects\nNot everything I build is Qiskit-related. Solar Shield is a separate site covering two space engineering concepts — a reflective sail swarm near Sun-Earth L1, and a space-based solar power harvester in the spirit of ESA’s SOLARIS program. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Repository.\nElsewhere:\n\nGitHub"
+    "text": "Other projects\nNot everything I build is Qiskit-related. Solar Shield is a site related to my ideas of combating climate change by exploring solar energy. The solar eclipse inspired me to look into this field further. The current solution covers two space engineering concepts — a reflective sail swarm (or ejected mist/fog) near the Sun-Earth L1, and space-based solar power harvesters in the spirit of ESA’s SOLARIS program. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Repository.\nElsewhere:\n\nGitHub"
   },
   {
     "objectID": "goals/quantum-proof-factory.html#the-idea",
