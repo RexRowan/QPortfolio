@@ -217,6 +217,20 @@
     "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Tooling, labeled chemistry, research, utility-scale\nColab notebook: full N2 example\nBuilt on qiskit-addon-sqd"
   },
   {
+    "objectID": "demos/entropy-demo.html#what-it-does",
+    "href": "demos/entropy-demo.html#what-it-does",
+    "title": "Entropy Demo",
+    "section": "What it does",
+    "text": "What it does\nA short text message is encoded to bits and run through simulated T1-decay bit-flip noise over time, with a choice of protection: none, a 3-qubit repetition code (majority vote), or a Steane [[7,1,3]] code, rendered live against an interactive Fano-plane geometry visualizer showing which of the seven qubits are hit as errors accumulate. An optional dynamical-decoupling toggle extends the effective coherence time. Watching the same message survive, garble, or get corrected side by side makes the point a static diagram usually has to explain in words: error correction isn’t a guarantee, it’s a shifted failure threshold."
+  },
+  {
+    "objectID": "demos/entropy-demo.html#links",
+    "href": "demos/entropy-demo.html#links",
+    "title": "Entropy Demo",
+    "section": "Links",
+    "text": "Links\n\nLive demo\nRepository"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Rex Rowan",
@@ -341,6 +355,27 @@
     "title": "Quantum Certified Registry",
     "section": "Links",
     "text": "Links\n\nPalomar — the registry this would sit alongside\nQuAIR/Lean-QIT — a candidate foundation library for quantum-flavored statements"
+  },
+  {
+    "objectID": "demos/qiskit-eigenlight.html#what-it-does",
+    "href": "demos/qiskit-eigenlight.html#what-it-does",
+    "title": "Qiskit EigenLight",
+    "section": "What it does",
+    "text": "What it does\nThere’s a well-worn idea in the ecosystem of sonifying quantum state evolution — mapping amplitudes and phases to pitch, timbre, rhythm. qiskit-eigenlight takes the same underlying object — a Hamiltonian’s eigenspectrum, probed by continuous-time evolution — and asks what it looks like instead of what it sounds like: rendered as an emission spectrum, with spectral lines positioned at true eigenvalue gaps and colored/intensity-scaled from the actual coherence structure of the evolving state. It is not a music-to-image converter — there’s no audio anywhere in this package, just the other rendering of the same physics.\nGiven a Hamiltonian (real symmetric — e.g. a graph’s adjacency matrix) and an initial state, it diagonalizes, evolves under the free Hamiltonian, and decomposes a probe observable’s dynamics into its Fourier components: each one sits at a frequency equal to a true energy gap, with amplitude set by the actual coherence between eigenstates. That’s the real linear-response decomposition of an observable’s dynamics, not a stylized approximation of one.\nIt also drives continuous-time quantum walks (CTQW) directly: build the adjacency matrix of a Cayley graph and get both the walk’s mixing/return-probability dynamics and its emission spectrum from the same machinery, with girth and spectral gap computed exactly rather than estimated."
+  },
+  {
+    "objectID": "demos/qiskit-eigenlight.html#stated-limitations",
+    "href": "demos/qiskit-eigenlight.html#stated-limitations",
+    "title": "Qiskit EigenLight",
+    "section": "Stated limitations",
+    "text": "Stated limitations\nThe one deliberate simplification: the probe operator defaults to uniform all-pairs coupling rather than a real atom’s physical transition operator — a real limitation if you’re trying to reproduce an actual physical spectrum, documented rather than buried. Everything is unitary — no dissipation, so spectral lines are infinitely sharp. Adjacency construction currently covers cyclic groups only; products of cyclic groups are an open item, not silently assumed to work."
+  },
+  {
+    "objectID": "demos/qiskit-eigenlight.html#links",
+    "href": "demos/qiskit-eigenlight.html#links",
+    "title": "Qiskit EigenLight",
+    "section": "Links",
+    "text": "Links\n\nLive demo\nRepository"
   },
   {
     "objectID": "projects/qiskit-graph-walks.html#the-problem",
