@@ -1,0 +1,23 @@
+---
+title: "Entropy Demo"
+description: "A message degrades under simulated T1 decay, side by side unprotected, uncorrected, and protected by a Steane [[7,1,3]] code"
+date: 2026-08-05
+image: ../images/entropy-demo.svg
+categories: [demo, quantum-error-correction]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Single-page interactive demo · no package, no dependencies beyond the page itself
+:::
+
+## What it does
+
+A short text message is encoded to bits and run through simulated T1-decay bit-flip noise over time, with a choice of protection: none, a 3-qubit repetition code (majority vote), or a Steane `[[7,1,3]]` code, rendered live against an interactive Fano-plane geometry visualizer showing which of the seven qubits are hit as errors accumulate. An optional dynamical-decoupling toggle extends the effective coherence time. Watching the same message survive, garble, or get corrected side by side makes the point a static diagram usually has to explain in words: error correction isn't a guarantee, it's a shifted failure threshold.
+
+## Links
+
+- [Live demo](https://rexrowan.github.io/Entropy-Demo/){target="_blank"}
+- [Repository](https://github.com/RexRowan/Entropy-Demo){target="_blank"}
