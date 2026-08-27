@@ -186,7 +186,7 @@ Smaller, standalone, built to show something rather than ship something — no E
 <tbody>
 
 <tr>
-  <td><a href="https://rexrowan.github.io/Entropy-Demo/"><strong>Entropy Demo</strong></a></td>
+  <td><a href="demos/entropy-demo.qmd"><strong>Entropy Demo</strong></a></td>
   <td>A message decoheres under simulated T1 noise, side by side unprotected, corrupted, and Steane-code corrected.</td>
   <td><span class="badge bg-info text-dark">Demo</span></td>
 </tr>
