@@ -1,0 +1,19 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#14171F"/>
+
+  <!-- emission spectrum: spectral lines at eigenvalue gaps -->
+  <line x1="120" y1="60" x2="120" y2="240" stroke="#2B6CB0" stroke-width="2" opacity="0.9"/>
+  <line x1="175" y1="90" x2="175" y2="240" stroke="#0F9D8C" stroke-width="3" opacity="0.95"/>
+  <line x1="240" y1="40" x2="240" y2="240" stroke="#0F9D8C" stroke-width="4"/>
+  <line x1="290" y1="130" x2="290" y2="240" stroke="#2B6CB0" stroke-width="1.5" opacity="0.7"/>
+  <line x1="350" y1="70" x2="350" y2="240" stroke="#0F9D8C" stroke-width="3.5"/>
+  <line x1="400" y1="150" x2="400" y2="240" stroke="#2B6CB0" stroke-width="1.5" opacity="0.6"/>
+  <line x1="460" y1="100" x2="460" y2="240" stroke="#0F9D8C" stroke-width="2.5"/>
+  <line x1="510" y1="170" x2="510" y2="240" stroke="#2B6CB0" stroke-width="1.5" opacity="0.5"/>
+
+  <line x1="80" y1="240" x2="560" y2="240" stroke="#3A4256" stroke-width="1.5"/>
+  <text x="80" y="262" font-family="JetBrains Mono, monospace" font-size="11" fill="#8A93A3">energy gap ω_kl</text>
+  <text x="440" y="262" font-family="JetBrains Mono, monospace" font-size="11" fill="#8A93A3">intensity = |c_k c_l ⟨k|T|l⟩|</text>
+
+  <text x="46" y="290" font-family="JetBrains Mono, monospace" font-size="14" fill="#F7F7F5">A Hamiltonian's eigenspectrum, rendered instead of sonified</text>
+</svg>
