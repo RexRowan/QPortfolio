@@ -1,0 +1,28 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <!-- left dial: Bloch sphere point, period 360 -->
+  <circle cx="200" cy="150" r="80" fill="none" stroke="#2B6CB0" stroke-width="2.5"/>
+  <line x1="200" y1="150" x2="200" y2="70" stroke="#2B6CB0" stroke-width="2.5"/>
+  <circle cx="200" cy="70" r="6" fill="#2B6CB0"/>
+  <text x="150" y="255" font-family="JetBrains Mono, monospace" font-size="13" fill="#14171F">Bloch point</text>
+  <text x="150" y="272" font-family="JetBrains Mono, monospace" font-size="13" fill="#2B6CB0">period 360°</text>
+
+  <!-- right dial: SU(2) angle, period 720 -->
+  <circle cx="440" cy="150" r="80" fill="none" stroke="#0F9D8C" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <line x1="440" y1="150" x2="440" y2="70" stroke="#0F9D8C" stroke-width="2.5"/>
+  <circle cx="440" cy="70" r="6" fill="#0F9D8C"/>
+  <text x="378" y="255" font-family="JetBrains Mono, monospace" font-size="13" fill="#14171F">SU(2) dial θ/2</text>
+  <text x="378" y="272" font-family="JetBrains Mono, monospace" font-size="13" fill="#0F9D8C">period 720°</text>
+
+  <!-- sync arrow between dials -->
+  <path d="M290,150 L350,150" stroke="#14171F" stroke-width="2" fill="none" marker-end="url(#arrow4)"/>
+  <path d="M350,165 L290,165" stroke="#14171F" stroke-width="2" fill="none" marker-end="url(#arrow4)"/>
+  <defs>
+    <marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#14171F"/>
+    </marker>
+  </defs>
+
+  <text x="46" y="35" font-family="JetBrains Mono, monospace" font-size="14" fill="#14171F">One physical rotation, two periods — the −1 the Bloch sphere hides</text>
+</svg>

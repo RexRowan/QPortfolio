@@ -147,6 +147,13 @@
     "text": "Emission-spectrum rendering (merged from Qiskit EigenLight)\nqiskit-stateviz also renders a Hamiltonian’s eigenspectrum as an emission spectrum — spectral lines positioned at true eigenvalue gaps, colored and intensity-scaled from the actual coherence structure of the evolving state, rather than a stylized stand-in for it. This was originally its own standalone package, Qiskit-EigenLight; it’s now merged in here rather than maintained as a second small package with its own release cadence.\n\n\n\nA Hamiltonian’s eigenspectrum, rendered instead of sonified\n\n\nThe same honest limitations carry over unchanged: the probe operator defaults to uniform all-pairs coupling rather than a real atom’s transition operator, and everything is unitary — no dissipation, so lines are infinitely sharp."
   },
   {
+    "objectID": "projects/qiskit-stateviz.html#two-spheres-one-spinor-merged-from-spinor-topology",
+    "href": "projects/qiskit-stateviz.html#two-spheres-one-spinor-merged-from-spinor-topology",
+    "title": "Qiskit StateViz",
+    "section": "Two Spheres, One Spinor (merged from Spinor-Topology)",
+    "text": "Two Spheres, One Spinor (merged from Spinor-Topology)\nAn interactive explainer, also merged in rather than kept as a third small standalone repo: why the Bloch sphere — the very picture plot_bloch_multivector_interactive above draws — is a simplification of a qubit’s true state in ℂ², and why a spin-1/2 particle needs a full 720° (4π) rotation, not 360°, to return to its original state. A single slider drives two synced dials: a Bloch-sphere point (period 360°) and the SU(2) rotation parameter θ/2 inside R(θ) = exp(−iθ n̂·σ/2) (period 720°), with live α/β amplitude readout computed from the actual rotation rather than approximated.\n\n\n\nOne physical rotation, two periods — the −1 the Bloch sphere hides\n\n\nThe −1 phase picked up by a full 360° rotation is invisible on the Bloch sphere (global phase drops out of it entirely) but was measured directly, in Hilbert space, by the 1975 neutron interferometry experiments (Rauch, Zeilinger, Badurek, Wilfing, Bauspiess, and Bonse; independently, Werner, Colella, Overhauser, and Eagen) — real experimental confirmation, not just a formal curiosity, and the reason the Bloch-sphere picture used throughout the rest of this page is a real simplification, not a full description."
+  },
+  {
     "objectID": "projects/qiskit-stateviz.html#why-this-exists",
     "href": "projects/qiskit-stateviz.html#why-this-exists",
     "title": "Qiskit StateViz",
