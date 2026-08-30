@@ -1,0 +1,23 @@
+---
+title: "Unitary vs. Collapse"
+description: "Interactive comparison of predicted interference visibility under pure unitary evolution versus objective collapse models (GRW/CSL)"
+date: 2026-08-30
+image: ../images/quantum-interpretations.svg
+categories: [demo, quantum-foundations]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Single-page interactive demo · no package, no dependencies beyond the page itself
+:::
+
+## What it does
+
+Many-worlds, Bohmian mechanics, QBism, relational QM, and Copenhagen-without-collapse all predict *exactly* the same interference statistics as standard unitary quantum mechanics — no experiment distinguishes them. Objective collapse models (GRW, CSL, Diósi-Penrose) are the one family that modifies the Schrödinger equation itself, which makes them the one genuinely falsifiable branch. This demo lets you set a particle's mass, superposition separation, and environmental decoherence rate, then compares predicted interference visibility over time under pure unitary evolution against the real CSL decoherence formula (Γ ≈ λ·N²·g(Δx/r_C)) — the same N² mass-scaling that current levitated-nanoparticle experiments are using to hunt for a real signal.
+
+## Links
+
+- [Live demo](https://rexrowan.github.io/Experimental-Tests-of-Quantum-Interpretations/){target="_blank"}
+- [Repository](https://github.com/RexRowan/Experimental-Tests-of-Quantum-Interpretations){target="_blank"}
