@@ -119,7 +119,7 @@ Twelve projects, all open-source, spanning the full stack a Qiskit user actually
   <td><a href="projects/qiskit-certified-qrng.qmd"><strong>Qiskit Certified QRNG</strong></a></td>
   <td>Cryptography · Formal verification</td>
   <td>QRNG libraries produce bits and call them "quantum random" without any entropy accounting or statistical soundness check.</td>
-  <td><span class="badge bg-secondary">In Development</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td>Confidence-bound (not point-estimate) entropy certification, with a Lean proof of extractor soundness in progress — a real, tracked constant discrepancy included, not hidden.</td>
 </tr>
 
