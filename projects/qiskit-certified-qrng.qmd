@@ -51,3 +51,4 @@ Not yet done, and stated plainly rather than glossed over: `lean/LeftoverHash/Ba
 ## Links
 
 - [Repository](https://github.com/RexRowan/qiskit-certified-qrng){target="_blank"}
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/88fd22ed/){target="_blank"} - classified `Application`, labeled `quantum information`, `research`
