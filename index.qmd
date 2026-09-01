@@ -12,7 +12,7 @@ I am a Qiskit Advocate. I build open-source quantum computing tools, mostly for 
 
 ## What I've built
 
-Twelve projects, all open-source, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, cryptography, and formal verification. Most are Qiskit ecosystem members; the newest is still early-stage. Details and links are on each project's own page.
+Thirteen projects, all open-source, spanning the full stack a Qiskit user actually touches — interoperability, diagnostics, visualization, protocol simulation, algorithms, transpilation, error correction, cryptography, and formal verification. Most are Qiskit ecosystem members; the newest is still early-stage. Details and links are on each project's own page.
 
 ::: {.table-responsive}
 <table class="table table-hover align-middle qportfolio-table">
