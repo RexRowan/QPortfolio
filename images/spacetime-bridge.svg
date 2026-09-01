@@ -1,0 +1,43 @@
+<svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="320" fill="#EEF3F9"/>
+
+  <text x="60" y="55" font-family="JetBrains Mono, monospace" font-size="13" fill="#14171F">Clifford circuit, sliced through time</text>
+
+  <!-- circuit wires with gates, representing a Clifford circuit over time -->
+  <g stroke="#2B6CB0" stroke-width="2">
+    <line x1="70" y1="110" x2="360" y2="110"/>
+    <line x1="70" y1="150" x2="360" y2="150"/>
+    <line x1="70" y1="190" x2="360" y2="190"/>
+  </g>
+  <g fill="#14171F">
+    <rect x="100" y="98" width="24" height="24" fill="#FFFFFF" stroke="#14171F" stroke-width="1.5"/>
+    <rect x="160" y="138" width="24" height="24" fill="#FFFFFF" stroke="#14171F" stroke-width="1.5"/>
+    <circle cx="212" cy="110" r="5"/>
+    <line x1="212" y1="110" x2="212" y2="190" stroke="#14171F" stroke-width="1.5"/>
+    <circle cx="212" cy="190" r="8" fill="none" stroke="#14171F" stroke-width="1.5"/>
+    <rect x="270" y="178" width="24" height="24" fill="#FFFFFF" stroke="#14171F" stroke-width="1.5"/>
+  </g>
+
+  <!-- time-slice dashed lines marking spacetime cuts -->
+  <g stroke="#0F9D8C" stroke-width="1.5" stroke-dasharray="4 4">
+    <line x1="140" y1="90" x2="140" y2="210"/>
+    <line x1="240" y1="90" x2="240" y2="210"/>
+    <line x1="330" y1="90" x2="330" y2="210"/>
+  </g>
+
+  <path d="M380,150 L440,150" stroke="#0F9D8C" stroke-width="3" fill="none" marker-end="url(#arrow4)"/>
+  <defs>
+    <marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F9D8C"/>
+    </marker>
+  </defs>
+
+  <text x="460" y="95" font-family="JetBrains Mono, monospace" font-size="13" fill="#14171F">outcome code</text>
+  <rect x="460" y="110" width="130" height="16" fill="none" stroke="#0F9D8C" stroke-width="2"/>
+  <rect x="460" y="130" width="130" height="16" fill="none" stroke="#0F9D8C" stroke-width="2"/>
+  <rect x="460" y="150" width="130" height="16" fill="none" stroke="#0F9D8C" stroke-width="2"/>
+  <text x="460" y="185" font-family="JetBrains Mono, monospace" font-size="11" fill="#14171F">stabilizer generator matrix</text>
+  <text x="460" y="205" font-family="JetBrains Mono, monospace" font-size="11" fill="#14171F">→ feeds Cayley-code analysis</text>
+
+  <text x="60" y="270" font-family="JetBrains Mono, monospace" font-size="11" fill="#14171F">Delfosse-Paetznick spacetime codes (arXiv:2304.05943)</text>
+</svg>
