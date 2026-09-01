@@ -1,0 +1,31 @@
+---
+title: "Qiskit Spacetime Bridge"
+description: "Outcome/spacetime codes from Clifford circuits, feeding stabilizer structure into the Cayley-codes analysis backend"
+date: 2026-09-01
+image: ../images/spacetime-bridge.svg
+categories: [quantum-error-correction, circuit-analysis]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem submission in review · PR #1339 (draft)
+:::
+
+## What it does
+
+A bridge module implementing the outcome-code construction (Algorithm 1) and the back-cumulant spacetime-code construction from Delfosse & Paetznick, "Spacetime codes of Clifford circuits" (arXiv:2304.05943). It takes a Clifford circuit, slices it through time, and turns the resulting outcome structure into a stabilizer generator matrix.
+
+## Where it feeds
+
+The stabilizer generator matrix produced here is the intended input to the [Qiskit Cayley Codes](qiskit-cayley-codes.qmd) CDZ analysis backend — turning a circuit's spacetime structure into an object that can be checked and analyzed as a CSS code.
+
+## Open, and documented as open
+
+CZ/SWAP gates, Algorithm 3 (LDPC sparsification), the logical operators of Proposition 10, and real code-distance computation are not yet implemented. The actual wiring into the qiskit-cayley-codes source is also still pending — right now the two packages are connected by intent, not by code.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Spacetime-Bridge){target="_blank"}
+- [Qiskit Ecosystem submission](https://github.com/Qiskit/ecosystem/pull/1339){target="_blank"} - nomination PR, in review
