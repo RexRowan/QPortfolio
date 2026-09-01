@@ -189,53 +189,158 @@
     "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Tooling, labeled quantum information\npip install qiskit-stateviz"
   },
   {
-    "objectID": "projects/sqd-dashboard.html#the-problem",
-    "href": "projects/sqd-dashboard.html#the-problem",
-    "title": "Qiskit SQD Dashboard",
-    "section": "The problem",
-    "text": "The problem\nqiskit-addon-sqd is a pure compute library — it runs sample-based quantum diagonalization’s self-consistent configuration recovery loop, but it has no visualization layer. The standard workflow is to run the whole loop, then plot whatever you logged, after the fact. Mid-run, you can’t easily see whether the energy is actually converging or the recovered configurations are still drifting."
-  },
-  {
-    "objectID": "projects/sqd-dashboard.html#what-the-dashboard-does",
-    "href": "projects/sqd-dashboard.html#what-the-dashboard-does",
-    "title": "Qiskit SQD Dashboard",
-    "section": "What the dashboard does",
-    "text": "What the dashboard does\nqiskit-sqd-dashboard hooks directly into that loop using the callback parameter that diagonalize_fermionic_hamiltonian already exposes — no server, no separate process, no data hand-off. You instantiate SQDDiagnostics, call .display() in a notebook cell, and pass diag.callback straight through:\nfrom qiskit_sqd_dashboard import SQDDiagnostics\nfrom qiskit_addon_sqd.fermion import diagonalize_fermionic_hamiltonian\n\ndiag = SQDDiagnostics()\ndiag.display()\n\nresult = diagonalize_fermionic_hamiltonian(\n    hcore, eri, bit_array,\n    samples_per_batch=samples_per_batch,\n    norb=norb, nelec=nelec,\n    callback=diag.callback,\n)\nEach configuration-recovery iteration, it redraws a live Plotly figure tracking:\n\nEnergy convergence — best energy found so far, plus the min/max spread across batches\nSubspace dimension per batch — len(ci_strs_a) * len(ci_strs_b) for each batch’s result\nOrbital occupancy convergence — the max change in average orbital occupancies since the last iteration, which is the same quantity configuration recovery uses internally to correct noisy samples, so watching it flatten is a direct convergence signal\n\nAn earlier version used Plotly’s FigureWidget (via anywidget), but that was dropped in favor of a clear_output() + redraw pattern after FigureWidget turned out to be broken in Colab."
-  },
-  {
-    "objectID": "projects/sqd-dashboard.html#validation",
-    "href": "projects/sqd-dashboard.html#validation",
-    "title": "Qiskit SQD Dashboard",
-    "section": "Validation",
-    "text": "Validation\nThe panel below is a synthetic reconstruction of the shape of a real run, built from the numbers reported for the project’s actual validation case: an N2 active space (8 orbitals, 10 electrons, STO-3G), with a LUCJ ansatz built from CCSD amplitudes via ffsim, and 2% per-bit hardware noise injected. That run showed genuine multi-iteration convergence — energy improving monotonically over 4-6 iterations, subspace dimension growing from roughly 380 to 700, and the occupancy delta rising slightly before decaying toward zero. It hasn’t yet been validated at the scale of IBM’s full N2/6-31g tutorial (59 qubits).\n\nPlot = require(\"@observablehq/plot@0.6.16\")\n\n\n\n\n\n\n\nviewof iterations = Inputs.range(\n  [1, 6], {value: 5, step: 1, label: \"Configuration recovery iterations\"}\n)\n\n\n\n\n\n\n\ntargetEnergy = -107.62\nstartEnergy = -106.55\n\ndata = {\n  const rows = [];\n  for (let i = 1; i &lt;= iterations; i++) {\n    const progress = 1 - Math.exp(-(i - 1) / 1.8);\n    const energy = startEnergy + (targetEnergy - startEnergy) * progress;\n    const subspaceDim = Math.round(380 + (700 - 380) * (i - 1) / 5);\n    // occupancy delta: rises slightly at iteration 2, then decays toward zero\n    const occDelta = i === 1 ? 0.15\n      : 0.19 * Math.exp(-(i - 2) / 1.1) + 0.001;\n    rows.push({ iteration: i, energy, subspaceDim, occDelta });\n  }\n  return rows;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlot.plot({\n  width: 620,\n  height: 260,\n  marginLeft: 60,\n  x: { label: \"Configuration recovery iteration\", tickFormat: \"d\" },\n  y: { label: \"Best energy (Ha)\" },\n  marks: [\n    Plot.ruleY([targetEnergy], { stroke: \"#0F9D8C\", strokeDasharray: \"4,3\" }),\n    Plot.line(data, { x: \"iteration\", y: \"energy\", stroke: \"#2B6CB0\", strokeWidth: 2 }),\n    Plot.dot(data, { x: \"iteration\", y: \"energy\", r: 3, fill: \"#2B6CB0\" })\n  ]\n})\n\n\n\n\n\n\n\nhtml`&lt;div style=\"font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin: 0.25rem 0 1.25rem 0;\"&gt;\n  &lt;span style=\"color:#0F9D8C;\"&gt;— target energy&lt;/span&gt;\n&lt;/div&gt;`\n\n\n\n\n\n\n\nPlot.plot({\n  width: 620,\n  height: 220,\n  marginLeft: 60,\n  x: { label: \"Configuration recovery iteration\", tickFormat: \"d\" },\n  y: { label: \"Max occupancy Δ vs. prior iteration\" },\n  marks: [\n    Plot.line(data, { x: \"iteration\", y: \"occDelta\", stroke: \"#7A6FF0\", strokeWidth: 2 }),\n    Plot.dot(data, { x: \"iteration\", y: \"occDelta\", r: 3, fill: \"#7A6FF0\" })\n  ]\n})\n\n\n\n\n\n\n\nDrag the slider — energy tightens toward the target as iterations accumulate, while the occupancy delta ticks up once (as configuration recovery starts correcting noisy samples) before collapsing toward zero, which is the actual convergence signal the real widget is built to surface live."
-  },
-  {
-    "objectID": "projects/sqd-dashboard.html#current-limitations-v1",
-    "href": "projects/sqd-dashboard.html#current-limitations-v1",
-    "title": "Qiskit SQD Dashboard",
-    "section": "Current limitations (v1)",
-    "text": "Current limitations (v1)\n\nSingle-run view only — no side-by-side comparison across samples_per_batch settings yet\nNo persistence — diagnostics live only for the notebook session\nNot yet published to PyPI (pip install -e . from source is the only install path today)\nNot yet validated at the full 59-qubit N2/6-31g scale"
-  },
-  {
-    "objectID": "projects/sqd-dashboard.html#links",
-    "href": "projects/sqd-dashboard.html#links",
-    "title": "Qiskit SQD Dashboard",
-    "section": "Links",
-    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Tooling, labeled chemistry, research, utility-scale\nColab notebook: full N2 example\nBuilt on qiskit-addon-sqd"
-  },
-  {
-    "objectID": "demos/quantum-interpretations.html#what-it-does",
-    "href": "demos/quantum-interpretations.html#what-it-does",
-    "title": "Unitary vs. Collapse",
+    "objectID": "projects/qiskit-spacetime-bridge.html#what-it-does",
+    "href": "projects/qiskit-spacetime-bridge.html#what-it-does",
+    "title": "Qiskit Spacetime Bridge",
     "section": "What it does",
-    "text": "What it does\nMany-worlds, Bohmian mechanics, QBism, relational QM, and Copenhagen-without-collapse all predict exactly the same interference statistics as standard unitary quantum mechanics — no experiment distinguishes them. Objective collapse models (GRW, CSL, Diósi-Penrose) are the one family that modifies the Schrödinger equation itself, which makes them the one genuinely falsifiable branch. This demo lets you set a particle’s mass, superposition separation, and environmental decoherence rate, then compares predicted interference visibility over time under pure unitary evolution against the real CSL decoherence formula (Γ ≈ λ·N²·g(Δx/r_C)) — the same N² mass-scaling that current levitated-nanoparticle experiments are using to hunt for a real signal."
+    "text": "What it does\nA bridge module implementing the outcome-code construction (Algorithm 1) and the back-cumulant spacetime-code construction from Delfosse & Paetznick, “Spacetime codes of Clifford circuits” (arXiv:2304.05943). It takes a Clifford circuit, slices it through time, and turns the resulting outcome structure into a stabilizer generator matrix."
   },
   {
-    "objectID": "demos/quantum-interpretations.html#links",
-    "href": "demos/quantum-interpretations.html#links",
-    "title": "Unitary vs. Collapse",
+    "objectID": "projects/qiskit-spacetime-bridge.html#where-it-feeds",
+    "href": "projects/qiskit-spacetime-bridge.html#where-it-feeds",
+    "title": "Qiskit Spacetime Bridge",
+    "section": "Where it feeds",
+    "text": "Where it feeds\nThe stabilizer generator matrix produced here is the intended input to the Qiskit Cayley Codes CDZ analysis backend — turning a circuit’s spacetime structure into an object that can be checked and analyzed as a CSS code."
+  },
+  {
+    "objectID": "projects/qiskit-spacetime-bridge.html#open-and-documented-as-open",
+    "href": "projects/qiskit-spacetime-bridge.html#open-and-documented-as-open",
+    "title": "Qiskit Spacetime Bridge",
+    "section": "Open, and documented as open",
+    "text": "Open, and documented as open\nCZ/SWAP gates, Algorithm 3 (LDPC sparsification), the logical operators of Proposition 10, and real code-distance computation are not yet implemented. The actual wiring into the qiskit-cayley-codes source is also still pending — right now the two packages are connected by intent, not by code."
+  },
+  {
+    "objectID": "projects/qiskit-spacetime-bridge.html#links",
+    "href": "projects/qiskit-spacetime-bridge.html#links",
+    "title": "Qiskit Spacetime Bridge",
+    "section": "Links",
+    "text": "Links\n\nRepository\nQiskit Ecosystem submission - nomination PR, in review"
+  },
+  {
+    "objectID": "projects/qiskit-graph-walks.html#the-problem",
+    "href": "projects/qiskit-graph-walks.html#the-problem",
+    "title": "Qiskit Graph Walks",
+    "section": "The problem",
+    "text": "The problem\nQuantum walks are almost always introduced as a physics demo — ballistic spreading on a line or a lattice, contrasted with classical diffusion. That framing undersells them. Continuous- and discrete-time quantum walks are algorithmic primitives with concrete uses on arbitrary graphs: spatial search, and graph-invariant fingerprinting for isomorphism testing. There wasn’t a Qiskit-native package that treated them that way — as composable circuits that plug into transpilation, backends, and noise models like anything else in the ecosystem, rather than one-off demo scripts."
+  },
+  {
+    "objectID": "projects/qiskit-graph-walks.html#what-it-does",
+    "href": "projects/qiskit-graph-walks.html#what-it-does",
+    "title": "Qiskit Graph Walks",
+    "section": "What it does",
+    "text": "What it does\nimport networkx as nx\nfrom qiskit_graph_walks import ContinuousTimeQuantumWalk, SpatialSearch, are_possibly_isomorphic\n\nG = nx.petersen_graph()\nwalk = ContinuousTimeQuantumWalk(G)\ncircuit = walk.circuit(time=2.5, initial_vertex=0)   # a genuine Qiskit QuantumCircuit\nprobs = walk.probabilities(time=2.5, initial_vertex=0)\n\nsearch = SpatialSearch(nx.complete_graph(16), marked_vertices=7)\nresult = search.optimize()   # matches the Childs–Goldstone closed form on K_n\ncircuit = search.circuit(result.gamma, result.time)\nFour modules:\n\nctqw — continuous-time quantum walks (H = -γA or the graph Laplacian), circuit construction and exact simulation.\ndtqw — discrete-time (Szegedy) quantum walks, which work on any graph, not just regular ones.\nsearch — Childs & Goldstone (2004) spatial search, with automatic parameter optimization for arbitrary graphs, not just the textbook complete-graph case.\nisomorphism — CTQW-based graph invariants for isomorphism testing."
+  },
+  {
+    "objectID": "projects/qiskit-graph-walks.html#the-part-worth-reading-carefully",
+    "href": "projects/qiskit-graph-walks.html#the-part-worth-reading-carefully",
+    "title": "Qiskit Graph Walks",
+    "section": "The part worth reading carefully",
+    "text": "The part worth reading carefully\nA fingerprint mismatch in the isomorphism module is a genuine proof of non-isomorphism. A fingerprint match is not a proof of isomorphism — it means the test didn’t find a difference, which isn’t the same claim. The package is explicit about this rather than letting the function name imply more than the math supports, and docs/isomorphism.md walks through a classic cospectral-but-non-isomorphic graph pair that the fingerprint does correctly separate, as a worked example of what the technique can and can’t do."
+  },
+  {
+    "objectID": "projects/qiskit-graph-walks.html#known-limitations",
+    "href": "projects/qiskit-graph-walks.html#known-limitations",
+    "title": "Qiskit Graph Walks",
+    "section": "Known limitations",
+    "text": "Known limitations\n\nThe Szegedy walk step operator is built as an explicit dense unitary. Exact and easy to verify, but it doesn’t scale past a few hundred vertices before the dense linear algebra becomes the bottleneck — synthesizing it into an elementary-gate decomposition for larger graphs is an open contribution.\nSpatialSearch.optimize() uses local numerical optimization (Nelder–Mead) seeded from the complete-graph closed form. For graphs structurally very different from a complete graph, a single local-optimizer run isn’t guaranteed to find the global optimum — worth trying multiple seeds."
+  },
+  {
+    "objectID": "projects/qiskit-graph-walks.html#links",
+    "href": "projects/qiskit-graph-walks.html#links",
+    "title": "Qiskit Graph Walks",
+    "section": "Links",
+    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Application, labeled quantum information, research, circuit building, physics, Hamiltonian simulation\npip install qiskit-graph-walks"
+  },
+  {
+    "objectID": "demos/entropy-demo.html#what-it-does",
+    "href": "demos/entropy-demo.html#what-it-does",
+    "title": "Entropy Demo",
+    "section": "What it does",
+    "text": "What it does\nA short text message is encoded to bits and run through simulated T1-decay bit-flip noise over time, with a choice of protection: none, a 3-qubit repetition code (majority vote), or a Steane [[7,1,3]] code, rendered live against an interactive Fano-plane geometry visualizer showing which of the seven qubits are hit as errors accumulate. An optional dynamical-decoupling toggle extends the effective coherence time. Watching the same message survive, garble, or get corrected side by side makes the point a static diagram usually has to explain in words: error correction isn’t a guarantee, it’s a shifted failure threshold."
+  },
+  {
+    "objectID": "demos/entropy-demo.html#links",
+    "href": "demos/entropy-demo.html#links",
+    "title": "Entropy Demo",
     "section": "Links",
     "text": "Links\n\nLive demo\nRepository"
+  },
+  {
+    "objectID": "goals/quantum-registry.html#the-gap-this-would-fill",
+    "href": "goals/quantum-registry.html#the-gap-this-would-fill",
+    "title": "Quantum Certified Registry",
+    "section": "The gap this would fill",
+    "text": "The gap this would fill\nPalomar registers Lean-checked mathematical claims — the formal statement is the claim, checked for fidelity by an LLM against an informal account, with no physical assumptions in the loop. That works for pure math. It doesn’t work for most quantum results worth registering: a CHSH-certified min-entropy bound, a QEC distance certification, a gate-equivalence proof are all hybrid claims — a Lean-checkable mathematical core sitting on a physical premise Lean cannot check at all (no-signaling, a specific noise model, “quantum mechanics is true”). Qiskit Certified QRNG’s own entropy.py already draws this line explicitly: the Bell-violation-to-entropy bound is cited, not re-derived. A registry that doesn’t force that distinction into the open isn’t differentiated from Palomar — it’s just Palomar with a subject filter."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#what-would-actually-be-new",
+    "href": "goals/quantum-registry.html#what-would-actually-be-new",
+    "title": "Quantum Certified Registry",
+    "section": "What would actually be new",
+    "text": "What would actually be new\nEvery entry would disclose two things, not one:\n\nthe Lean-checked mathematical claim (same dual-kernel Comparator model Palomar already uses)\na structured physical hypothesis statement — which physical postulates or protocol assumptions the result depends on, each tagged as “standard textbook physics” or “an additional, non-standard assumption” — so a reader immediately knows what’s mathematically airtight versus physically asserted"
+  },
+  {
+    "objectID": "goals/quantum-registry.html#reuse-dont-rebuild",
+    "href": "goals/quantum-registry.html#reuse-dont-rebuild",
+    "title": "Quantum Certified Registry",
+    "section": "Reuse, don’t rebuild",
+    "text": "Reuse, don’t rebuild\n\nFork PalomarWeb and PalomarPolicy as the starting skeleton — both are published openly, and Palomar’s own FAQ says they’re open to this kind of extension.\nNo changes needed to Comparator for the proof side — pinned Git dependencies are already unrestricted there.\nThe genuinely new work: a physical-hypothesis schema (a sibling to formalization.yaml) and an editorial-review prompt addition that checks whether disclosed hypotheses are actually necessary, correctly characterized as standard/nonstandard, and consistent with the informal account."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
+    "href": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
+    "title": "Quantum Certified Registry",
+    "section": "Why this is a long-term goal, not a project",
+    "text": "Why this is a long-term goal, not a project\nPalomar’s credibility rests on real institutional weight — Lean FRO, ICARM, a board that includes Terence Tao. A registry claiming the same evaluative authority starts with a credibility gap no amount of good code closes alone. The realistic path is partnering with maintainers of libraries like QuAIR/Lean-QIT as initial reviewers, mirroring how Palomar itself is structured, rather than building in isolation and hoping for adoption after the fact — which makes this a multi-month, likely multi-contributor undertaking whose actual prerequisite is a relationship with the community it would serve, not code."
+  },
+  {
+    "objectID": "goals/quantum-registry.html#links",
+    "href": "goals/quantum-registry.html#links",
+    "title": "Quantum Certified Registry",
+    "section": "Links",
+    "text": "Links\n\nPalomar — the registry this would sit alongside\nQuAIR/Lean-QIT — a candidate foundation library for quantum-flavored statements"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Twelve projects. Nine are Qiskit Ecosystem members, one is in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Spacetime Bridge\n\n\nOutcome/spacetime codes from Clifford circuits, feeding stabilizer structure into the Cayley-codes analysis backend\n\n\n\n\n\nSep 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#the-idea",
+    "href": "goals/quantum-proof-factory.html#the-idea",
+    "title": "Quantum Proof Factory",
+    "section": "The idea",
+    "text": "The idea\nTau Ceti’s model — humans set a roadmap, AI agents write the Lean proofs, AI reviewers gate every merge against fixed rubrics — is a continuously-running proof factory, not a one-off project. Nobody has built that factory for quantum information theory specifically. The pieces already exist, separately:\n\nQuAIR/Lean-QIT — the foundation library the agents would build on: states, channels, entropy, hypothesis testing, coding and protocols, and — directly relevant to Qiskit Certified QRNG — nonlocality (Bell phenomena, self-testing) and security (QKD) modules already exist.\nMerLean (arXiv:2602.16554) — an agentic autoformalization method: extract a mathematical statement from a paper’s LaTeX source, formalize it into Lean/Mathlib, translate the result back into human-readable text for review.\nTau Ceti’s three-repository architecture — a human-owned roadmap repo, an AI-reviewed rubric repo, and the proof repo itself — as a structure to adapt rather than invent from scratch."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
+    "href": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
+    "title": "Quantum Proof Factory",
+    "section": "What Q-Swarm adds that none of these have alone",
+    "text": "What Q-Swarm adds that none of these have alone\nMy earlier exploration of Q-Swarm centered on heterogeneous agents as peers — publishing and verifying each other’s claims, not following a fixed assembly line. Tau Ceti’s agents don’t peer-review each other’s mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other’s work against the roadmap — closer to the original social-epistemics framing than Tau Ceti’s more linear pipeline."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
+    "href": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
+    "title": "Quantum Proof Factory",
+    "section": "Where the review rubric gets interesting",
+    "text": "Where the review rubric gets interesting\nA quantum-specific review rubric is also where the physical-hypothesis disclosure idea from Quantum Certified Registry could actually live in practice — a rubric check specific to quantum results, not just generic Lean style, deciding whether a proof correctly separates its Lean-checked mathematical core from any physical premise it depends on."
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
+    "href": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
+    "title": "Quantum Proof Factory",
+    "section": "Why this is a long-term goal, not a project",
+    "text": "Why this is a long-term goal, not a project\nThis is closer in kind to the registry idea above than to any of my shipped Qiskit packages: real infrastructure, a roadmap that has to be curated deliberately (which quantum-info theorems are actually worth formalizing?), and a review rubric that has to be designed rather than copied. What’s different from the registry idea is that all three hard dependencies here already exist as real, working, citable projects to study line-by-line rather than reason about from a README — the risk isn’t “does the tooling exist” but “can a solo effort curate a roadmap and rubric worth other people’s trust.”"
+  },
+  {
+    "objectID": "goals/quantum-proof-factory.html#links",
+    "href": "goals/quantum-proof-factory.html#links",
+    "title": "Quantum Proof Factory",
+    "section": "Links",
+    "text": "Links\n\nTau Ceti\nQuAIR/Lean-QIT\nMerLean (arXiv:2602.16554)\nQ-Swarm"
   },
   {
     "objectID": "index.html",
@@ -287,130 +392,53 @@
     "text": "Other projects\nI have broad interests well outside quantum computing — somewhere around 800 completed certificates across edX, Coursera, FutureLearn, and other platforms, spread across far more fields than any one portfolio page could hold. Not everything I build is Qiskit-related.\nSolar Shield started with a solar eclipse: watching four minutes of the Sun’s output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA’s SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Project Repository.\nElsewhere:\n\nGitHub"
   },
   {
-    "objectID": "goals/quantum-proof-factory.html#the-idea",
-    "href": "goals/quantum-proof-factory.html#the-idea",
-    "title": "Quantum Proof Factory",
-    "section": "The idea",
-    "text": "The idea\nTau Ceti’s model — humans set a roadmap, AI agents write the Lean proofs, AI reviewers gate every merge against fixed rubrics — is a continuously-running proof factory, not a one-off project. Nobody has built that factory for quantum information theory specifically. The pieces already exist, separately:\n\nQuAIR/Lean-QIT — the foundation library the agents would build on: states, channels, entropy, hypothesis testing, coding and protocols, and — directly relevant to Qiskit Certified QRNG — nonlocality (Bell phenomena, self-testing) and security (QKD) modules already exist.\nMerLean (arXiv:2602.16554) — an agentic autoformalization method: extract a mathematical statement from a paper’s LaTeX source, formalize it into Lean/Mathlib, translate the result back into human-readable text for review.\nTau Ceti’s three-repository architecture — a human-owned roadmap repo, an AI-reviewed rubric repo, and the proof repo itself — as a structure to adapt rather than invent from scratch."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
-    "href": "goals/quantum-proof-factory.html#what-q-swarm-adds-that-none-of-these-have-alone",
-    "title": "Quantum Proof Factory",
-    "section": "What Q-Swarm adds that none of these have alone",
-    "text": "What Q-Swarm adds that none of these have alone\nMy earlier exploration of Q-Swarm centered on heterogeneous agents as peers — publishing and verifying each other’s claims, not following a fixed assembly line. Tau Ceti’s agents don’t peer-review each other’s mathematical judgment; they follow a fixed rubric. A genuine synthesis would give the formalizer, prover, and reviewer roles enough independence to actually critique and re-litigate each other’s work against the roadmap — closer to the original social-epistemics framing than Tau Ceti’s more linear pipeline."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
-    "href": "goals/quantum-proof-factory.html#where-the-review-rubric-gets-interesting",
-    "title": "Quantum Proof Factory",
-    "section": "Where the review rubric gets interesting",
-    "text": "Where the review rubric gets interesting\nA quantum-specific review rubric is also where the physical-hypothesis disclosure idea from Quantum Certified Registry could actually live in practice — a rubric check specific to quantum results, not just generic Lean style, deciding whether a proof correctly separates its Lean-checked mathematical core from any physical premise it depends on."
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
-    "href": "goals/quantum-proof-factory.html#why-this-is-a-long-term-goal-not-a-project",
-    "title": "Quantum Proof Factory",
-    "section": "Why this is a long-term goal, not a project",
-    "text": "Why this is a long-term goal, not a project\nThis is closer in kind to the registry idea above than to any of my shipped Qiskit packages: real infrastructure, a roadmap that has to be curated deliberately (which quantum-info theorems are actually worth formalizing?), and a review rubric that has to be designed rather than copied. What’s different from the registry idea is that all three hard dependencies here already exist as real, working, citable projects to study line-by-line rather than reason about from a README — the risk isn’t “does the tooling exist” but “can a solo effort curate a roadmap and rubric worth other people’s trust.”"
-  },
-  {
-    "objectID": "goals/quantum-proof-factory.html#links",
-    "href": "goals/quantum-proof-factory.html#links",
-    "title": "Quantum Proof Factory",
-    "section": "Links",
-    "text": "Links\n\nTau Ceti\nQuAIR/Lean-QIT\nMerLean (arXiv:2602.16554)\nQ-Swarm"
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Twelve projects. Nine are Qiskit Ecosystem members, one is in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "goals/quantum-registry.html#the-gap-this-would-fill",
-    "href": "goals/quantum-registry.html#the-gap-this-would-fill",
-    "title": "Quantum Certified Registry",
-    "section": "The gap this would fill",
-    "text": "The gap this would fill\nPalomar registers Lean-checked mathematical claims — the formal statement is the claim, checked for fidelity by an LLM against an informal account, with no physical assumptions in the loop. That works for pure math. It doesn’t work for most quantum results worth registering: a CHSH-certified min-entropy bound, a QEC distance certification, a gate-equivalence proof are all hybrid claims — a Lean-checkable mathematical core sitting on a physical premise Lean cannot check at all (no-signaling, a specific noise model, “quantum mechanics is true”). Qiskit Certified QRNG’s own entropy.py already draws this line explicitly: the Bell-violation-to-entropy bound is cited, not re-derived. A registry that doesn’t force that distinction into the open isn’t differentiated from Palomar — it’s just Palomar with a subject filter."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#what-would-actually-be-new",
-    "href": "goals/quantum-registry.html#what-would-actually-be-new",
-    "title": "Quantum Certified Registry",
-    "section": "What would actually be new",
-    "text": "What would actually be new\nEvery entry would disclose two things, not one:\n\nthe Lean-checked mathematical claim (same dual-kernel Comparator model Palomar already uses)\na structured physical hypothesis statement — which physical postulates or protocol assumptions the result depends on, each tagged as “standard textbook physics” or “an additional, non-standard assumption” — so a reader immediately knows what’s mathematically airtight versus physically asserted"
-  },
-  {
-    "objectID": "goals/quantum-registry.html#reuse-dont-rebuild",
-    "href": "goals/quantum-registry.html#reuse-dont-rebuild",
-    "title": "Quantum Certified Registry",
-    "section": "Reuse, don’t rebuild",
-    "text": "Reuse, don’t rebuild\n\nFork PalomarWeb and PalomarPolicy as the starting skeleton — both are published openly, and Palomar’s own FAQ says they’re open to this kind of extension.\nNo changes needed to Comparator for the proof side — pinned Git dependencies are already unrestricted there.\nThe genuinely new work: a physical-hypothesis schema (a sibling to formalization.yaml) and an editorial-review prompt addition that checks whether disclosed hypotheses are actually necessary, correctly characterized as standard/nonstandard, and consistent with the informal account."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
-    "href": "goals/quantum-registry.html#why-this-is-a-long-term-goal-not-a-project",
-    "title": "Quantum Certified Registry",
-    "section": "Why this is a long-term goal, not a project",
-    "text": "Why this is a long-term goal, not a project\nPalomar’s credibility rests on real institutional weight — Lean FRO, ICARM, a board that includes Terence Tao. A registry claiming the same evaluative authority starts with a credibility gap no amount of good code closes alone. The realistic path is partnering with maintainers of libraries like QuAIR/Lean-QIT as initial reviewers, mirroring how Palomar itself is structured, rather than building in isolation and hoping for adoption after the fact — which makes this a multi-month, likely multi-contributor undertaking whose actual prerequisite is a relationship with the community it would serve, not code."
-  },
-  {
-    "objectID": "goals/quantum-registry.html#links",
-    "href": "goals/quantum-registry.html#links",
-    "title": "Quantum Certified Registry",
-    "section": "Links",
-    "text": "Links\n\nPalomar — the registry this would sit alongside\nQuAIR/Lean-QIT — a candidate foundation library for quantum-flavored statements"
-  },
-  {
-    "objectID": "demos/entropy-demo.html#what-it-does",
-    "href": "demos/entropy-demo.html#what-it-does",
-    "title": "Entropy Demo",
+    "objectID": "demos/quantum-interpretations.html#what-it-does",
+    "href": "demos/quantum-interpretations.html#what-it-does",
+    "title": "Unitary vs. Collapse",
     "section": "What it does",
-    "text": "What it does\nA short text message is encoded to bits and run through simulated T1-decay bit-flip noise over time, with a choice of protection: none, a 3-qubit repetition code (majority vote), or a Steane [[7,1,3]] code, rendered live against an interactive Fano-plane geometry visualizer showing which of the seven qubits are hit as errors accumulate. An optional dynamical-decoupling toggle extends the effective coherence time. Watching the same message survive, garble, or get corrected side by side makes the point a static diagram usually has to explain in words: error correction isn’t a guarantee, it’s a shifted failure threshold."
+    "text": "What it does\nMany-worlds, Bohmian mechanics, QBism, relational QM, and Copenhagen-without-collapse all predict exactly the same interference statistics as standard unitary quantum mechanics — no experiment distinguishes them. Objective collapse models (GRW, CSL, Diósi-Penrose) are the one family that modifies the Schrödinger equation itself, which makes them the one genuinely falsifiable branch. This demo lets you set a particle’s mass, superposition separation, and environmental decoherence rate, then compares predicted interference visibility over time under pure unitary evolution against the real CSL decoherence formula (Γ ≈ λ·N²·g(Δx/r_C)) — the same N² mass-scaling that current levitated-nanoparticle experiments are using to hunt for a real signal."
   },
   {
-    "objectID": "demos/entropy-demo.html#links",
-    "href": "demos/entropy-demo.html#links",
-    "title": "Entropy Demo",
+    "objectID": "demos/quantum-interpretations.html#links",
+    "href": "demos/quantum-interpretations.html#links",
+    "title": "Unitary vs. Collapse",
     "section": "Links",
     "text": "Links\n\nLive demo\nRepository"
   },
   {
-    "objectID": "projects/qiskit-graph-walks.html#the-problem",
-    "href": "projects/qiskit-graph-walks.html#the-problem",
-    "title": "Qiskit Graph Walks",
+    "objectID": "projects/sqd-dashboard.html#the-problem",
+    "href": "projects/sqd-dashboard.html#the-problem",
+    "title": "Qiskit SQD Dashboard",
     "section": "The problem",
-    "text": "The problem\nQuantum walks are almost always introduced as a physics demo — ballistic spreading on a line or a lattice, contrasted with classical diffusion. That framing undersells them. Continuous- and discrete-time quantum walks are algorithmic primitives with concrete uses on arbitrary graphs: spatial search, and graph-invariant fingerprinting for isomorphism testing. There wasn’t a Qiskit-native package that treated them that way — as composable circuits that plug into transpilation, backends, and noise models like anything else in the ecosystem, rather than one-off demo scripts."
+    "text": "The problem\nqiskit-addon-sqd is a pure compute library — it runs sample-based quantum diagonalization’s self-consistent configuration recovery loop, but it has no visualization layer. The standard workflow is to run the whole loop, then plot whatever you logged, after the fact. Mid-run, you can’t easily see whether the energy is actually converging or the recovered configurations are still drifting."
   },
   {
-    "objectID": "projects/qiskit-graph-walks.html#what-it-does",
-    "href": "projects/qiskit-graph-walks.html#what-it-does",
-    "title": "Qiskit Graph Walks",
-    "section": "What it does",
-    "text": "What it does\nimport networkx as nx\nfrom qiskit_graph_walks import ContinuousTimeQuantumWalk, SpatialSearch, are_possibly_isomorphic\n\nG = nx.petersen_graph()\nwalk = ContinuousTimeQuantumWalk(G)\ncircuit = walk.circuit(time=2.5, initial_vertex=0)   # a genuine Qiskit QuantumCircuit\nprobs = walk.probabilities(time=2.5, initial_vertex=0)\n\nsearch = SpatialSearch(nx.complete_graph(16), marked_vertices=7)\nresult = search.optimize()   # matches the Childs–Goldstone closed form on K_n\ncircuit = search.circuit(result.gamma, result.time)\nFour modules:\n\nctqw — continuous-time quantum walks (H = -γA or the graph Laplacian), circuit construction and exact simulation.\ndtqw — discrete-time (Szegedy) quantum walks, which work on any graph, not just regular ones.\nsearch — Childs & Goldstone (2004) spatial search, with automatic parameter optimization for arbitrary graphs, not just the textbook complete-graph case.\nisomorphism — CTQW-based graph invariants for isomorphism testing."
+    "objectID": "projects/sqd-dashboard.html#what-the-dashboard-does",
+    "href": "projects/sqd-dashboard.html#what-the-dashboard-does",
+    "title": "Qiskit SQD Dashboard",
+    "section": "What the dashboard does",
+    "text": "What the dashboard does\nqiskit-sqd-dashboard hooks directly into that loop using the callback parameter that diagonalize_fermionic_hamiltonian already exposes — no server, no separate process, no data hand-off. You instantiate SQDDiagnostics, call .display() in a notebook cell, and pass diag.callback straight through:\nfrom qiskit_sqd_dashboard import SQDDiagnostics\nfrom qiskit_addon_sqd.fermion import diagonalize_fermionic_hamiltonian\n\ndiag = SQDDiagnostics()\ndiag.display()\n\nresult = diagonalize_fermionic_hamiltonian(\n    hcore, eri, bit_array,\n    samples_per_batch=samples_per_batch,\n    norb=norb, nelec=nelec,\n    callback=diag.callback,\n)\nEach configuration-recovery iteration, it redraws a live Plotly figure tracking:\n\nEnergy convergence — best energy found so far, plus the min/max spread across batches\nSubspace dimension per batch — len(ci_strs_a) * len(ci_strs_b) for each batch’s result\nOrbital occupancy convergence — the max change in average orbital occupancies since the last iteration, which is the same quantity configuration recovery uses internally to correct noisy samples, so watching it flatten is a direct convergence signal\n\nAn earlier version used Plotly’s FigureWidget (via anywidget), but that was dropped in favor of a clear_output() + redraw pattern after FigureWidget turned out to be broken in Colab."
   },
   {
-    "objectID": "projects/qiskit-graph-walks.html#the-part-worth-reading-carefully",
-    "href": "projects/qiskit-graph-walks.html#the-part-worth-reading-carefully",
-    "title": "Qiskit Graph Walks",
-    "section": "The part worth reading carefully",
-    "text": "The part worth reading carefully\nA fingerprint mismatch in the isomorphism module is a genuine proof of non-isomorphism. A fingerprint match is not a proof of isomorphism — it means the test didn’t find a difference, which isn’t the same claim. The package is explicit about this rather than letting the function name imply more than the math supports, and docs/isomorphism.md walks through a classic cospectral-but-non-isomorphic graph pair that the fingerprint does correctly separate, as a worked example of what the technique can and can’t do."
+    "objectID": "projects/sqd-dashboard.html#validation",
+    "href": "projects/sqd-dashboard.html#validation",
+    "title": "Qiskit SQD Dashboard",
+    "section": "Validation",
+    "text": "Validation\nThe panel below is a synthetic reconstruction of the shape of a real run, built from the numbers reported for the project’s actual validation case: an N2 active space (8 orbitals, 10 electrons, STO-3G), with a LUCJ ansatz built from CCSD amplitudes via ffsim, and 2% per-bit hardware noise injected. That run showed genuine multi-iteration convergence — energy improving monotonically over 4-6 iterations, subspace dimension growing from roughly 380 to 700, and the occupancy delta rising slightly before decaying toward zero. It hasn’t yet been validated at the scale of IBM’s full N2/6-31g tutorial (59 qubits).\n\nPlot = require(\"@observablehq/plot@0.6.16\")\n\n\n\n\n\n\n\nviewof iterations = Inputs.range(\n  [1, 6], {value: 5, step: 1, label: \"Configuration recovery iterations\"}\n)\n\n\n\n\n\n\n\ntargetEnergy = -107.62\nstartEnergy = -106.55\n\ndata = {\n  const rows = [];\n  for (let i = 1; i &lt;= iterations; i++) {\n    const progress = 1 - Math.exp(-(i - 1) / 1.8);\n    const energy = startEnergy + (targetEnergy - startEnergy) * progress;\n    const subspaceDim = Math.round(380 + (700 - 380) * (i - 1) / 5);\n    // occupancy delta: rises slightly at iteration 2, then decays toward zero\n    const occDelta = i === 1 ? 0.15\n      : 0.19 * Math.exp(-(i - 2) / 1.1) + 0.001;\n    rows.push({ iteration: i, energy, subspaceDim, occDelta });\n  }\n  return rows;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlot.plot({\n  width: 620,\n  height: 260,\n  marginLeft: 60,\n  x: { label: \"Configuration recovery iteration\", tickFormat: \"d\" },\n  y: { label: \"Best energy (Ha)\" },\n  marks: [\n    Plot.ruleY([targetEnergy], { stroke: \"#0F9D8C\", strokeDasharray: \"4,3\" }),\n    Plot.line(data, { x: \"iteration\", y: \"energy\", stroke: \"#2B6CB0\", strokeWidth: 2 }),\n    Plot.dot(data, { x: \"iteration\", y: \"energy\", r: 3, fill: \"#2B6CB0\" })\n  ]\n})\n\n\n\n\n\n\n\nhtml`&lt;div style=\"font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin: 0.25rem 0 1.25rem 0;\"&gt;\n  &lt;span style=\"color:#0F9D8C;\"&gt;— target energy&lt;/span&gt;\n&lt;/div&gt;`\n\n\n\n\n\n\n\nPlot.plot({\n  width: 620,\n  height: 220,\n  marginLeft: 60,\n  x: { label: \"Configuration recovery iteration\", tickFormat: \"d\" },\n  y: { label: \"Max occupancy Δ vs. prior iteration\" },\n  marks: [\n    Plot.line(data, { x: \"iteration\", y: \"occDelta\", stroke: \"#7A6FF0\", strokeWidth: 2 }),\n    Plot.dot(data, { x: \"iteration\", y: \"occDelta\", r: 3, fill: \"#7A6FF0\" })\n  ]\n})\n\n\n\n\n\n\n\nDrag the slider — energy tightens toward the target as iterations accumulate, while the occupancy delta ticks up once (as configuration recovery starts correcting noisy samples) before collapsing toward zero, which is the actual convergence signal the real widget is built to surface live."
   },
   {
-    "objectID": "projects/qiskit-graph-walks.html#known-limitations",
-    "href": "projects/qiskit-graph-walks.html#known-limitations",
-    "title": "Qiskit Graph Walks",
-    "section": "Known limitations",
-    "text": "Known limitations\n\nThe Szegedy walk step operator is built as an explicit dense unitary. Exact and easy to verify, but it doesn’t scale past a few hundred vertices before the dense linear algebra becomes the bottleneck — synthesizing it into an elementary-gate decomposition for larger graphs is an open contribution.\nSpatialSearch.optimize() uses local numerical optimization (Nelder–Mead) seeded from the complete-graph closed form. For graphs structurally very different from a complete graph, a single local-optimizer run isn’t guaranteed to find the global optimum — worth trying multiple seeds."
+    "objectID": "projects/sqd-dashboard.html#current-limitations-v1",
+    "href": "projects/sqd-dashboard.html#current-limitations-v1",
+    "title": "Qiskit SQD Dashboard",
+    "section": "Current limitations (v1)",
+    "text": "Current limitations (v1)\n\nSingle-run view only — no side-by-side comparison across samples_per_batch settings yet\nNo persistence — diagnostics live only for the notebook session\nNot yet published to PyPI (pip install -e . from source is the only install path today)\nNot yet validated at the full 59-qubit N2/6-31g scale"
   },
   {
-    "objectID": "projects/qiskit-graph-walks.html#links",
-    "href": "projects/qiskit-graph-walks.html#links",
-    "title": "Qiskit Graph Walks",
+    "objectID": "projects/sqd-dashboard.html#links",
+    "href": "projects/sqd-dashboard.html#links",
+    "title": "Qiskit SQD Dashboard",
     "section": "Links",
-    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Application, labeled quantum information, research, circuit building, physics, Hamiltonian simulation\npip install qiskit-graph-walks"
+    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Tooling, labeled chemistry, research, utility-scale\nColab notebook: full N2 example\nBuilt on qiskit-addon-sqd"
   },
   {
     "objectID": "projects/qiskit-qubit-mapping-toolkit.html#what-it-does",
