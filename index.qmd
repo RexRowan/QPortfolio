@@ -132,7 +132,7 @@ Fourteen projects, all open-source, spanning the full stack a Qiskit user actual
 </tr>
 
 <tr>
-  <td><a href="projects/Qiskit-magic-metrics.qmd"><strong>Qiskit Magic Metrics/strong></a></td>
+  <td><a href="projects/qiskit-magic-metrics.qmd"><strong>Qiskit Magic Metrics<strong></a></td>
   <td>Resource metrics</td>
   <td>`PassManager`-native way to measure magic or multipartite entanglement — existing options are hardware-sampled (Qurrium) or unmaintained (qLEET). </td>
   <td><span class="badge bg-warning text-dark">In Review</span></td>
