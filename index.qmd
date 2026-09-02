@@ -27,8 +27,6 @@ Fourteen projects, all open-source, spanning the full stack a Qiskit user actual
 </thead>
 <tbody>
 
-| [**Qiskit Magic Metrics**](https://rexrowan.github.io/QPortfolio/projects/qiskit-magic-metrics.html) | Resource metrics | No exact, `PassManager`-native way to measure magic or multipartite entanglement — existing options are hardware-sampled (Qurrium) or unmaintained (qLEET). | In Review | GF(2) stabilizer-tableau shortcuts answer exactly, in polynomial time, what other tools sample or skip. |
-
 <tr>
   <td><a href="projects/qiberis.qmd"><strong>Qiberis</strong></a></td>
   <td>Interoperability</td>
@@ -131,6 +129,14 @@ Fourteen projects, all open-source, spanning the full stack a Qiskit user actual
   <td>A Clifford circuit's spacetime structure isn't connected to a checkable CSS code without hand translation.</td>
   <td><span class="badge bg-warning text-dark">In Review</span></td>
   <td>Outcome/spacetime-code construction (Delfosse-Paetznick) feeding stabilizer structure straight into the Cayley Codes analysis backend.</td>
+</tr>
+
+<tr>
+  <td><a href="qprojects/iskit-magic-metrics.qmd"><strong>Qiskit Magic Metrics/strong></a></td>
+  <td>Resource metrics</td>
+  <td>`PassManager`-native way to measure magic or multipartite entanglement — existing options are hardware-sampled (Qurrium) or unmaintained (qLEET). </td>
+  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td>GF(2) stabilizer-tableau shortcuts answer exactly, in polynomial time, what other tools sample or skip.</td>
 </tr>
 
 </tbody>
