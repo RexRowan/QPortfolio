@@ -1,0 +1,46 @@
+---
+title: "Qiskit Magic Metrics"
+date: 2026-09-02
+categories: [resource-metrics, entanglement, stabilizer-formalism]
+description: "Exact, stabilizer-accelerated magic and entanglement metrics for Qiskit, as composable PassManager passes"
+image: ../images/magic-metrics.svg
+---
+
+STATUS · In Review · 23 passing tests
+
+## What it does
+
+Three exact resource/entanglement metrics for Qiskit circuits — stabilizer Rényi entropy
+(magic), the Meyer-Wallach measure (global multipartite entanglement), and von Neumann
+entanglement entropy across an arbitrary bipartition — each implemented as a `PassManager`
+`AnalysisPass` that also works as a plain callable. Every metric has two computation paths: a
+general statevector path for arbitrary circuits, and a stabilizer fast path for Clifford
+circuits that answers exactly, in polynomial time, using only the stabilizer tableau — no
+statevector construction, no exponential blowup.
+
+The Meyer-Wallach fast path is the piece I actually derived myself, not sourced from a paper: a
+qubit's reduced state is pure if and only if some GF(2) combination of stabilizer generators
+cancels out on every other qubit, found via a null-space computation over the binary field
+rather than the usual reduced-density-matrix route.
+
+## Why exact, stabilizer-accelerated metrics
+
+Before writing any code, I checked what already existed rather than assume a clean gap.
+[Qurrium/Qurry](https://pypi.org/project/qurrium/) is a real, actively maintained package that
+measures magic-adjacent quantities via randomized measurement on real or simulated hardware —
+the right tool when you have hardware access and want a shot-sampled estimate.
+[qLEET](https://github.com/QLemma/qleet) implements expressibility and Meyer-Wallach entangling
+capability, but looks unmaintained and isn't `PassManager`-integrated. Neither combines exact,
+deterministic computation with stabilizer-tableau shortcuts and `PassManager`-native
+composability, which is the actual gap this package fills — narrower than "no ecosystem
+equivalent exists," and stated that way in the repo's own prior-art writeup rather than glossed
+over.
+
+A Lean 4 proof of the Meyer-Wallach null-space claim — the one derivation above that isn't
+already published elsewhere — is planned but not yet built. Tracked openly in the repo's
+roadmap, not implied as already done.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Magic-Metrics)
+- [Qiskit Ecosystem nomination](https://github.com/Qiskit/ecosystem/issues/1358)
