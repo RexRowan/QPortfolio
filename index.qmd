@@ -139,6 +139,14 @@ Fourteen projects, all open-source, spanning the full stack a Qiskit user actual
   <td>GF(2) stabilizer-tableau shortcuts answer exactly, in polynomial time, what other tools sample or skip.</td>
 </tr>
 
+<tr>
+  <td><a href="projects/qiskit-quantum-loadbalancer.qmd"><strong>Qiskit Quantum Load Balancer<strong></a></td>
+  <td>Tooling</td>
+  <td>Queue- and noise-aware backend selection and routing for IBM Quantum backends. </td>
+  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  < td> Route job submission with automatic ISA-transpilation and failover across ranked backends.</td>
+</tr>
+
 </tbody>
 </table>
 :::
