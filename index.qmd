@@ -144,7 +144,7 @@ Fourteen projects, all open-source, spanning the full stack a Qiskit user actual
   <td>Tooling</td>
   <td>Queue- and noise-aware backend selection and routing for IBM Quantum backends. </td>
   <td><span class="badge bg-warning text-dark">In Review</span></td>
-  < td> Route job submission with automatic ISA-transpilation and failover across ranked backends.</td>
+  <td>Can route job submission with automatic ISA transpilation and failover if a backend errors out mid-attempt.</td>
 </tr>
 
 </tbody>
