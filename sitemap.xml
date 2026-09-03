@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-lean-verify-game.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qkd-lab.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-zx-verified.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-magic-metrics.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-cayley-codes.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-qubit-mapping-toolkit.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/sqd-dashboard.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-graph-walks.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/demos/entropy-demo.html</loc>
-    <lastmod>2026-09-03T08:31:50.417Z</lastmod>
-  </url>
-  <url>
     <loc>https://rexrowan.github.io/goals/quantum-registry.html</loc>
-    <lastmod>2026-09-03T08:31:50.427Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects.html</loc>
-    <lastmod>2026-09-03T08:31:50.428Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/goals/quantum-proof-factory.html</loc>
-    <lastmod>2026-09-03T08:31:50.427Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/index.html</loc>
-    <lastmod>2026-09-03T08:31:50.428Z</lastmod>
+    <lastmod>2026-09-03T08:36:25.049Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/demos/quantum-interpretations.html</loc>
-    <lastmod>2026-09-03T08:31:50.417Z</lastmod>
+    <lastmod>2026-09-03T08:36:25.037Z</lastmod>
   </url>
   <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-quantum-loadbalancer.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-spacetime-bridge.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
+    <loc>https://rexrowan.github.io/projects.html</loc>
+    <lastmod>2026-09-03T08:36:25.049Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/projects/qiskit-stateviz.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
   </url>
   <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-lean-bridge.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
+    <loc>https://rexrowan.github.io/projects/sqd-dashboard.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
   </url>
   <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-certified-qrng.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
+    <loc>https://rexrowan.github.io/projects/qiskit-zx-verified.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
   </url>
   <url>
-    <loc>https://rexrowan.github.io/projects/qiskit-transpile-verify.html</loc>
-    <lastmod>2026-09-03T08:31:50.429Z</lastmod>
+    <loc>https://rexrowan.github.io/projects/qiskit-quantum-loadbalancer.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-graph-walks.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-spacetime-bridge.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
   </url>
   <url>
     <loc>https://rexrowan.github.io/projects/qiberis.html</loc>
-    <lastmod>2026-09-03T08:31:50.428Z</lastmod>
+    <lastmod>2026-09-03T08:36:25.050Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/index.html</loc>
+    <lastmod>2026-09-03T08:36:25.049Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-certified-qrng.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-qubit-mapping-toolkit.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-lean-bridge.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-cayley-codes.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qkd-lab.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-transpile-verify.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-magic-metrics.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/projects/qiskit-lean-verify-game.html</loc>
+    <lastmod>2026-09-03T08:36:25.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/demos/entropy-demo.html</loc>
+    <lastmod>2026-09-03T08:36:25.036Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rexrowan.github.io/goals/quantum-proof-factory.html</loc>
+    <lastmod>2026-09-03T08:36:25.048Z</lastmod>
   </url>
 </urlset>
