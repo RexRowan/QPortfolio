@@ -1,0 +1,31 @@
+---
+title: "Qiskit Quantum Loadbalancer"
+description: "Queue- and noise-aware backend selection and routing for IBM Quantum backends, verified against real hardware"
+date: 2026-09-03
+image: ../images/quantum-loadbalancer.svg
+categories: [backend-orchestration, runtime-tooling, noise-modeling]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Qiskit Ecosystem submission in review · PR #1363 (draft)
+:::
+
+## What it does
+
+`QiskitRuntimeService.least_busy()` only looks at queue depth. This package scores candidate backends per-circuit instead — whether the circuit actually fits a given device, plus an estimate of expected fidelity after transpilation, pulled from live calibration data — then can route job submission with automatic ISA transpilation and failover if a backend errors out mid-attempt.
+
+Three pluggable scoring strategies (`QueueOnlyScoring`, `NoiseAwareScoring`, `HybridScoring`), a ranking selector, and a router that retries the next-best candidate on submission failure.
+
+## What's actually been checked, and what hasn't
+
+The fidelity estimate is regression-tested against Qiskit Aer noise-model simulation (~0.02 agreement across bell-pair and GHZ test cases) — but that's a self-consistency check of the analytic math against a simulation built from the *same* calibration data, not independent validation against real device behavior (crosstalk, drift, and correlated errors aren't in either the estimate or the check).
+
+The routing and submission path, by contrast, has been run against a real `QiskitRuntimeService` twice. The first attempt caught a genuine bug: IBM Runtime requires ISA-conformant circuits since March 2024, and the router was handing the raw circuit to the submission callback — `ibm_fez` rejected it outright. Fixed, then reran: a real job completed successfully on `ibm_fez` in 3 seconds.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Quantum-Loadbalancer){target="_blank"}
+- [Qiskit Ecosystem submission](https://github.com/Qiskit/ecosystem/pull/1363){target="_blank"} — nomination PR, in review
