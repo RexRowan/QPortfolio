@@ -3,7 +3,7 @@ title: "Qiskit Magic Metrics"
 date: 2026-09-02
 categories: [resource-metrics, entanglement, stabilizer-formalism]
 description: "Exact, stabilizer-accelerated magic and entanglement metrics for Qiskit, as composable PassManager passes"
-image: ../images/magic-metrics.svg
+image: ../images/qiskit-magic-metrics.svg
 ---
 
 STATUS · In Review · 23 passing tests
