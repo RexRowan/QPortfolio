@@ -1,0 +1,30 @@
+---
+title: "Qiskit Quantum Traffic Engineering"
+description: "An intelligent traffic-management layer above IBM Quantum Runtime: SLA/outage-driven job rerouting, verified end-to-end against live hardware"
+date: 2026-09-04
+image: ../images/traffic-engineering.svg
+categories: [traffic-management, job-scheduling, runtime-tooling]
+---
+
+::: {.circuit-rule}
+:::
+
+::: {.status-readout}
+STATUS · Active development · a `qiskit-ibm-runtime` discussion issue is drafted but not yet filed
+:::
+
+## What it does
+
+Evolved from queue/noise-aware backend selection into active job monitoring: tracks every submitted job's live status and reroutes a still-queued one if it breaches a user-declared wait-time SLA or its backend goes non-operational. Deliberately *not* "hunt for the shortest queue" — rerouting only fires on an SLA breach you set yourself or a real outage, specifically to avoid anything that could look like gaming IBM's fair-share scheduler. A job can be pinned to a specific backend to opt out of rerouting entirely, while still being tracked normally.
+
+## What's actually been verified
+
+The reroute engine's cancel-and-resubmit path is confirmed live, end to end: a real queued job on `ibm_kingston` breached its SLA, was cancelled, and was cleanly resubmitted to `ibm_marrakesh` — which then ran to completion. Getting there took two real bugs caught in the process, not found by inspection: an ISA-transpilation gap in the reroute path specifically (the initial submission path already handled it; the reroute path didn't, until a live crash on `ibm_kingston` showed why), and a stale-score-baseline bug in the improvement check, caught by test coverage before it ever reached production.
+
+Two realistic-threshold runs (10-minute and 5-minute SLAs) both logged zero reroutes — traced to the actual queue-duration data in the run logs: jobs were leaving `QUEUED` within 1–15 seconds under current IBM Open-plan load. That's an honest property of the environment, not a verification gap to keep re-testing identically.
+
+33 automated tests (fake backends and jobs, plus a Aer-noise-model regression check on the fidelity estimate) currently pass.
+
+## Links
+
+- [Repository](https://github.com/RexRowan/Qiskit-Quantum-Traffic-Engineering){target="_blank"}
