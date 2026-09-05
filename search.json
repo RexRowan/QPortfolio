@@ -53,7 +53,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Fifteen projects. Nine are Qiskit Ecosystem members, two are in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Quantum Loadbalancer\n\n\nQueue- and noise-aware backend selection and routing for IBM Quantum backends, verified against real hardware\n\n\n\n\n\nSep 3, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Magic Metrics\n\n\nExact, stabilizer-accelerated magic and entanglement metrics for Qiskit, as composable PassManager passes\n\n\n\n\n\nSep 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Spacetime Bridge\n\n\nOutcome/spacetime codes from Clifford circuits, feeding stabilizer structure into the Cayley-codes analysis backend\n\n\n\n\n\nSep 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Fifteen projects. Nine are Qiskit Ecosystem members, two are in review, one is Ecosystem-ready but not yet submitted, and one — the certified-QRNG work — is early-stage and not yet submitted. Each links to its repo, its docs, and — where it makes sense — a live demo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Quantum Traffic Engineering\n\n\nAn intelligent traffic-management layer above IBM Quantum Runtime: SLA/outage-driven job rerouting, verified end-to-end against live hardware\n\n\n\n\n\nSep 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Quantum Loadbalancer\n\n\nQueue- and noise-aware backend selection and routing for IBM Quantum backends, verified against real hardware\n\n\n\n\n\nSep 3, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Magic Metrics\n\n\nExact, stabilizer-accelerated magic and entanglement metrics for Qiskit, as composable PassManager passes\n\n\n\n\n\nSep 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Spacetime Bridge\n\n\nOutcome/spacetime codes from Clifford circuits, feeding stabilizer structure into the Cayley-codes analysis backend\n\n\n\n\n\nSep 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Certified QRNG\n\n\nDevice-independent-certified randomness expansion — CHSH violation, a statistically sound min-entropy bound, a Toeplitz extractor, and a Lean soundness proof in progress\n\n\n\n\n\nAug 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN Verify Game\n\n\nCircuit puzzles graded by Qiskit, cross-checked against a real Lean 4 proof corpus\n\n\n\n\n\nAug 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Cayley Codes\n\n\nCSS quantum code construction from Cayley graphs, via the Couvreur-Delfosse-Zémor construction\n\n\n\n\n\nAug 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Transpile Verify\n\n\nTranslation validation for the Qiskit transpiler\n\n\n\n\n\nAug 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Qubit Mapping Toolkit\n\n\nGraph-theoretic layout and routing heuristics, benchmarked against LightSABRE\n\n\n\n\n\nAug 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit ZX Verified\n\n\nA Clifford phase-gate fusion pass with a Lean 4 formal verification bridge\n\n\n\n\n\nAug 13, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit Graph Walks\n\n\nQuantum walk algorithms as graph-problem primitives, built on Qiskit\n\n\n\n\n\nAug 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit LEAN bridge\n\n\nBridging Qiskit’s StandardEquivalenceLibrary to formally verified proofs in LeanQuantum\n\n\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit QKD Lab\n\n\nA BB84 QKD protocol simulator built directly on Qiskit primitives\n\n\n\n\n\nAug 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit StateViz\n\n\nInteractive, Plotly-based statevector visualization for Qiskit\n\n\n\n\n\nAug 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiskit SQD Dashboard\n\n\nLive convergence diagnostics for qiskit-addon-sqd’s configuration recovery loop\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nQiberis\n\n\nA backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane\n\n\n\n\n\nJun 1, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/qiskit-stateviz.html#the-problem",
@@ -259,46 +259,67 @@
     "text": "Links\n\nRepository\nQiskit Ecosystem submission - nomination PR, in review"
   },
   {
-    "objectID": "projects/qiberis.html#the-problem",
-    "href": "projects/qiberis.html#the-problem",
-    "title": "Qiberis",
-    "section": "The problem",
-    "text": "The problem\nQiskit, Cirq, and PennyLane each have their own circuit objects, gate names, execution APIs — and, less obviously, their own bit-ordering conventions for returned counts. Comparing results across simulators, or writing code that shouldn’t care which one happens to be installed, means re-solving the same translation problem every time."
+    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#what-it-does",
+    "href": "projects/qiskit-qubit-mapping-toolkit.html#what-it-does",
+    "title": "Qiskit Qubit Mapping Toolkit",
+    "section": "What it does",
+    "text": "What it does\nGraph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps: IsomorphismLayout and WalkBasedLayout for initial placement, BaselineSwapRouter and LookaheadSwapRouter for routing. Registered as Qiskit transpiler plugins (prefixed qqm_ to avoid colliding with Qiskit’s own built-in plugin names), so they drop into an existing transpile pipeline rather than requiring a separate workflow."
   },
   {
-    "objectID": "projects/qiberis.html#what-qiberis-does",
-    "href": "projects/qiberis.html#what-qiberis-does",
-    "title": "Qiberis",
-    "section": "What Qiberis does",
-    "text": "What Qiberis does\nQiberis defines a circuit once, against a small backend-agnostic intermediate representation, and runs it unmodified on any of three simulators:\nfrom qiberis import Circuit\nfrom qiberis.backends.qiskit_backend import QiskitAerBackend\nfrom qiberis.backends.cirq_backend import CirqSimulatorBackend\nfrom qiberis.backends.pennylane_backend import PennyLaneLightningBackend\n\ncircuit = Circuit(3)\ncircuit.h(0).cx(0, 1).cx(1, 2).measure_all()\n\nfor backend_cls in (QiskitAerBackend, CirqSimulatorBackend, PennyLaneLightningBackend):\n    backend = backend_cls()\n    result = backend.run(circuit, shots=1000)\n    print(result)\n\nQiskit Aer — statevector simulation\nCirq — Google-ecosystem simulation, for cross-checking gate decompositions\nPennyLane (lightning.qubit) — for hybrid and variational workflows\n\nEach backend is an optional dependency (pip install -e \".[qiskit]\", .[cirq], .[pennylane], or .[all]); the core package — Circuit and Result — has zero hard dependencies, and an adapter you haven’t installed raises a clear ImportError rather than failing silently."
+    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#why-graph-theory-for-this-problem",
+    "href": "projects/qiskit-qubit-mapping-toolkit.html#why-graph-theory-for-this-problem",
+    "title": "Qiskit Qubit Mapping Toolkit",
+    "section": "Why graph theory for this problem",
+    "text": "Why graph theory for this problem\nInitial layout and routing are graph problems — matching a logical circuit’s interaction graph against a hardware coupling graph, and finding low-cost paths through it when a direct edge isn’t available — and treating them as such (isomorphism search, walk-based cost heuristics) rather than as transpiler-specific special cases is what the underlying math background this portfolio’s other work draws on (graph theory, walk algorithms) is actually good for here."
   },
   {
-    "objectID": "projects/qiberis.html#the-part-that-actually-breaks-most-universal-circuit-projects",
-    "href": "projects/qiberis.html#the-part-that-actually-breaks-most-universal-circuit-projects",
-    "title": "Qiberis",
-    "section": "The part that actually breaks most “universal circuit” projects",
-    "text": "The part that actually breaks most “universal circuit” projects\nQiskit’s native count strings are little-endian — clbit 0 is the rightmost character. Cirq and PennyLane’s qml.counts are naturally ordered with the first wire leftmost. Silently mixing these is the classic way a “backend-agnostic” layer quietly gives wrong answers.\nQiberis’s convention: in every Result.counts key, the leftmost character is always clbit/qubit 0. The Qiskit adapter reverses its native strings to match; Cirq and PennyLane need no adjustment. This is enforced by a dedicated regression test — an asymmetric circuit (X on qubit 0 only) run through all three backends, checked to agree on the same string — not just asserted in a docstring."
+    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#benchmarked-not-just-implemented",
+    "href": "projects/qiskit-qubit-mapping-toolkit.html#benchmarked-not-just-implemented",
+    "title": "Qiskit Qubit Mapping Toolkit",
+    "section": "Benchmarked, not just implemented",
+    "text": "Benchmarked, not just implemented\nEvery heuristic here is benchmarked directly against Qiskit’s own production default, LightSABRE (SabreLayout/SabreSwap, Qiskit ≥1.2), rather than presented as a improvement without a baseline comparison. This project’s claim is about where these heuristics land relative to LightSABRE on specific circuit/coupling-map combinations, not a general “faster than Qiskit” claim."
   },
   {
-    "objectID": "projects/qiberis.html#architecture",
-    "href": "projects/qiberis.html#architecture",
-    "title": "Qiberis",
-    "section": "Architecture",
-    "text": "Architecture\nqiberis/\n  circuit.py          # Circuit + Instruction: the backend-agnostic IR\n  result.py           # Result: normalized counts/probabilities\n  backends/\n    base.py           # Backend ABC — one method: run(circuit, shots) -&gt; Result\n    qiskit_backend.py\n    cirq_backend.py\n    pennylane_backend.py\ntests/\n  test_cross_backend.py  # runs the same circuits on every installed backend\n                          # and checks they agree with each other\nSupported gates: h, x, y, z, s, t, rx, ry, rz, cx, cz, swap, ccx, barrier, measure. Adding a new backend is: subclass Backend, implement run(), translate Circuit.instructions into the target library’s native object, normalize the output into Qiberis’s bit-ordering convention, then add it to test_cross_backend.py’s BACKENDS list — the existing GHZ, bit-ordering, and cross-agreement tests immediately validate it against the other two."
-  },
-  {
-    "objectID": "projects/qiberis.html#roadmap",
-    "href": "projects/qiberis.html#roadmap",
-    "title": "Qiberis",
-    "section": "Roadmap",
-    "text": "Roadmap\n\nReal hardware backends (IBM Quantum, AWS Braket QPUs) behind the same interface\nA transpiler/optimization pass operating directly on the IR\nParametric circuits — binding parameters without rebuilding the circuit\nStatevector and expectation-value result modes, not just counts\nMore gates: u, crx/cry/crz, iswap, multi-controlled gates"
-  },
-  {
-    "objectID": "projects/qiberis.html#links",
-    "href": "projects/qiberis.html#links",
-    "title": "Qiberis",
+    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#links",
+    "href": "projects/qiskit-qubit-mapping-toolkit.html#links",
+    "title": "Qiskit Qubit Mapping Toolkit",
     "section": "Links",
-    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Converter, labeled circuit building, currently at limited-support/experimental maturity"
+    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Transpiler plugin, labeled circuit optimization, research, quantum information\nPyPI"
+  },
+  {
+    "objectID": "projects/qiskit-certified-qrng.html#what-it-does",
+    "href": "projects/qiskit-certified-qrng.html#what-it-does",
+    "title": "Qiskit Certified QRNG",
+    "section": "What it does",
+    "text": "What it does\nA device-independent randomness expansion pipeline: CHSH-game circuits on a Bell pair, a statistically sound lower-confidence bound on the observed Bell violation (not the raw point estimate — see below), the cited Pironio et al. (2010) min-entropy bound, and a Toeplitz-hashing extractor. A Lean 4 formalization of the extractor’s soundness argument (the classical leftover hash lemma) is in progress alongside it, in the same spirit as Qiskit-ZX-Verified and Qiskit-LEAN-Bridge: the security claim is meant to be machine-checked, not just asserted.\nIt is not randomness created from nothing. Every device-independent QRNG protocol in the literature — this one included — consumes a short trusted weak-random seed to choose measurement settings, and uses the certified Bell violation to expand that seed into a longer string with more min-entropy than went in. The seed cost is accounted for explicitly rather than hidden.\npip install -e .  # not yet published to PyPI\nRequires Qiskit 2.0 or later (qiskit&gt;=2.0,&lt;3)."
+  },
+  {
+    "objectID": "projects/qiskit-certified-qrng.html#why-the-confidence-bound-not-the-point-estimate",
+    "href": "projects/qiskit-certified-qrng.html#why-the-confidence-bound-not-the-point-estimate",
+    "title": "Qiskit Certified QRNG",
+    "section": "Why the confidence bound, not the point estimate",
+    "text": "Why the confidence bound, not the point estimate\nUsing the raw point estimate of the CHSH value S to certify min-entropy is not sound: at realistic shot counts, ordinary sampling noise alone routinely pushes the measured S above the true value — even above the Tsirelson bound outright. An early version of this pipeline did exactly that and crashed on its own noise. The fix, entropy.chsh_lower_confidence_bound, uses a Hoeffding-based one-sided confidence bound instead, so the entropy certification holds with a stated confidence level rather than being an artifact of finite sampling."
+  },
+  {
+    "objectID": "projects/qiskit-certified-qrng.html#status",
+    "href": "projects/qiskit-certified-qrng.html#status",
+    "title": "Qiskit Certified QRNG",
+    "section": "Status",
+    "text": "Status\nImplemented and validated against a real local simulator run (16/16 tests):\n\nCHSH circuit layer and correlator estimation\nStatistically sound lower-confidence-bound entropy certification\nToeplitz-hashing extractor, with an explicit seed-length helper\nEnd-to-end pipeline wiring the above together\n\n\nNot yet done, and stated plainly rather than glossed over: lean/LeftoverHash/Basic.lean proves only the elementary expected-collision-probability half of the leftover hash lemma — the Cauchy–Schwarz step that actually yields the statistical-distance guarantee is an explicit sorry, and the file has not been built with lake build in this repository yet. A standing cross-check script (bridge/cross_check.py) currently shows a real, unresolved 2-bit discrepancy between this package’s output-length formula and the textbook L2-method constant — closing that is the next milestone, not a footnote. There has also been no real-hardware run yet, only the ideal local simulator."
+  },
+  {
+    "objectID": "projects/qiskit-certified-qrng.html#roadmap",
+    "href": "projects/qiskit-certified-qrng.html#roadmap",
+    "title": "Qiskit Certified QRNG",
+    "section": "Roadmap",
+    "text": "Roadmap\n\nv0.2 — finish the Lean proof of the classical leftover hash lemma and reconcile the 2-bit constant discrepancy the cross-check script currently flags.\nv0.3 — noisy-simulator and real-hardware validation; real devices never saturate the Tsirelson bound, so the confidence-bound margins need a realistic re-check.\nv0.4 — the harder, real target: a quantum-conditioned leftover hash lemma (min-entropy conditioned on a quantum eavesdropper’s system, not just a classical one), which is what device-independent security actually requires and what v0.1–v0.3 do not yet establish. Until it lands, this package is honestly “certified against a classical adversary,” not yet “device-independently certified against a quantum one,” and the docs say so rather than let the project name carry more weight than the proof does."
+  },
+  {
+    "objectID": "projects/qiskit-certified-qrng.html#links",
+    "href": "projects/qiskit-certified-qrng.html#links",
+    "title": "Qiskit Certified QRNG",
+    "section": "Links",
+    "text": "Links\n\nRepository\nQiskit Ecosystem listing - classified Application, labeled quantum information, research"
   },
   {
     "objectID": "index.html",
@@ -350,67 +371,67 @@
     "text": "Other projects\nI have broad interests well outside quantum computing — somewhere around 800 completed certificates across edX, Coursera, FutureLearn, and other platforms, spread across far more fields than any one portfolio page could hold. Not everything I build is Qiskit-related.\nSolar Shield started with a solar eclipse: watching four minutes of the Sun’s output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA’s SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Project Repository.\nElsewhere:\n\nGitHub"
   },
   {
-    "objectID": "projects/qiskit-certified-qrng.html#what-it-does",
-    "href": "projects/qiskit-certified-qrng.html#what-it-does",
-    "title": "Qiskit Certified QRNG",
-    "section": "What it does",
-    "text": "What it does\nA device-independent randomness expansion pipeline: CHSH-game circuits on a Bell pair, a statistically sound lower-confidence bound on the observed Bell violation (not the raw point estimate — see below), the cited Pironio et al. (2010) min-entropy bound, and a Toeplitz-hashing extractor. A Lean 4 formalization of the extractor’s soundness argument (the classical leftover hash lemma) is in progress alongside it, in the same spirit as Qiskit-ZX-Verified and Qiskit-LEAN-Bridge: the security claim is meant to be machine-checked, not just asserted.\nIt is not randomness created from nothing. Every device-independent QRNG protocol in the literature — this one included — consumes a short trusted weak-random seed to choose measurement settings, and uses the certified Bell violation to expand that seed into a longer string with more min-entropy than went in. The seed cost is accounted for explicitly rather than hidden.\npip install -e .  # not yet published to PyPI\nRequires Qiskit 2.0 or later (qiskit&gt;=2.0,&lt;3)."
+    "objectID": "projects/qiberis.html#the-problem",
+    "href": "projects/qiberis.html#the-problem",
+    "title": "Qiberis",
+    "section": "The problem",
+    "text": "The problem\nQiskit, Cirq, and PennyLane each have their own circuit objects, gate names, execution APIs — and, less obviously, their own bit-ordering conventions for returned counts. Comparing results across simulators, or writing code that shouldn’t care which one happens to be installed, means re-solving the same translation problem every time."
   },
   {
-    "objectID": "projects/qiskit-certified-qrng.html#why-the-confidence-bound-not-the-point-estimate",
-    "href": "projects/qiskit-certified-qrng.html#why-the-confidence-bound-not-the-point-estimate",
-    "title": "Qiskit Certified QRNG",
-    "section": "Why the confidence bound, not the point estimate",
-    "text": "Why the confidence bound, not the point estimate\nUsing the raw point estimate of the CHSH value S to certify min-entropy is not sound: at realistic shot counts, ordinary sampling noise alone routinely pushes the measured S above the true value — even above the Tsirelson bound outright. An early version of this pipeline did exactly that and crashed on its own noise. The fix, entropy.chsh_lower_confidence_bound, uses a Hoeffding-based one-sided confidence bound instead, so the entropy certification holds with a stated confidence level rather than being an artifact of finite sampling."
+    "objectID": "projects/qiberis.html#what-qiberis-does",
+    "href": "projects/qiberis.html#what-qiberis-does",
+    "title": "Qiberis",
+    "section": "What Qiberis does",
+    "text": "What Qiberis does\nQiberis defines a circuit once, against a small backend-agnostic intermediate representation, and runs it unmodified on any of three simulators:\nfrom qiberis import Circuit\nfrom qiberis.backends.qiskit_backend import QiskitAerBackend\nfrom qiberis.backends.cirq_backend import CirqSimulatorBackend\nfrom qiberis.backends.pennylane_backend import PennyLaneLightningBackend\n\ncircuit = Circuit(3)\ncircuit.h(0).cx(0, 1).cx(1, 2).measure_all()\n\nfor backend_cls in (QiskitAerBackend, CirqSimulatorBackend, PennyLaneLightningBackend):\n    backend = backend_cls()\n    result = backend.run(circuit, shots=1000)\n    print(result)\n\nQiskit Aer — statevector simulation\nCirq — Google-ecosystem simulation, for cross-checking gate decompositions\nPennyLane (lightning.qubit) — for hybrid and variational workflows\n\nEach backend is an optional dependency (pip install -e \".[qiskit]\", .[cirq], .[pennylane], or .[all]); the core package — Circuit and Result — has zero hard dependencies, and an adapter you haven’t installed raises a clear ImportError rather than failing silently."
   },
   {
-    "objectID": "projects/qiskit-certified-qrng.html#status",
-    "href": "projects/qiskit-certified-qrng.html#status",
-    "title": "Qiskit Certified QRNG",
-    "section": "Status",
-    "text": "Status\nImplemented and validated against a real local simulator run (16/16 tests):\n\nCHSH circuit layer and correlator estimation\nStatistically sound lower-confidence-bound entropy certification\nToeplitz-hashing extractor, with an explicit seed-length helper\nEnd-to-end pipeline wiring the above together\n\n\nNot yet done, and stated plainly rather than glossed over: lean/LeftoverHash/Basic.lean proves only the elementary expected-collision-probability half of the leftover hash lemma — the Cauchy–Schwarz step that actually yields the statistical-distance guarantee is an explicit sorry, and the file has not been built with lake build in this repository yet. A standing cross-check script (bridge/cross_check.py) currently shows a real, unresolved 2-bit discrepancy between this package’s output-length formula and the textbook L2-method constant — closing that is the next milestone, not a footnote. There has also been no real-hardware run yet, only the ideal local simulator."
+    "objectID": "projects/qiberis.html#the-part-that-actually-breaks-most-universal-circuit-projects",
+    "href": "projects/qiberis.html#the-part-that-actually-breaks-most-universal-circuit-projects",
+    "title": "Qiberis",
+    "section": "The part that actually breaks most “universal circuit” projects",
+    "text": "The part that actually breaks most “universal circuit” projects\nQiskit’s native count strings are little-endian — clbit 0 is the rightmost character. Cirq and PennyLane’s qml.counts are naturally ordered with the first wire leftmost. Silently mixing these is the classic way a “backend-agnostic” layer quietly gives wrong answers.\nQiberis’s convention: in every Result.counts key, the leftmost character is always clbit/qubit 0. The Qiskit adapter reverses its native strings to match; Cirq and PennyLane need no adjustment. This is enforced by a dedicated regression test — an asymmetric circuit (X on qubit 0 only) run through all three backends, checked to agree on the same string — not just asserted in a docstring."
   },
   {
-    "objectID": "projects/qiskit-certified-qrng.html#roadmap",
-    "href": "projects/qiskit-certified-qrng.html#roadmap",
-    "title": "Qiskit Certified QRNG",
+    "objectID": "projects/qiberis.html#architecture",
+    "href": "projects/qiberis.html#architecture",
+    "title": "Qiberis",
+    "section": "Architecture",
+    "text": "Architecture\nqiberis/\n  circuit.py          # Circuit + Instruction: the backend-agnostic IR\n  result.py           # Result: normalized counts/probabilities\n  backends/\n    base.py           # Backend ABC — one method: run(circuit, shots) -&gt; Result\n    qiskit_backend.py\n    cirq_backend.py\n    pennylane_backend.py\ntests/\n  test_cross_backend.py  # runs the same circuits on every installed backend\n                          # and checks they agree with each other\nSupported gates: h, x, y, z, s, t, rx, ry, rz, cx, cz, swap, ccx, barrier, measure. Adding a new backend is: subclass Backend, implement run(), translate Circuit.instructions into the target library’s native object, normalize the output into Qiberis’s bit-ordering convention, then add it to test_cross_backend.py’s BACKENDS list — the existing GHZ, bit-ordering, and cross-agreement tests immediately validate it against the other two."
+  },
+  {
+    "objectID": "projects/qiberis.html#roadmap",
+    "href": "projects/qiberis.html#roadmap",
+    "title": "Qiberis",
     "section": "Roadmap",
-    "text": "Roadmap\n\nv0.2 — finish the Lean proof of the classical leftover hash lemma and reconcile the 2-bit constant discrepancy the cross-check script currently flags.\nv0.3 — noisy-simulator and real-hardware validation; real devices never saturate the Tsirelson bound, so the confidence-bound margins need a realistic re-check.\nv0.4 — the harder, real target: a quantum-conditioned leftover hash lemma (min-entropy conditioned on a quantum eavesdropper’s system, not just a classical one), which is what device-independent security actually requires and what v0.1–v0.3 do not yet establish. Until it lands, this package is honestly “certified against a classical adversary,” not yet “device-independently certified against a quantum one,” and the docs say so rather than let the project name carry more weight than the proof does."
+    "text": "Roadmap\n\nReal hardware backends (IBM Quantum, AWS Braket QPUs) behind the same interface\nA transpiler/optimization pass operating directly on the IR\nParametric circuits — binding parameters without rebuilding the circuit\nStatevector and expectation-value result modes, not just counts\nMore gates: u, crx/cry/crz, iswap, multi-controlled gates"
   },
   {
-    "objectID": "projects/qiskit-certified-qrng.html#links",
-    "href": "projects/qiskit-certified-qrng.html#links",
-    "title": "Qiskit Certified QRNG",
+    "objectID": "projects/qiberis.html#links",
+    "href": "projects/qiberis.html#links",
+    "title": "Qiberis",
     "section": "Links",
-    "text": "Links\n\nRepository\nQiskit Ecosystem listing - classified Application, labeled quantum information, research"
+    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Converter, labeled circuit building, currently at limited-support/experimental maturity"
   },
   {
-    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#what-it-does",
-    "href": "projects/qiskit-qubit-mapping-toolkit.html#what-it-does",
-    "title": "Qiskit Qubit Mapping Toolkit",
+    "objectID": "projects/qiskit-quantum-traffic-engineering.html#what-it-does",
+    "href": "projects/qiskit-quantum-traffic-engineering.html#what-it-does",
+    "title": "Qiskit Quantum Traffic Engineering",
     "section": "What it does",
-    "text": "What it does\nGraph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps: IsomorphismLayout and WalkBasedLayout for initial placement, BaselineSwapRouter and LookaheadSwapRouter for routing. Registered as Qiskit transpiler plugins (prefixed qqm_ to avoid colliding with Qiskit’s own built-in plugin names), so they drop into an existing transpile pipeline rather than requiring a separate workflow."
+    "text": "What it does\nEvolved from queue/noise-aware backend selection into active job monitoring: tracks every submitted job’s live status and reroutes a still-queued one if it breaches a user-declared wait-time SLA or its backend goes non-operational. Deliberately not “hunt for the shortest queue” — rerouting only fires on an SLA breach you set yourself or a real outage, specifically to avoid anything that could look like gaming IBM’s fair-share scheduler. A job can be pinned to a specific backend to opt out of rerouting entirely, while still being tracked normally."
   },
   {
-    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#why-graph-theory-for-this-problem",
-    "href": "projects/qiskit-qubit-mapping-toolkit.html#why-graph-theory-for-this-problem",
-    "title": "Qiskit Qubit Mapping Toolkit",
-    "section": "Why graph theory for this problem",
-    "text": "Why graph theory for this problem\nInitial layout and routing are graph problems — matching a logical circuit’s interaction graph against a hardware coupling graph, and finding low-cost paths through it when a direct edge isn’t available — and treating them as such (isomorphism search, walk-based cost heuristics) rather than as transpiler-specific special cases is what the underlying math background this portfolio’s other work draws on (graph theory, walk algorithms) is actually good for here."
+    "objectID": "projects/qiskit-quantum-traffic-engineering.html#whats-actually-been-verified",
+    "href": "projects/qiskit-quantum-traffic-engineering.html#whats-actually-been-verified",
+    "title": "Qiskit Quantum Traffic Engineering",
+    "section": "What’s actually been verified",
+    "text": "What’s actually been verified\nThe reroute engine’s cancel-and-resubmit path is confirmed live, end to end: a real queued job on ibm_kingston breached its SLA, was cancelled, and was cleanly resubmitted to ibm_marrakesh — which then ran to completion. Getting there took two real bugs caught in the process, not found by inspection: an ISA-transpilation gap in the reroute path specifically (the initial submission path already handled it; the reroute path didn’t, until a live crash on ibm_kingston showed why), and a stale-score-baseline bug in the improvement check, caught by test coverage before it ever reached production.\nTwo realistic-threshold runs (10-minute and 5-minute SLAs) both logged zero reroutes — traced to the actual queue-duration data in the run logs: jobs were leaving QUEUED within 1–15 seconds under current IBM Open-plan load. That’s an honest property of the environment, not a verification gap to keep re-testing identically.\n33 automated tests (fake backends and jobs, plus a Aer-noise-model regression check on the fidelity estimate) currently pass."
   },
   {
-    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#benchmarked-not-just-implemented",
-    "href": "projects/qiskit-qubit-mapping-toolkit.html#benchmarked-not-just-implemented",
-    "title": "Qiskit Qubit Mapping Toolkit",
-    "section": "Benchmarked, not just implemented",
-    "text": "Benchmarked, not just implemented\nEvery heuristic here is benchmarked directly against Qiskit’s own production default, LightSABRE (SabreLayout/SabreSwap, Qiskit ≥1.2), rather than presented as a improvement without a baseline comparison. This project’s claim is about where these heuristics land relative to LightSABRE on specific circuit/coupling-map combinations, not a general “faster than Qiskit” claim."
-  },
-  {
-    "objectID": "projects/qiskit-qubit-mapping-toolkit.html#links",
-    "href": "projects/qiskit-qubit-mapping-toolkit.html#links",
-    "title": "Qiskit Qubit Mapping Toolkit",
+    "objectID": "projects/qiskit-quantum-traffic-engineering.html#links",
+    "href": "projects/qiskit-quantum-traffic-engineering.html#links",
+    "title": "Qiskit Quantum Traffic Engineering",
     "section": "Links",
-    "text": "Links\n\nRepository\nQiskit Ecosystem listing — classified Transpiler plugin, labeled circuit optimization, research, quantum information\nPyPI"
+    "text": "Links\n\nRepository"
   },
   {
     "objectID": "projects/qiskit-lean-bridge.html#the-problem",
