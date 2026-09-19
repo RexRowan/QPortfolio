@@ -3,7 +3,7 @@
     "listing": "/projects.html",
     "items": [
       "/projects/qiskit-quantum-traffic-engineering.html",
-      "/projects/qiskit-quantum-loadbalancer.html",
+      "/projects/qiskit-quantum-backend-selector.html",
       "/projects/qiskit-magic-metrics.html",
       "/projects/qiskit-spacetime-bridge.html",
       "/projects/qiskit-certified-qrng.html",
