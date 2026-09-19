@@ -28,4 +28,5 @@ CZ/SWAP gates, Algorithm 3 (LDPC sparsification), the logical operators of Propo
 ## Links
 
 - [Repository](https://github.com/RexRowan/Spacetime-Bridge){target="_blank"}
-- [Qiskit Ecosystem submission](https://github.com/Qiskit/ecosystem/pull/1339){target="_blank"} - nomination PR, in review
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/a0f2307f/){target="_blank"} - classified `Paper artifact`, labeled `quantum information`, `research`, `error correction`
+- [PyPI](https://pypi.org/project/qiskit-spacetime-bridge/){target="_blank"}
