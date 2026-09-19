@@ -140,7 +140,7 @@ Sixteen projects. Fifteen are [Qiskit Ecosystem members](https://qiskit.github.i
 </tr>
 
 <tr>
-  <td><a href="projects/qiskit-quantum-loadbalancer.qmd"><strong>Qiskit Quantum Backend Selector<strong></a></td>
+  <td><a href="projects/qiskit-quantum-backend-selector.qmd"><strong>Qiskit Quantum Backend Selector<strong></a></td>
   <td>Tooling</td>
   <td>Queue- and noise-aware backend selection and routing for IBM Quantum backends. </td>
   <td><span class="badge bg-success">Ecosystem Member</span></td>
