@@ -1,8 +1,8 @@
 ---
-title: "Qiskit Quantum Loadbalancer"
+title: "Qiskit Quantum Backend Selector"
 description: "Queue- and noise-aware backend selection and routing for IBM Quantum backends, verified against real hardware"
 date: 2026-09-03
-image: ../images/quantum-loadbalancer.svg
+image: ../images/quantum-backend-selector.svg
 categories: [backend-orchestration, runtime-tooling, noise-modeling]
 ---
 
@@ -28,4 +28,4 @@ The routing and submission path, by contrast, has been run against a real `Qiski
 ## Links
 
 - [Repository](https://github.com/RexRowan/Qiskit-Quantum-Loadbalancer){target="_blank"}
-- [Qiskit Ecosystem submission](https://github.com/Qiskit/ecosystem/pull/1363){target="_blank"} — nomination PR, in review
+- [Qiskit Ecosystem listing](https://qiskit.github.io/ecosystem/p/91a8267e/){target="_blank"} — classified `Tooling`, labeled `cloud service`, `utility-scale`, `benchmarking`
