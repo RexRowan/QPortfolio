@@ -127,7 +127,7 @@ Sixteen projects. Twelve are [Qiskit Ecosystem members](https://qiskit.github.io
   <td><a href="projects/qiskit-spacetime-bridge.qmd"><strong>Qiskit Spacetime Bridge</strong></a></td>
   <td>Quantum error correction</td>
   <td>A Clifford circuit's spacetime structure isn't connected to a checkable CSS code without hand translation.</td>
-  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td>Outcome/spacetime-code construction (Delfosse-Paetznick) feeding stabilizer structure straight into the Cayley Codes analysis backend.</td>
 </tr>
 
@@ -135,7 +135,7 @@ Sixteen projects. Twelve are [Qiskit Ecosystem members](https://qiskit.github.io
   <td><a href="projects/qiskit-magic-metrics.qmd"><strong>Qiskit Magic Metrics<strong></a></td>
   <td>Resource metrics</td>
   <td>`PassManager`-native way to measure magic or multipartite entanglement — existing options are hardware-sampled (Qurrium) or unmaintained (qLEET). </td>
-  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td>GF(2) stabilizer-tableau shortcuts answer exactly, in polynomial time, what other tools sample or skip.</td>
 </tr>
 
@@ -143,7 +143,7 @@ Sixteen projects. Twelve are [Qiskit Ecosystem members](https://qiskit.github.io
   <td><a href="projects/qiskit-quantum-loadbalancer.qmd"><strong>Qiskit Quantum Load Balancer<strong></a></td>
   <td>Tooling</td>
   <td>Queue- and noise-aware backend selection and routing for IBM Quantum backends. </td>
-  <td><span class="badge bg-warning text-dark">In Review</span></td>
+  <td><span class="badge bg-success">Ecosystem Member</span></td>
   <td>Can route job submission with automatic ISA transpilation and failover if a backend errors out mid-attempt.</td>
 </tr>
 
