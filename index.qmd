@@ -235,6 +235,8 @@ I have broad interests well outside quantum computing — somewhere around 800 c
 
 **[Solar Shield](https://rexrowan.github.io/Codex-Universe/){target="_blank"}** started with a solar eclipse: watching four minutes of the Sun's output get blocked by pure geometry raised an obvious question — what would it take to do that on purpose, and for longer? The site explores two space engineering concepts in answer: a swarm of reflective sails (or an ejected mist/fog) stationed near the Sun-Earth L1 point to reduce incoming solar insolation, and space-based solar power harvesters in the spirit of ESA's SOLARIS program, aimed the opposite direction — capturing that same energy rather than blocking it. It sits alongside this portfolio as a second, unrelated track of work rather than inside it. Project [Repository](https://github.com/RexRowan/Codex-Universe){target="_blank"}.
 
+I'm also a participant in the [NASA International Space Apps Challenge](https://www.spaceappschallenge.org/) and the [Global Quantum Game Jam 2026](https://itch.io/jam/quantum-game-jam-2026) (Sept 25–27, 2026, hosted by IGDA Finland).
+
 **Elsewhere:**
 
 - [GitHub](https://github.com/RexRowan){target="_blank"}
