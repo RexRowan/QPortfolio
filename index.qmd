@@ -165,6 +165,8 @@ That progression — from "make Qiskit easier to use" toward "make Qiskit's own 
 
 I've worked through the Qiskit Global Summer School curriculum — GHZ state construction and depth optimization, noise models and dynamic circuits, advanced error mitigation (ZNE, PEC, PNA, SLC, noise learning), and SQD/QAOA applications to molecular simulation and combinatorial optimization. I also work on original research in graph theory and number theory — ℓ-zero-sumfree sets, the Davenport constant, and structures related to modular arithmetic and their component topology — and I write explainer content on math and quantum topics using Manim, Observable Framework, and Quarto.
 
+I'm also a contributor to the [qLDPC Code Challenge](https://unitaryfoundation.github.io/qldpc-challenge/), an open, automatically-verified leaderboard for quantum LDPC codes — my `[[42,6,6]]` generalized bicycle code sits on the challenge's track frontier — and I was a prize winner (Overall category) in the [UnitaryCON qLDPC Code Sprint](https://github.com/unitaryfoundation/qldpc-challenge/pull/1652) (September 2026).
+
 ## Long-term goals
 
 Two directions I'm scoping but haven't started building — real enough to be worth stating publicly, honest enough to label as concept-stage rather than dress up as more than they are.
