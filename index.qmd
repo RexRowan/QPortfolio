@@ -167,6 +167,8 @@ I've worked through the Qiskit Global Summer School curriculum — GHZ state con
 
 I'm also a contributor to the [qLDPC Code Challenge](https://unitaryfoundation.github.io/qldpc-challenge/), an open, automatically-verified leaderboard for quantum LDPC codes — my `[[42,6,6]]` generalized bicycle code sits on the challenge's track frontier — and I was a prize winner (Overall category) in the [UnitaryCON qLDPC Code Sprint](https://github.com/unitaryfoundation/qldpc-challenge/pull/1652) (September 2026).
 
+I'm also building [CliffordGame](https://github.com/RexRowan/CliffordGame), a [lean4game](https://github.com/leanprover-community/lean4game) submission where quantum circuit puzzles are graded by Lean itself rather than a bespoke checker, playable on the [Lean Game Server](https://adam.math.hhu.de/) hosted by HHU Düsseldorf. It shares level content and underlying math with the companion Qiskit-Ecosystem package, [qiskit-lean-verify-game](https://github.com/RexRowan/qiskit-lean-verify-game), which grades the same circuits using Qiskit's `Statevector` instead.
+
 ## Long-term goals
 
 Two directions I'm scoping but haven't started building — real enough to be worth stating publicly, honest enough to label as concept-stage rather than dress up as more than they are.
